@@ -1,0 +1,29 @@
+<html>
+<body>
+<h1><%=@monitors.length.to_s %> monitors running on the system</h1><br/>
+    <% count = 0 %>
+<% @monitors.each do |monitor|  %>
+    <% count = count + 1 %>
+    <%= count %>. <%= monitor.test_description %><br/>
+ 
+    Running since: <%= monitor.creation_date.to_s(:short) %><br/>
+       
+    Last test was performed on: <%= monitor.time_of_last_test.to_s(:short) %><br/>
+    Last Test Result:<br/>
+                 <%= monitor.describe_test_result %> = <%= monitor.test_result %><br/>
+
+    Total number of tests performed: <%= monitor.total_num_tests.to_s %><br/>
+
+                   PASSED <%= monitor.num_tests_passed.to_s %> tests<br/>
+                   FAILED <%= monitor.num_tests_failed.to_s %> tests<br/>
+
+    Tests are performed every: <%= monitor.time_interval %><br/>
+    Notification Interval for failed tests: <%= monitor.notification_interval %> <br/>
+    <p><p/>
+<% end  %>
+
+</body>
+</html>
+
+
+
