@@ -1,7 +1,11 @@
 =Yeti
 
-Yeti is the Web UI for Ragios (the Ruby-based system and Network monitoring Tool. See here: https://github.com/obi-a/Ragios). Yeti is a light-weight Rails 3 app, runs Ragios as a Rails 3 plugin. To Run Ragios as a Unix/Linux daemon see here https://github.com/obi-a/Ragios/blob/master/README.rdoc
+Yeti is the Web UI for Ragios. Yeti is a light-weight Rails 3 app, runs Ragios as a Rails plugin. 
 
-Yeti is still a work n progress. I will be cleaning it up and coding it over the next few days. 
+Ragois is a Ruby-based system and Network monitoring Tool. For more information on Ragios, see here: https://github.com/obi-a/Ragios.
+
+To Run Ragios as a Unix/Linux daemon see here https://github.com/obi-a/Ragios/blob/master/README.rdoc
+
+Yeti is still a work in progress. I will be cleaning it up and coding it over the next few days. 
 
 
