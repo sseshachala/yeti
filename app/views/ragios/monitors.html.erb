@@ -2,6 +2,16 @@
 <body>
 <h1><%=@monitors.length.to_s %> monitors running on the system</h1><br/>
     <% count = 0 %>
+<h2>Uptime Report</h2>
+<% count = 0 %>
+<% @monitors.each do |monitor|  %>
+<% count = count + 1 %>
+<% @uptime = (monitor.num_tests_passed.to_f / monitor.total_num_tests.to_f) * 100 %>
+<%= count %>. <%= monitor.test_description %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uptime: <%= @uptime.to_i.to_s %>% <br/>
+<% end %>
+
+<% count = 0 %>
+<h2>Detailed Report</h2>
 <% @monitors.each do |monitor|  %>
     <% count = count + 1 %>
     <%= count %>. <%= monitor.test_description %><br/>
@@ -16,6 +26,8 @@
 
                    PASSED <%= monitor.num_tests_passed.to_s %> tests<br/>
                    FAILED <%= monitor.num_tests_failed.to_s %> tests<br/>
+                   <% @uptime = (monitor.num_tests_passed.to_f / monitor.total_num_tests.to_f) * 100 %>
+                   UPTIME <%= @uptime.to_i.to_s %>%<br/>
 
     Tests are performed every: <%= monitor.time_interval %><br/>
     Notification Interval for failed tests: <%= monitor.notification_interval %> <br/>
