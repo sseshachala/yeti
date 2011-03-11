@@ -1,7 +1,5 @@
-<html>
-<body>
+
 <h1><%=@monitors.length.to_s %> monitors running on the system</h1><br/>
-    <% count = 0 %>
 <h2>Uptime Report</h2>
 <% count = 0 %>
 <% @monitors.each do |monitor|  %>
@@ -14,13 +12,14 @@
 <h2>Detailed Report</h2>
 <% @monitors.each do |monitor|  %>
     <% count = count + 1 %>
-    <%= count %>. <%= monitor.test_description %><br/>
+ <%= count %>. <%= link_to monitor.test_description, {:controller => "ragios", :action => "test_monitor", :id => count-1 }, {:title => "Run Test Now"} %><br/>
  
     Running since: <%= monitor.creation_date.to_s(:short) %><br/>
        
-    Last test was performed on: <%= monitor.time_of_last_test.to_s(:short) %><br/>
+    
     Last Test Result:<br/>
                  <%= monitor.describe_test_result %> = <%= monitor.test_result %><br/>
+    Performed on: <%= monitor.time_of_last_test.to_s(:short) %><br/>
 
     Total number of tests performed: <%= monitor.total_num_tests.to_s %><br/>
 
@@ -34,8 +33,6 @@
     <p><p/>
 <% end  %>
 
-</body>
-</html>
 
 
 
