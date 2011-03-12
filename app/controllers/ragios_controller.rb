@@ -5,9 +5,8 @@ class RagiosController < ApplicationController
  attr :monitors
  
  def init
-    
-   Whisper::Monitors.start
-   redirect_to :action => 'monitors'
+    Whisper::Monitors.start
+    redirect_to :action => 'monitors'
  end
 
  def monitors
