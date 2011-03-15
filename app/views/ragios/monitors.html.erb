@@ -5,7 +5,8 @@
 <% @monitors.each do |monitor|  %>
 <% count = count + 1 %>
 <% @uptime = (monitor.num_tests_passed.to_f / monitor.total_num_tests.to_f) * 100 %>
-<%= count %>. <%= monitor.test_description %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uptime: <%= @uptime.to_i.to_s %>% <br/>
+<% @downtime =(monitor.num_tests_failed.to_f / monitor.total_num_tests.to_f) * 100 %>
+<%= count %>. <%= monitor.test_description %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uptime: <%= @uptime.to_i.to_s %>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Downtime: <%= @downtime.to_i.to_s %>%<br/>
 <% end %>
 
 <% count = 0 %>
@@ -26,7 +27,9 @@
                    PASSED <%= monitor.num_tests_passed.to_s %> tests<br/>
                    FAILED <%= monitor.num_tests_failed.to_s %> tests<br/>
                    <% @uptime = (monitor.num_tests_passed.to_f / monitor.total_num_tests.to_f) * 100 %>
+                   <% @downtime =(monitor.num_tests_failed.to_f / monitor.total_num_tests.to_f) * 100 %>
                    UPTIME <%= @uptime.to_i.to_s %>%<br/>
+                   DOWN TIME <%= @downtime.to_i.to_s %>%<br/>
 
     Tests are performed every: <%= monitor.time_interval %><br/>
     Notification Interval for failed tests: <%= monitor.notification_interval %> <br/>
