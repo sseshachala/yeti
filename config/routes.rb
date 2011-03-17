@@ -1,4 +1,12 @@
 Yeti::Application.routes.draw do
+  get "admin/login"
+
+  get "admin/logout"
+
+  get "admin/index"
+
+  get "admin/authenticate"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

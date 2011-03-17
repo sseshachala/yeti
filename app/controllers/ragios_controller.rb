@@ -10,7 +10,12 @@ class RagiosController < ApplicationController
  end
 
  def monitors
-      @monitors = Whisper::Monitors.get_monitors
+    @monitors = Whisper::Monitors.get_monitors
+    #if the monitors have not been initialized, return to init to start the monitoring system
+    if @monitors == nil
+     redirect_to :action => 'init'  
+    end
+  
  end
 
  def test_monitor

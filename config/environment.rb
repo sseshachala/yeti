@@ -4,9 +4,9 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 Yeti::Application.initialize!
 
-#admin user name and password is required to log into yeti
-#@@admin = 'username' 
-#@@password = 'password' 
+#admin user name and password is required to use the system
+@@username = 'admin' 
+@@password = 'yeti' 
 
 #For Twitter notifications
 #@@consumer_key = 'Consumer Key'

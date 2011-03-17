@@ -1,5 +1,6 @@
 
 <h1><%=@monitors.length.to_s %> monitors running on the system</h1><br/>
+<p><%= link_to "Logout", {:controller => "admin", :action => "logout"}, {:title => "Logout"} %></p>
 <h2>Uptime Report</h2>
 <% count = 0 %>
 <% @monitors.each do |monitor|  %>
@@ -35,6 +36,8 @@
     Notification Interval for failed tests: <%= monitor.notification_interval %> <br/>
     <p><p/>
 <% end  %>
+
+
 
 
 
