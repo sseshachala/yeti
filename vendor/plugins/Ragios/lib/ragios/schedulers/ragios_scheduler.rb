@@ -5,12 +5,12 @@ module Schedulers
 class RagiosScheduler
     
     attr :jobs 
-    attr :time_since_last_status_report
+    attr :start_time
 
     def initialize(jobs)
          @jobs = jobs
          #time since the first status report -- will be from the time Ragios started running -- see status_report.erb
-         @time_since_last_status_report  =  Time.now
+         @start_time  =  Time.now
     end
     
   #returns a list of all active monitors managed by this scheduler
@@ -49,7 +49,6 @@ class RagiosScheduler
         else
            raise 'Wrong hash parameter for update_status()'
      end
-       @time_since_last_status_report = Time.now
     end
  end
 
@@ -69,10 +68,12 @@ class RagiosScheduler
           job.time_of_last_test = Time.now 
  	  if job.test_command
            job.num_tests_passed = job.num_tests_passed + 1
+           job.has_failed = nil #FALSE
            puts  "  [PASSED]" + " Created on: "+ Time.now.to_s(:long) 
            puts job.describe_test_result + " = " + job.test_result
   	  else
            job.num_tests_failed = job.num_tests_failed + 1
+           job.has_failed = TRUE
            puts "  [FAILED]" + " Created on: "+ Time.now.to_s(:long) 
            puts job.describe_test_result + " = " + job.test_result
            job.failed
@@ -124,6 +125,7 @@ class RagiosScheduler
        #catch all exceptions
       rescue Exception
           puts "ERROR: " +  $!  + " Created on: "+ Time.now.to_s(:long) 
+          job.has_failed = TRUE
           job.error_handler
       end
        #count this test
