@@ -12,6 +12,11 @@ module Whisper
       
 
       @monitors = Ragios::Monitor.start @@monitoring
+
+     if defined?(@@status_report) != nil
+        Ragios::Monitor.update_status(@@status_report)
+     end
+    
     end       
  end
 

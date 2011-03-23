@@ -46,3 +46,8 @@ Yeti::Application.initialize!
                    :notify_interval => '6h'
                   
                   }
+
+#Add status report settings here
+#@@status_report = {:every => '1d',
+#			:contact => 'admin@mail.com',
+#			:via => 'gmail'}
