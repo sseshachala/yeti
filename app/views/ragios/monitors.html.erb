@@ -5,9 +5,14 @@
 <% count = 0 %>
 <% @monitors.each do |monitor|  %>
 <% count = count + 1 %>
+	<% if monitor.has_failed == TRUE %>
+            <% @status = "DOWN" %>
+        <% else %>
+            <% @status = "UP" %>
+        <% end %>
 <% @uptime = (monitor.num_tests_passed.to_f / monitor.total_num_tests.to_f) * 100 %>
 <% @downtime =(monitor.num_tests_failed.to_f / monitor.total_num_tests.to_f) * 100 %>
-<%= count %>. <%= monitor.test_description %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uptime: <%= @uptime.to_i.to_s %>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Downtime: <%= @downtime.to_i.to_s %>%<br/>
+<%= count %>. <%= monitor.test_description %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uptime: <%= @uptime.to_i.to_s %>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Downtime: <%= @downtime.to_i.to_s %>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Status: <%= @status %><br/>
 <% end %>
 
 <% count = 0 %>
