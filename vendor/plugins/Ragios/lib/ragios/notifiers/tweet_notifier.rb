@@ -8,8 +8,8 @@ class TweetNotifier
 
   def initialize 
 
-      oauth = Twitter::OAuth.new(@@consumer_key, @@consumer_secret)
-      oauth.authorize_from_access(@@access_token, @@access_token)   
+      oauth = Twitter::OAuth.new('Consumer Key', 'Consumer secret')
+      oauth.authorize_from_access('access token', 'access secret')   
           
        @client = Twitter::Base.new(oauth) 
   end
