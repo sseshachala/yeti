@@ -29,14 +29,17 @@ class RagiosController < ApplicationController
  	  if @monitor.test_command
              @monitor.num_tests_passed = @monitor.num_tests_passed + 1
              @status = "PASSED"
+             @monitor.has_failed = nil #FALSE 
   	  else
            @monitor.num_tests_failed = @monitor.num_tests_failed + 1
            @monitor.failed
            @status = "FAILED"
+           @monitor.has_failed = TRUE
   	  end
    	  
 	rescue Exception
            @status = "FAILED"
+           @monitor.has_failed = TRUE
            @monitor.error_handler
            raise
         end

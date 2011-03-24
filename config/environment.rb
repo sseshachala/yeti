@@ -45,6 +45,15 @@ Yeti::Application.initialize!
                    :via => 'gmail',  
                    :notify_interval => '6h'
                   
+                  },
+                   { :monitor => 'url',
+                   :every => '30m',
+                   :test => 'My Website Test',
+                   :url => 'http://www.wasakubue.com',
+                   :contact => 'obi.akubue@mail.com',
+                   :via => 'gmail',  
+                   :notify_interval => '6h'
+                  
                   }
 
 #Add status report settings here
