@@ -5,12 +5,12 @@ class RagiosController < ApplicationController
  attr :monitors
  
  def init
-    Whisper::Monitors.start
+    Whisper::Monitor.start
     redirect_to :action => 'monitors'
  end
 
  def monitors
-    @monitors = Whisper::Monitors.get_monitors
+    @monitors = Whisper::Monitor.get_monitors
     #if the monitors have not been initialized, return to init to start the monitoring system
     if @monitors == nil
      redirect_to :action => 'init'  
@@ -20,7 +20,7 @@ class RagiosController < ApplicationController
 
  def test_monitor
      @id = params[:id].to_i
-     monitors = Whisper::Monitors.get_monitors
+     monitors = Whisper::Monitor.get_monitors
      @monitor = monitors[@id]
      @monitor.test_command
 

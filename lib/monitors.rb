@@ -1,6 +1,6 @@
 module Whisper
 
- class Monitors
+ class Monitor
 
    attr :monitors
 
@@ -12,7 +12,8 @@ module Whisper
       
 
       @monitors = Ragios::Monitor.start @@monitoring
-
+     
+     #send status reports if one is defined
      if defined?(@@status_report) != nil
         Ragios::Monitor.update_status(@@status_report)
      end
