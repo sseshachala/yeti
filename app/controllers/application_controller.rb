@@ -8,7 +8,8 @@ protected
   unless session[:user]
     session[:original_uri] = request.request_uri
     flash[:notice] = "Please log in"
-    redirect_to :controller => 'admin', :action => 'login'
+    #redirect_to :controller => 'admin', :action => 'login'
+    redirect_to '/login'
   end
  end 
 end
