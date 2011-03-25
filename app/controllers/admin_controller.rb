@@ -17,6 +17,7 @@ class AdminController < ApplicationController
   end
 
   def index
+   redirect_to :controller => 'ragios',:action => 'monitors'
   end
 
   def authenticate(name,password)
