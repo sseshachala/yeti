@@ -6,4 +6,5 @@ end
 def edit_path path,id
  "/" + path + "/" + id +  "/" + "edit"
 end
+
 end
