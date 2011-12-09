@@ -12,6 +12,8 @@ attr_accessor :email
 
  def initialize(attributes = {})
     @attributes = attributes
+    @username = @attributes["username"]
+    @email = @attributes["email"]
   end
  
   def read_attribute_for_validation(key)
@@ -30,6 +32,21 @@ def save
    true
 end
 
+def destroy
+  hash = Couchdb.login(username = 'obi',password ='trusted') 
+  auth_session =  hash["AuthSession"]
+  doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"]}
+  Couchdb.delete_doc doc,auth_session
+end
+
+def update_attributes(user_hash)
+  hash = Couchdb.login(username = 'obi',password ='trusted') 
+  auth_session =  hash["AuthSession"]
+  data = user_hash
+  doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + user_hash["username"], :data =>  data}   
+  Couchdb.update_doc doc,auth_session
+  true
+end
 
  def persisted?
   false
@@ -40,6 +57,13 @@ def self.find(id)
   auth_session =  hash["AuthSession"]
   attributes =   Couchdb.find_by({:database => '_users', :username => id} , auth_session)  
   user_hash = attributes[0]
+end
+
+def self.find_object(id)
+
+   user_hash = find(id)
+   @user = User.new(user_hash)
+
 end
 
  def self.all
