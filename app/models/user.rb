@@ -5,10 +5,11 @@ include ActiveModel::Serialization
 extend ActiveModel::Naming 
 include ActiveModel::Conversion
 
+validates_presence_of :username, :email
+
 attr_accessor :attributes
 attr_accessor :username
-attr_accessor :email
-  
+attr_accessor :email  
 
  def initialize(attributes = {})
     @attributes = attributes
@@ -21,6 +22,7 @@ attr_accessor :email
   end
 
 def save
+  if self.valid?
    hash = Couchdb.login(username = 'obi',password ='trusted') 
    auth_session =  hash["AuthSession"]
    user = { :username => @attributes["username"], :password => "trusted", :roles => []}
@@ -30,6 +32,10 @@ def save
    doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"], :data => data}   
    Couchdb.update_doc doc,auth_session
    true
+  else 
+   
+   false
+  end
 end
 
 def destroy
@@ -40,12 +46,17 @@ def destroy
 end
 
 def update_attributes(user_hash)
+  @attributes = user_hash
+ if self.valid?
   hash = Couchdb.login(username = 'obi',password ='trusted') 
   auth_session =  hash["AuthSession"]
   data = user_hash
   doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + user_hash["username"], :data =>  data}   
   Couchdb.update_doc doc,auth_session
   true
+ else
+  false
+ end
 end
 
  def persisted?
