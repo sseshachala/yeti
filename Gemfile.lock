@@ -33,6 +33,7 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    gravatar_image_tag (0.1.0)
     i18n (0.5.0)
     json (1.6.3)
     leanback (0.3.0)
@@ -98,6 +99,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  gravatar_image_tag (= 0.1.0)
   leanback
   rails (= 3.0.9)
   rspec
