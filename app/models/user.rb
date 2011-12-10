@@ -5,17 +5,30 @@ include ActiveModel::Serialization
 extend ActiveModel::Naming 
 include ActiveModel::Conversion
 
-validates_presence_of :username, :email
+email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-attr_accessor :attributes
-attr_accessor :username
-attr_accessor :email  
+validates :username, :presence => true,
+                     :length => {:maximum => 50}
+
+validates :email, :presence => true,
+                  :format => {:with => email_regex}
+
+validates :password, :presence => true,
+                  :confirmation => true,
+                  :length => {:within => 6..40}
+
+
+attr_accessor :attributes, :username, :email, :password, :password_confirmation
+
+ 
 
  def initialize(attributes = {})
     @attributes = attributes
     @username = @attributes["username"]
     @email = @attributes["email"]
   end
+
+
  
   def read_attribute_for_validation(key)
     @attributes[key]
