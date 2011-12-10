@@ -26,9 +26,24 @@ attr_accessor :attributes, :username, :email, :password, :password_confirmation
     @attributes = attributes
     @username = @attributes["username"]
     @email = @attributes["email"]
+    @password = @attributes["password"]
+    @password_confirmation = @attributes["password_confirmation"]
   end
 
-
+def self.authenticate(username, submitted_password)
+   begin
+     hash = Couchdb.login(username, submitted_password) 
+     user_auth_session =  hash["AuthSession"]
+     doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + username }
+     Couchdb.view doc,user_auth_session
+   rescue CouchdbException => e
+      if e.to_s == "CouchDB: Error - unauthorized. Reason - Name or password is incorrect."
+        return nil
+      else 
+        raise
+      end
+   end
+end
  
   def read_attribute_for_validation(key)
     @attributes[key]
@@ -38,7 +53,7 @@ def save
   if self.valid?
    hash = Couchdb.login(username = 'obi',password ='trusted') 
    auth_session =  hash["AuthSession"]
-   user = { :username => @attributes["username"], :password => "trusted", :roles => []}
+   user = { :username => @attributes["username"], :password => @attributes["password"], :roles => []}
    Couchdb.add_user(user,auth_session)
 
    data = {:username=> @attributes["username"],:email => @attributes["email"] }
