@@ -44,6 +44,25 @@ def self.authenticate(username, submitted_password)
       end
    end
 end
+
+def self.authenticate_with_salt(username, cookie_salt)
+   begin
+     if username == nil
+       return nil
+     end
+     hash = Couchdb.login('obi','trusted') 
+     auth_session =  hash["AuthSession"]
+     doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + username }
+     hash = Couchdb.view doc,auth_session
+     if hash["salt"] == cookie_salt
+      User.new(hash) 
+     else
+      nil
+     end
+   rescue CouchdbException => e
+     return nil
+   end
+end
  
   def read_attribute_for_validation(key)
     @attributes[key]
@@ -74,7 +93,7 @@ def destroy
 end
 
 def update_attributes(user_hash)
-  @attributes = user_hash
+ @attributes = user_hash
  if self.valid?
   hash = Couchdb.login(username = 'obi',password ='trusted') 
   auth_session =  hash["AuthSession"]
