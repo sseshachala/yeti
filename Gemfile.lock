@@ -36,7 +36,7 @@ GEM
     gravatar_image_tag (0.1.0)
     i18n (0.5.0)
     json (1.6.3)
-    leanback (0.3.0)
+    leanback (0.3.1)
       rest-client
       yajl-ruby
     mail (2.2.19)
@@ -93,15 +93,17 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
-    yajl-ruby (0.8.2)
+    will_paginate (3.0.pre2)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   gravatar_image_tag (= 0.1.0)
-  leanback
+  leanback (= 0.3.1)
   rails (= 3.0.9)
   rspec
   rspec-rails
   webrat
+  will_paginate (= 3.0.pre2)

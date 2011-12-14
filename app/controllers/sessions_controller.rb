@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
      render 'new'
    else
      sign_in user
-     redirect_to show_path("users",  user["username"])#User.new(user)
+     #redirect_to show_path("users",  user["username"])#User.new(user)
+     redirect_back_or show_path("users",  user["username"])
    end
   end
 

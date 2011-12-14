@@ -30,6 +30,8 @@ attr_accessor :attributes, :username, :email, :password, :password_confirmation
     @password_confirmation = @attributes["password_confirmation"]
   end
 
+
+
 def self.authenticate(username, submitted_password)
    begin
      hash = Couchdb.login(username, submitted_password) 
@@ -85,6 +87,8 @@ def save
   end
 end
 
+
+
 def destroy
   hash = Couchdb.login(username = 'obi',password ='trusted') 
   auth_session =  hash["AuthSession"]
@@ -97,6 +101,9 @@ def update_attributes(user_hash)
  if self.valid?
   hash = Couchdb.login(username = 'obi',password ='trusted') 
   auth_session =  hash["AuthSession"]
+  Couchdb.change_password(user_hash["username"], user_hash["password"],auth_session)
+  user_hash.delete("password")
+  user_hash.delete("password_confirmation") 
   data = user_hash
   doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + user_hash["username"], :data =>  data}   
   Couchdb.update_doc doc,auth_session
@@ -109,6 +116,15 @@ end
  def persisted?
   false
  end
+
+def admin?
+  hash = User.find(@attributes["username"])
+  if hash["admin"] == "true"
+    true
+  else
+    false
+  end  
+end
 
 def self.find(id)
   hash = Couchdb.login(username = 'obi',password ='trusted') 

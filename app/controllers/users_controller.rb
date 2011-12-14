@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+before_filter :authenticate, :only => [:index,:show,:edit,:update]
+before_filter :correct_user, :only => [:show,:edit,:update]
+before_filter :admin_user, :only => [:index,:destroy]
+
   # GET /users
   # GET /users.xml
   def index
@@ -44,7 +48,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        sign_in @user 
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -74,10 +77,25 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_object(params[:id])
     @user.destroy
-
+    flash[:success] = "User destroyed."
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
   end
+
+  private
+   
+   def authenticate
+     deny_access unless signed_in?
+   end
+
+   def correct_user
+      @user = User.find_object(params[:id])
+      redirect_to(show_path("users",  @current_user.attributes["username"])) unless current_user?(@user)
+   end
+
+   def admin_user
+     redirect_to(show_path("users",  @current_user.attributes["username"])) unless current_user.admin?
+   end
 end
