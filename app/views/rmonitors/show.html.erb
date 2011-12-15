@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>This monitor tests:</b>
+  <%= @rmonitor["describe_test_result"] %>
+</p>
+
+<p>
+  <b>Creation Date:</b>
+  <%= @rmonitor["creation_date"] %>
+</p>
+
+<p>
+  <b>Runs Every:</b>
+  <%= @rmonitor["every"] %>
+</p>
+
+<p>
+  <b>Test:</b>
+  <%= @rmonitor["test"] %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%= @rmonitor["contact"] %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @rmonitor["url"] %>
+</p>
+
+<p>
+  <b>Notify interval:</b>
+  <%= @rmonitor["notify_interval"] %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @rmonitor["State"] %>
+</p>
+
+<p>
+  <b>Last test result:</b>
+  <%= @rmonitor["last_test_result"] %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @rmonitor["status"] %>
+</p>
+
+<p>
+  <b>Number of tests Passed:</b>
+  <%= @rmonitor["num_tests_passed"] %>
+</p>
+
+<p>
+  <b>Number of tests Failed:</b>
+  <%= @rmonitor["num_tests_failed"] %>
+</p>
+
+<p>
+  <b>Time of last test:</b>
+  <%= @rmonitor["time_of_last_test"] %>
+</p
+
+<p>
+  <b>Total number of tests:</b>
+  <%= @rmonitor["total_num_tests"] %>
+</p>
+
+
+
+
+
+
+
+<%= link_to 'Edit', edit_path("rmonitors",  @rmonitor["_id"]) %> |
+<%= link_to 'Back', rmonitors_path %>

@@ -1,5 +1,7 @@
 Yeti::Application.routes.draw do
   
+  resources :rmonitors
+
   resources :users
 
   resources :sessions , :only => [:new, :create, :destroy]

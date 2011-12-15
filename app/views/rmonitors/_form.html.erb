@@ -1,0 +1,36 @@
+<%= form_for(@rmonitor) do |f| %>
+  <% if @rmonitor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rmonitor.errors.count, "error") %> prohibited this rmonitor from being saved:</h2>
+
+      <ul>
+      <% @rmonitor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :every %><br />
+    <%= f.text_field :every %>
+  </div>
+  <div class="field">
+    <%= f.label :test %><br />
+    <%= f.text_field :test %>
+  </div>
+  <div class="field">
+    <%= f.label :contact %><br />
+    <%= f.text_field :contact %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :notify_interval %><br />
+    <%= f.text_field :notify_interval %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

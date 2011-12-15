@@ -1,0 +1,35 @@
+<h1>Listing monitors</h1>
+
+<table>
+  <tr>
+    <th>Owner</th>
+    <th>Every</th>
+    <th>Test</th>
+    <th>Contact</th>
+    <th>Url</th>
+    <th>Status</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rmonitors.each do |rmonitor| %>
+  <tr>
+    <td><%= rmonitor["tag"] %>
+    <td><%= rmonitor["every"] %></td>
+    <td><%= rmonitor["test"] %></td>
+    <td><%= rmonitor["contact"] %></td>
+    <td><%= rmonitor["url"] %></td>
+    <td><%= rmonitor["status"] %></td>
+    <td><%= rmonitor["state"] %></td>
+    <td><%= link_to 'Show', show_path("rmonitors",  rmonitor["_id"]) %></td>
+    <td><%= link_to 'Edit', edit_path("rmonitors",  rmonitor["_id"]) %></td>
+    <td><%= link_to 'Destroy', show_path("rmonitors",  rmonitor["_id"]), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Monitor', new_rmonitor_path %>
