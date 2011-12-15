@@ -11,6 +11,10 @@ Yeti::Application.routes.draw do
   match '/signin', :to => 'sessions#new'
 
   match '/signout', :to => 'sessions#destroy'
+  
+  match '/rmonitors/:id/pause', :to => 'rmonitors#pause'
+
+  match '/rmonitors/:id/restart', :to => 'rmonitors#restart'
 
   #match 'users/:id' => 'users#show'
 

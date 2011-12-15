@@ -7,6 +7,7 @@ include ActiveModel::Conversion
 
 attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
 
+
  def initialize(attributes = {})
     @attributes = attributes
     @every = @attributes["every"]
@@ -63,6 +64,14 @@ end
    response = RestClient.get 'http://127.0.0.1:5041/monitors/' + id
    @rmonitors = Yajl::Parser.parse(response.to_str)
  end
+
+def pause
+  response = RestClient.put 'http://127.0.0.1:5041/monitors/' + @attributes["_id"] + '/state/stopped',{:content_type => :json}
+end
+
+def restart
+ response = RestClient.put 'http://127.0.0.1:5041/monitors/' + @attributes["_id"] + '/state/active',{:content_type => :json}
+end
 
 def destroy
    response = RestClient.delete 'http://127.0.0.1:5041/monitors/' + @attributes["_id"]

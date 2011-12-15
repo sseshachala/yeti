@@ -22,7 +22,16 @@
     <td><%= rmonitor["contact"] %></td>
     <td><%= rmonitor["url"] %></td>
     <td><%= rmonitor["status"] %></td>
+    <% if rmonitor["state"] == "stopped" %>
+    <td><%= "Paused" %></td>
+    <% else %>
     <td><%= rmonitor["state"] %></td>
+    <% end %>
+    <% if rmonitor["state"] == "stopped" %>
+    <td><%= link_to 'Restart', path_for("rmonitors",  rmonitor["_id"], "restart"), :confirm => 'Are you sure?', :method => :put %></td>
+    <% elsif rmonitor["state"] == "active" %>
+    <td><%= link_to 'Pause', path_for("rmonitors",  rmonitor["_id"], "pause"), :confirm => 'Are you sure?', :method => :put %></td>
+    <% end %>
     <td><%= link_to 'Show', show_path("rmonitors",  rmonitor["_id"]) %></td>
     <td><%= link_to 'Edit', edit_path("rmonitors",  rmonitor["_id"]) %></td>
     <td><%= link_to 'Destroy', show_path("rmonitors",  rmonitor["_id"]), :confirm => 'Are you sure?', :method => :delete %></td>

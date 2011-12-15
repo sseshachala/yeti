@@ -69,6 +69,32 @@ class RmonitorsController < ApplicationController
     end
   end
 
+  # PUT /rmonitors/1/pause
+  # PUT /rmonitors/1/pause.xml
+  def pause
+    @rmonitor = Rmonitor.find_object(params[:id])
+    @rmonitor.pause
+    flash[:success] = "Monitor paused."
+    respond_to do |format|
+      format.html { redirect_to(rmonitors_url) }
+      format.xml  { head :ok }
+    end
+  end
+
+ 
+  # PUT /rmonitors/1/restart
+  # PUT /rmonitors/1/restart.xml
+  def restart
+    @rmonitor = Rmonitor.find_object(params[:id])
+    @rmonitor.restart
+    flash[:success] = "Monitor restarted."
+    respond_to do |format|
+      format.html { redirect_to(rmonitors_url) }
+      format.xml  { head :ok }
+    end
+  end
+
+
   # DELETE /rmonitors/1
   # DELETE /rmonitors/1.xml
   def destroy
