@@ -5,8 +5,24 @@ include ActiveModel::Serialization
 extend ActiveModel::Naming 
 include ActiveModel::Conversion
 
-attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
+email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+url_regex = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+
+validates :every, :presence => true
+
+validates :test, :presence => true,
+                 :length => {:within => 4..50}
+
+validates :contact, :presence => true,
+                    :format => {:with => email_regex}
+
+validates :url, :presence => true,
+                :format => {:with => url_regex}
+
+validates :notify_interval, :presence => true
+
+attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
 
  def initialize(attributes = {})
     @attributes = attributes
@@ -22,6 +38,7 @@ attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
  end
 
 def update_attributes(params)
+ @attributes = params["rmonitor"]
  if self.valid?
   str = Yajl::Encoder.encode(params["rmonitor"])
   response = RestClient.put 'http://127.0.0.1:5041/monitors/' + params["id"],str, {:content_type => :json, :accept => :json}
