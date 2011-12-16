@@ -1,4 +1,8 @@
 class RmonitorsController < ApplicationController
+before_filter :authenticate
+before_filter :correct_user, :only => [:show,:edit,:update, :destroy, :restart, :pause]
+before_filter :admin_user, :only => [:index]
+
   # GET /rmonitors
   # GET /rmonitors.xml
   def index
@@ -8,6 +12,15 @@ class RmonitorsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @rmonitors }
     end
+  end
+
+  # GET /dashboard/:user
+  def dashboard
+   if (params[:id] == current_user.attributes["username"]) || current_user.admin?
+     @rmonitors = Rmonitor.find_by_owner(params[:id])
+   else
+     redirect_to(show_path("dashboard",  current_user.attributes["username"]))
+   end
   end
 
   # GET /rmonitors/1
@@ -106,4 +119,22 @@ class RmonitorsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+ private
+
+ def authenticate
+   deny_access unless signed_in?
+ end
+
+ def correct_user
+   @rmonitor = Rmonitor.find_object(params[:id]) 
+   @current_user = current_user
+   if (@current_user.attributes["username"] != @rmonitor.attributes["tag"]) 
+     redirect_to(show_path("dashboard",  current_user.attributes["username"])) unless @current_user.admin?
+   end
+ end
+
+ def admin_user
+     redirect_to(show_path("dashboard",  current_user.attributes["username"])) unless current_user.admin?
+ end
 end

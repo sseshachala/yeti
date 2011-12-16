@@ -1,4 +1,5 @@
 Yeti::Application.routes.draw do
+
   
   resources :rmonitors
 
@@ -16,7 +17,10 @@ Yeti::Application.routes.draw do
 
   match '/rmonitors/:id/restart', :to => 'rmonitors#restart'
 
+  match 'dashboard/:id',  :to => 'rmonitors#dashboard'
+
   #match 'users/:id' => 'users#show'
+  
 
   get "pages/home"
 
@@ -75,7 +79,7 @@ Yeti::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+   root :to => 'rmonitors#dashboard'
 
   # See how all your routes lay out with "rake routes"
 

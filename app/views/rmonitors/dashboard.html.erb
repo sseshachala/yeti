@@ -1,0 +1,50 @@
+<h1>Listing monitors</h1>
+
+<%if @rmonitors == [] %>
+<div>
+<%= "No monitors found" %>
+</div>
+<% else %>
+
+<table>
+  <tr>
+    <th>Owner</th>
+    <th>Every</th>
+    <th>Test</th>
+    <th>Contact</th>
+    <th>Url</th>
+    <th>Status</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rmonitors.each do |rmonitor| %>
+  <tr>
+    <td><%= rmonitor["tag"] %>
+    <td><%= rmonitor["every"] %></td>
+    <td><%= rmonitor["test"] %></td>
+    <td><%= rmonitor["contact"] %></td>
+    <td><%= rmonitor["url"] %></td>
+    <td><%= rmonitor["status"] %></td>
+    <% if rmonitor["state"] == "stopped" %>
+    <td><%= "Paused" %></td>
+    <% else %>
+    <td><%= rmonitor["state"] %></td>
+    <% end %>
+    <% if rmonitor["state"] == "stopped" %>
+    <td><%= link_to 'Restart', path_for("rmonitors",  rmonitor["_id"], "restart"), :confirm => 'Are you sure?', :method => :put %></td>
+    <% elsif rmonitor["state"] == "active" %>
+    <td><%= link_to 'Pause', path_for("rmonitors",  rmonitor["_id"], "pause"), :confirm => 'Are you sure?', :method => :put %></td>
+    <% end %>
+    <td><%= link_to 'Show', show_path("rmonitors",  rmonitor["_id"]) %></td>
+    <td><%= link_to 'Edit', edit_path("rmonitors",  rmonitor["_id"]) %></td>
+    <td><%= link_to 'Destroy', show_path("rmonitors",  rmonitor["_id"]), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+<br />
+
+<%= link_to 'New Monitor', new_rmonitor_path %>

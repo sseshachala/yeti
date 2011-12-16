@@ -82,6 +82,15 @@ end
    @rmonitors = Yajl::Parser.parse(response.to_str)
  end
 
+def self.find_by_owner(id)
+ begin
+  response = RestClient.get 'http://127.0.0.1:5041/monitors/tag/' + id + '/'
+  @rmonitors = Yajl::Parser.parse(response.to_str)
+ rescue RestClient::ResourceNotFound => e
+  @rmonitors = []
+ end
+end
+
 def pause
   response = RestClient.put 'http://127.0.0.1:5041/monitors/' + @attributes["_id"] + '/state/stopped',{:content_type => :json}
 end

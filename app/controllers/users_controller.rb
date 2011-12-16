@@ -92,10 +92,10 @@ before_filter :admin_user, :only => [:index,:destroy]
 
    def correct_user
       @user = User.find_object(params[:id])
-      redirect_to(show_path("users",  @current_user.attributes["username"])) unless current_user?(@user)
+      redirect_to(show_path("dashboard",  current_user.attributes["username"])) unless current_user?(@user)
    end
 
    def admin_user
-     redirect_to(show_path("users",  @current_user.attributes["username"])) unless current_user.admin?
+     redirect_to(show_path("dashboard",  current_user.attributes["username"])) unless current_user.admin?
    end
 end
