@@ -1,0 +1,5 @@
+== Yeti
+
+Experimental multi-user website monitor powered by Ragios. In active development with Rails, CouchDB, and Ragios.
+
+
