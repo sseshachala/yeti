@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Every:</b>
+  <%= @report["every"] %>
+</p>
+
+<p>
+  <b>contact:</b>
+  <%= @report["contact"] %>
+</p>
+<p>
+  <b>State:</b>
+  <%= @report["state"] %>
+</p>
+<%= link_to 'Edit', edit_path("reports",  @report["_id"]) %> |
+
+<%= link_to 'Back', reports_path %>

@@ -1,0 +1,34 @@
+<h1>Status reports</h1>
+
+<table>
+  <tr>
+    <th>owner</th>
+    <th>Every</th>
+    <th>Contact</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reports.each do |report| %>
+  <tr>
+    <td><%= report["tag"] %></td>
+    <td><%= report["every"] %></td>
+    <td><%= report["contact"] %></td>
+    <td><%= report["state"] %></td>
+     <% if report["state"] == "stopped" %>
+    <td><%= link_to 'Restart', path_for("reports",  report["tag"], "restart"), :confirm => 'Are you sure?', :method => :put %></td>
+    <% elsif report["state"] == "active" %>
+    <td><%= link_to 'Stop', path_for("reports",  report["tag"], "stop"), :confirm => 'Are you sure?', :method => :put %></td>
+    <% end %>
+    <td><%= link_to 'Show', show_path("reports",  report["_id"]) %></td>
+    <td><%= link_to 'Edit', edit_path("reports",  report["_id"]) %></td>
+    <td><%= link_to 'Destroy', show_path("reports",  report["tag"]), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Report', new_report_path %>

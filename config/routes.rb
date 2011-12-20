@@ -1,6 +1,8 @@
 Yeti::Application.routes.draw do
 
   
+  resources :reports
+
   resources :rmonitors
 
   resources :users
@@ -18,6 +20,10 @@ Yeti::Application.routes.draw do
   match '/rmonitors/:id/restart', :to => 'rmonitors#restart'
 
   match 'dashboard/:id',  :to => 'rmonitors#dashboard'
+
+  match '/reports/:id/stop', :to => 'reports#stop'
+
+  match '/reports/:id/restart', :to => 'reports#restart'
 
   #match 'users/:id' => 'users#show'
   
