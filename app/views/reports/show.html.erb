@@ -12,6 +12,6 @@
   <b>State:</b>
   <%= @report["state"] %>
 </p>
-<%= link_to 'Edit', edit_path("reports",  @report["_id"]) %> |
+<%= link_to 'Edit', edit_path("reports",  @report["_id"]) %> |<%= link_to 'Destroy', show_path("reports",  current_user.attributes["username"]), :confirm => 'Are you sure?', :method => :delete %>|
 
 <%= link_to 'Back', reports_path %>

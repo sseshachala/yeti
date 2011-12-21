@@ -1,5 +1,8 @@
 class ReportsController < ApplicationController
 before_filter :authenticate
+before_filter :correct_tag, :only => [ :destroy, :restart, :stop]
+before_filter :correct_user, :only => [:show,:edit,:update]
+before_filter :admin_user, :only => [:index]
 
   # GET /reports
   # GET /reports.xml
@@ -98,7 +101,7 @@ before_filter :authenticate
   # DELETE /reports/1.xml
   def destroy
     @report = Report.new
-    @report.destroy(current_user.attributes["username"]) unless (current_user.attributes["username"]  != params[:id])
+    @report.destroy(current_user.attributes["username"]) unless ((current_user.attributes["username"]  != params[:id]) || current_user.admin?)
     respond_to do |format|
       format.html { redirect_to(reports_url) }
       format.xml  { head :ok }
@@ -109,6 +112,24 @@ before_filter :authenticate
 
  def authenticate
    deny_access unless signed_in?
+ end
+
+ def correct_tag
+   if (@current_user.attributes["username"] != params[:id]) 
+     redirect_to(show_path("dashboard",  current_user.attributes["username"])) unless @current_user.admin?
+   end
+ end
+
+ def correct_user
+   @report = Report.find_object(params[:id]) 
+   @current_user = current_user
+   if (@current_user.attributes["username"] != @report.attributes["tag"]) 
+     redirect_to(show_path("dashboard",  current_user.attributes["username"])) unless @current_user.admin?
+   end
+ end
+
+ def admin_user
+     redirect_to(show_path("dashboard",  current_user.attributes["username"])) unless current_user.admin?
  end
 
 end

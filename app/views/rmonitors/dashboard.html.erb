@@ -47,4 +47,9 @@
 <% end %>
 <br />
 
-<%= link_to 'New Monitor', new_rmonitor_path %>
+<%= link_to 'New Monitor', new_rmonitor_path %> 
+<% if has_report?(current_user.attributes['username']) %>
+<%= link_to 'Report Settings', show_path("reports",  report_id(current_user.attributes['username'])) %>
+<% else %>
+<%= link_to 'Create New Report', new_report_path %>
+<% end %>
