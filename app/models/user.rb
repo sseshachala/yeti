@@ -34,10 +34,13 @@ attr_accessor :attributes, :username, :email, :password, :password_confirmation
 
 def self.authenticate(username, submitted_password)
    begin
+     hash = Couchdb.login(@@username,@@password) 
+     auth_session =  hash["AuthSession"]
+
      hash = Couchdb.login(username, submitted_password) 
-     user_auth_session =  hash["AuthSession"]
+     
      doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + username }
-     Couchdb.view doc,user_auth_session
+     Couchdb.view doc,auth_session
    rescue CouchdbException => e
       if e.to_s == "CouchDB: Error - unauthorized. Reason - Name or password is incorrect."
         return nil
