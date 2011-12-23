@@ -52,7 +52,7 @@ def self.authenticate_with_salt(username, cookie_salt)
      if username == nil
        return nil
      end
-     hash = Couchdb.login('obi','trusted') 
+     hash = Couchdb.login(@@username,@@password) 
      auth_session =  hash["AuthSession"]
      doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + username }
      hash = Couchdb.view doc,auth_session
@@ -72,7 +72,7 @@ end
 
 def save
   if self.valid?
-   hash = Couchdb.login(username = 'obi',password ='trusted') 
+   hash = Couchdb.login(username = @@username,password =@@password) 
    auth_session =  hash["AuthSession"]
    user = { :username => @attributes["username"], :password => @attributes["password"], :roles => []}
    Couchdb.add_user(user,auth_session)
@@ -90,7 +90,7 @@ end
 
 
 def destroy
-  hash = Couchdb.login(username = 'obi',password ='trusted') 
+  hash = Couchdb.login(username = @@username,password = @@password) 
   auth_session =  hash["AuthSession"]
   doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"]}
   Couchdb.delete_doc doc,auth_session
@@ -99,7 +99,7 @@ end
 def update_attributes(user_hash)
  @attributes = user_hash
  if self.valid?
-  hash = Couchdb.login(username = 'obi',password ='trusted') 
+  hash = Couchdb.login(username = @@username,password =@@password) 
   auth_session =  hash["AuthSession"]
   Couchdb.change_password(user_hash["username"], user_hash["password"],auth_session)
   user_hash.delete("password")
@@ -127,7 +127,7 @@ def admin?
 end
 
 def self.find(id)
-  hash = Couchdb.login(username = 'obi',password ='trusted') 
+  hash = Couchdb.login(username = @@username,password =@@password) 
   auth_session =  hash["AuthSession"]
   attributes =   Couchdb.find_by({:database => '_users', :username => id} , auth_session)  
   user_hash = attributes[0]
@@ -142,7 +142,7 @@ end
 
  def self.all
 
-   hash = Couchdb.login(username = 'obi',password ='trusted') 
+   hash = Couchdb.login(username = @@username,password =@@password) 
    auth_session =  hash["AuthSession"]
 
    view = { :database => "_users", 
