@@ -56,7 +56,8 @@ end
               :test => @attributes["test"], 
                 :contact => @attributes["contact"],
                    :url => @attributes["url"],
-                        :notify_interval => @attributes["notify_interval"]}]
+                        :notify_interval => @attributes["notify_interval"],
+                         :via => 'gmail'}]
   
        str = Yajl::Encoder.encode(data)
      response = RestClient.post 'http://127.0.0.1:5041/monitors', str, {:content_type => :json, :accept => :json}
