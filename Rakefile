@@ -19,4 +19,15 @@ task :db_setup do
  Couchdb.create_design doc,auth_session
 end
 
+
+task :db_billing do
+ hash = Couchdb.login(username = 'obi',password ='trusted')
+ auth_session =  hash["AuthSession"]
+
+ Couchdb.create 'billing_meter',auth_session
+ Couchdb.create 'payment_history',auth_session
+
+end
+
 task :setdb => :db_setup
+task :setbill => :db_billing
