@@ -50,7 +50,7 @@ end
 
  def save(owner)
    if self.valid?
-     data = [{:monitor => 'url',
+     data = [{:monitor => 'metered_url_monitor',
               :tag => owner.username,
              :every => @attributes["every"], 
               :test => @attributes["test"], 
