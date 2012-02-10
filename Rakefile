@@ -25,8 +25,9 @@ task :db_billing do
  auth_session =  hash["AuthSession"]
 
  Couchdb.create 'usage_meter',auth_session
+ Couchdb.create 'invoice',auth_session
  Couchdb.create 'payment_history',auth_session
-
+ Couchdb.create 'payment_errors',auth_session
 end
 
 task :setdb => :db_setup
