@@ -28,6 +28,7 @@ task :db_billing do
  Couchdb.create 'invoice',auth_session
  Couchdb.create 'payment_history',auth_session
  Couchdb.create 'payment_errors',auth_session
+ Couchdb.create 'lycan_diary',auth_session
 end
 
 task :setdb => :db_setup
