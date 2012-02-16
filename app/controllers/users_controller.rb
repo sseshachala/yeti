@@ -14,6 +14,23 @@ before_filter :admin_user, :only => [:index,:destroy]
     end
   end
 
+
+ def add_payment_method
+ end
+
+ def authorized   
+  if current_user.authorized_payment?(params)
+     flash[:success] = "You have successfully authorized payments"
+  else
+     flash[:error] = "Something went wrong with your payment authorization"
+  end
+    redirect_to(show_path("dashboard", current_user.attributes["username"]))
+ end
+
+ def authorize_payments     
+   redirect_to User.amazon_cbui_url(current_user.attributes["username"])
+ end
+
   # GET /users/1
   # GET /users/1.xml
   def show

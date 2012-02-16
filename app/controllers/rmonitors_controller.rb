@@ -1,5 +1,6 @@
 class RmonitorsController < ApplicationController
 before_filter :authenticate
+before_filter :must_have_payment_method, :only => [:new,:show,:create,:edit,:update, :destroy, :restart, :pause]
 before_filter :correct_user, :only => [:show,:edit,:update, :destroy, :restart, :pause]
 before_filter :admin_user, :only => [:index]
 
@@ -124,6 +125,10 @@ before_filter :admin_user, :only => [:index]
 
  def authenticate
    deny_access unless signed_in?
+ end
+
+ def must_have_payment_method
+    redirect_to (show_path("payment_method",  "")) unless current_user.attributes["payment_info_on_file"]
  end
 
  def correct_user

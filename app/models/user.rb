@@ -99,6 +99,8 @@ def destroy
   Couchdb.delete_doc doc,auth_session
 end
 
+
+
 def update_attributes(user_hash)
  @attributes = user_hash
  if self.valid?
@@ -120,7 +122,30 @@ end
   false
  end
 
-def admin?
+ def self.amazon_cbui_url(username)
+  require 'fpscbui'
+  Amazon::FPS::Fpscbui.url(username)  
+ end
+
+ def authorized_payment?(params)
+
+   hash = Couchdb.login(@@username,@@password) 
+   auth_session =  hash["AuthSession"]
+
+ if((params[:status] == 'SC') || (params[:status] == 'SA') || (params[:status] == 'SB')) && (params[:callerReference] == @attributes["username"])
+
+   data = { :token_id => params[:tokenID], 
+              :payment_info_on_file => true }
+
+   doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"], :data => data}   
+   Couchdb.update_doc doc,auth_session
+   true
+  else
+   false
+  end
+ end
+
+ def admin?
   hash = User.find(@attributes["username"])
   if hash["admin"] == "true"
     true
@@ -128,6 +153,7 @@ def admin?
     false
   end  
 end
+
 
 def self.find(id)
   hash = Couchdb.login(username = @@username,password =@@password) 

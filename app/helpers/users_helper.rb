@@ -5,4 +5,8 @@ module UsersHelper
                                           :class => 'gravatar',
                                           :gravatar => options)
  end
+
+ def add_payment_method
+   redirect_to payment_method_path
+ end
 end
