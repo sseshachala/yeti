@@ -1,9 +1,15 @@
 class UserMailer < ActionMailer::Base
-  default :from => "from@example.com"
+  add_template_helper(ApplicationHelper)
+  default :from => "whisper.monitor@gmail.com"
 
  def confirmation_email(user)
-    #@user = user
-    #@url  = "http://example.com/login"
-    #mail(:to => user.email, :subject => "Welcome to My Awesome Site")
+    @user = user
+    @url  = confirmation_url
+    mail(:to => user.email, :subject => "Please confirm your email address")
   end
+
+ def confirmation_url
+  show_path("confirm",  @user.confirmation_code)
+ end
+
 end

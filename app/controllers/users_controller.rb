@@ -65,6 +65,7 @@ before_filter :admin_user, :only => [:index,:destroy]
 
     respond_to do |format|
       if @user.save
+        UserMailer.confirmation_email(@user).deliver
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else

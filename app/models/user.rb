@@ -80,7 +80,7 @@ def save
    user = { :username => @attributes["username"], :password => @attributes["password"], :roles => []}
    Couchdb.add_user(user,auth_session)
 
-   data = {:username=> @attributes["username"],:email => @attributes["email"] }
+   data = {:username=> @attributes["username"],:email => @attributes["email"], :confirmed_email => false, :confirmation_code => UUIDTools::UUID.random_create.to_s }
    doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"], :data => data}   
    Couchdb.update_doc doc,auth_session
    true
@@ -90,7 +90,14 @@ def save
   end
 end
 
+def confirmation_code
+  hash = Couchdb.login(username = @@username,password =@@password) 
+  auth_session =  hash["AuthSession"]
 
+  doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @username }
+  hash = Couchdb.view doc,auth_session
+  hash["confirmation_code"]
+end
 
 def destroy
   hash = Couchdb.login(username = @@username,password = @@password) 
