@@ -11,6 +11,7 @@ gem 'gravatar_image_tag', '0.1.0'
 gem 'will_paginate', '3.0.pre2'
 gem "rest-client"
 gem "yajl-ruby"
+gem "uuidtools"
 
 # Use unicorn as the web server
 # gem 'unicorn'
