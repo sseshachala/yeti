@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_filter :authenticate, :only => [:index,:show,:edit,:update]
+before_filter :authenticate, :only => [:index,:show,:edit,:update,:confirm]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index,:destroy]
 
@@ -65,7 +65,9 @@ before_filter :admin_user, :only => [:index,:destroy]
 
     respond_to do |format|
       if @user.save
-        UserMailer.confirmation_email(@user).deliver
+        #domain = request.host
+        domain = request.host_with_port
+        UserMailer.confirmation_email(@user,domain).deliver
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -74,6 +76,18 @@ before_filter :admin_user, :only => [:index,:destroy]
       end
     end
   end
+
+ def confirm
+ if(current_user.confirmed_email?(params[:id]))
+  flash[:success] = "Your email address was confirmed successfully"
+ else
+  flash[:success] = "Sorry: Your email address could not be confirmed"
+ end
+    respond_to do |format|
+      format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
+      format.xml  { head :ok }
+    end
+ end
 
   # PUT /users/1
   # PUT /users/1.xml

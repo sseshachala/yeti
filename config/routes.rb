@@ -10,6 +10,8 @@ Yeti::Application.routes.draw do
   resources :sessions , :only => [:new, :create, :destroy]
 
   match '/payment_method', :to => 'users#add_payment_method'
+
+  match '/confirm/:id', :to => 'users#confirm'
   
   match '/authorize_payments', :to => 'users#authorize_payments'
 

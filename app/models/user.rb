@@ -99,6 +99,19 @@ def confirmation_code
   hash["confirmation_code"]
 end
 
+def confirmed_email?(current_code)
+  hash = Couchdb.login(username = @@username,password =@@password) 
+  auth_session =  hash["AuthSession"]
+  doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @username }
+  hash = Couchdb.view doc,auth_session
+  if current_code == hash["confirmation_code"]
+      data = {:confirmation_code => nil,:confirmed_email => true}
+      doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @username, :data => data}   
+      Couchdb.update_doc doc,auth_session
+      true
+  end
+end
+
 def destroy
   hash = Couchdb.login(username = @@username,password = @@password) 
   auth_session =  hash["AuthSession"]
