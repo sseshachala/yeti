@@ -31,6 +31,27 @@ before_filter :admin_user, :only => [:index,:destroy]
    redirect_to User.amazon_cbui_url(current_user.attributes["username"])
  end
 
+ def verify_password_reset_code
+   @user = User.find_object(params[:id]) 
+   if !(@user.is_valid_password_reset_code?(params[:code]))
+      redirect_to(signin_path, :notice => 'Something went wrong, cannot reset password.')
+   end
+end
+
+ def restore_password
+     @user = User.find_object(params[:id])
+    respond_to do |format|
+       #TODO avoid mass assignment 
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "verify_password_reset_code" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+ end
+
   # GET /users/1
   # GET /users/1.xml
   def show
@@ -57,6 +78,8 @@ before_filter :admin_user, :only => [:index,:destroy]
   def edit
     @user = User.find_object(params[:id])
   end
+
+
 
   # POST /users
   # POST /users.xml
@@ -94,6 +117,7 @@ before_filter :admin_user, :only => [:index,:destroy]
   def update
     @user = User.find_object(params[:id])
     respond_to do |format|
+       #TODO avoid mass assignment 
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }

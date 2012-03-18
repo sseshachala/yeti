@@ -9,6 +9,14 @@ Yeti::Application.routes.draw do
 
   resources :sessions , :only => [:new, :create, :destroy]
 
+  match '/send_password_reset_code', :to => 'sessions#send_password_reset_code'
+
+  match '/reset_password/:id/:code', :to => 'users#verify_password_reset_code'
+
+  match '/restore_password', :to => 'users#restore_password'
+
+  match '/forgot_password', :to => 'sessions#forgot_password'
+
   match '/payment_method', :to => 'users#add_payment_method'
 
   match '/confirm/:id', :to => 'users#confirm'

@@ -90,6 +90,47 @@ def save
   end
 end
 
+
+def self.found_user_with_forgotten_email?(email)
+ hash = Couchdb.login(username = @@username,password =@@password) 
+ auth_session =  hash["AuthSession"]
+
+ doc = Couchdb.find_by({:database => '_users', :email => email} , auth_session)
+ 
+ if(doc == [])
+   false
+ else
+   true
+ end
+end
+
+def is_valid_password_reset_code?(code)
+   user_hash = User.find(@username)
+   if(user_hash["password_reset_code"] == code)
+     hash = Couchdb.login(username = @@username,password =@@password) 
+     auth_session =  hash["AuthSession"]
+     data = {:password_reset_code => nil}
+     doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @username, :data => data}   
+     #Couchdb.update_doc doc,auth_session
+     true
+   else
+    false
+   end
+end
+
+def self.password_reset_code(email) 
+  hash = Couchdb.login(username = @@username,password =@@password) 
+  auth_session =  hash["AuthSession"]
+
+  user_hash = Couchdb.find_by({:database => '_users', :email => email} , auth_session)
+  user = user_hash[0]
+  reset_code = UUIDTools::UUID.random_create.to_s
+  data = {:password_reset_code => reset_code }
+  doc = { :database => '_users', :doc_id => user["_id"], :data => data}   
+  Couchdb.update_doc doc,auth_session
+  user["username"] + "/" + reset_code 
+end
+
 def confirmation_code
   hash = Couchdb.login(username = @@username,password =@@password) 
   auth_session =  hash["AuthSession"]
@@ -118,8 +159,6 @@ def destroy
   doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"]}
   Couchdb.delete_doc doc,auth_session
 end
-
-
 
 def update_attributes(user_hash)
  @attributes = user_hash
