@@ -24,11 +24,23 @@ task :db_billing do
  hash = Couchdb.login(username = 'obi',password ='trusted')
  auth_session =  hash["AuthSession"]
 
+ data = { :admins => {"names" => ["obi"], "roles" => ["admin"]},
+                   :readers => {"names" => "obi"],"roles"  => ["admin"]}
+                  }
  Couchdb.create 'usage_meter',auth_session
+ Couchdb.set_security('usage_meter',data,auth_session)
+
  Couchdb.create 'invoice',auth_session
+ Couchdb.set_security('invoice',data,auth_session)
+
  Couchdb.create 'payment_history',auth_session
+ Couchdb.set_security('payment_history',data,auth_session)
+
  Couchdb.create 'payment_errors',auth_session
+ Couchdb.set_security('payment_errors',data,auth_session)
+
  Couchdb.create 'lycan_diary',auth_session
+ Couchdb.set_security('lycan_diary',data,auth_session)
 end
 
 task :setdb => :db_setup
