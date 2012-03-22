@@ -24,8 +24,8 @@ task :db_billing do
  hash = Couchdb.login(username = 'obi',password ='trusted')
  auth_session =  hash["AuthSession"]
 
- data = { :admins => {"names" => ["obi"], "roles" => ["admin"]},
-                   :readers => {"names" => "obi"],"roles"  => ["admin"]}
+  data = { :admins => {"names" => ["obi"], "roles" => ["admin"]},
+                   :readers => {"names" => ["obi"],"roles"  => ["admin"]}
                   }
  Couchdb.create 'usage_meter',auth_session
  Couchdb.set_security('usage_meter',data,auth_session)
