@@ -46,4 +46,17 @@ Yeti::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Action Mailer settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => 'sl.myslhome.tv',
+  :user_name            => 'gmail_username',
+  :password             => 'gmail_password',
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  }
+
+
 end
