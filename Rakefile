@@ -4,6 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 require 'leanback'
+require 'sqlite3'
 
 Yeti::Application.load_tasks
 
@@ -30,8 +31,21 @@ task :db_billing do
  Couchdb.create 'usage_meter',auth_session
  Couchdb.set_security('usage_meter',data,auth_session)
 
- Couchdb.create 'invoice',auth_session
- Couchdb.set_security('invoice',data,auth_session)
+#now using sqlite
+# Couchdb.create 'invoice',auth_session
+# Couchdb.set_security('invoice',data,auth_session)
+
+db = SQLite3::Database.new( 'invoice.db' )
+
+ rows = db.execute( "CREATE TABLE invoice (
+   id text UNIQUE,
+   balance real,
+   billing_period text,
+   date_due text,
+   status text,
+   url_monitoring INTEGER,
+   username text
+  );" )
 
  Couchdb.create 'payment_history',auth_session
  Couchdb.set_security('payment_history',data,auth_session)
