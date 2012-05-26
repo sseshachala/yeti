@@ -9,8 +9,8 @@ email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 validates :every, :presence => true
 
-validates :contact, :presence => true,
-                    :format => {:with => email_regex}
+#validates :contact, :presence => true,
+#                    :format => {:with => email_regex}
 
 attr_accessor :attributes,:every, :contact
 
@@ -67,13 +67,13 @@ def stop(tag)
  response = RestClient.put 'http://127.0.0.1:5041/status_updates/' + tag + '/state/stopped',{:content_type => :json}
 end 
 
-def save(tag)
+def save(current_user)
   if self.valid?
-     if(Report.find_by_owner(tag) == {})
+     if(Report.find_by_owner(current_user.attributes["username"]) == {})
         config = {   :every =>  @attributes["every"],
-                   :contact =>  @attributes["contact"],
+                   :contact =>  current_user.attributes["email"],
                    :via => 'gmail',
-                  :tag => tag,                  
+                  :tag => current_user.attributes["username"]
                   }
        str = Yajl::Encoder.encode(config)
        response = RestClient.post "http://127.0.0.1:5041/status_updates/", str, {:content_type => :json, :accept => :json}

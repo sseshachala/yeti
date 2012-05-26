@@ -14,8 +14,8 @@ validates :every, :presence => true
 validates :test, :presence => true,
                  :length => {:within => 4..50}
 
-validates :contact, :presence => true,
-                    :format => {:with => email_regex}
+#validates :contact, :presence => true,
+#                    :format => {:with => email_regex}
 
 validates :url, :presence => true,
                 :format => {:with => url_regex}
@@ -54,7 +54,7 @@ end
               :tag => owner.username,
              :every => @attributes["every"], 
               :test => @attributes["test"], 
-                :contact => @attributes["contact"],
+                :contact =>  owner.attributes["email"],
                    :url => @attributes["url"],
                         :notify_interval => @attributes["notify_interval"],
                          :via => 'gmail'}]
