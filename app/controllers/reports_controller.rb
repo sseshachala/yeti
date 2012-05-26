@@ -4,6 +4,7 @@ before_filter :must_have_payment_method, :only => [:new,:show,:create,:edit,:upd
 before_filter :correct_tag, :only => [ :destroy, :restart, :stop]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index]
+before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
 
   # GET /reports
   # GET /reports.xml
@@ -73,7 +74,7 @@ before_filter :admin_user, :only => [:index]
     @report = Report.new(params[:report])
 
     respond_to do |format|
-      if @report.save(current_user.attributes["username"])
+      if @report.save(current_user)
         format.html { redirect_to(@report, :notice => 'Report was successfully created.') }
         format.xml  { render :xml => @report, :status => :created, :location => @report }
       else
@@ -87,6 +88,7 @@ before_filter :admin_user, :only => [:index]
   # PUT /reports/1.xml
   def update
     @report = Report.find_object(params[:id])
+    @report.contact = current_user.attributes["email"]
     respond_to do |format|
       if @report.update_attributes(params)
         format.html { redirect_to(@report, :notice => 'Report was successfully updated.') }
@@ -110,6 +112,10 @@ before_filter :admin_user, :only => [:index]
   end
 
  private
+
+ def confirmed_email
+     redirect_to(show_path("dashboard",  current_user.attributes["username"]),:notice => 'You have not confirmed your email address.') unless current_user.attributes["confirmed_email"] 
+ end
 
  def authenticate
    deny_access unless signed_in?

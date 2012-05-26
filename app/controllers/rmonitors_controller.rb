@@ -3,6 +3,7 @@ before_filter :authenticate
 before_filter :must_have_payment_method, :only => [:new,:show,:create,:edit,:update, :destroy, :restart, :pause]
 before_filter :correct_user, :only => [:show,:edit,:update, :destroy, :restart, :pause]
 before_filter :admin_user, :only => [:index]
+before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
 
   # GET /rmonitors
   # GET /rmonitors.xml
@@ -54,6 +55,7 @@ before_filter :admin_user, :only => [:index]
   # POST /rmonitors
   # POST /rmonitors.xml
   def create
+
     @rmonitor = Rmonitor.new(params[:rmonitor])
 
     respond_to do |format|
@@ -122,6 +124,10 @@ before_filter :admin_user, :only => [:index]
   end
 
  private
+
+ def confirmed_email
+     redirect_to(show_path("dashboard",  current_user.attributes["username"]),:notice => ('You have not confirmed your email address.' + view_context.link_to('Re-Send Verification email','/send_confirmation_email') + " to " + current_user.attributes["email"]).html_safe) unless current_user.attributes["confirmed_email"] 
+ end
 
  def authenticate
    deny_access unless signed_in?
