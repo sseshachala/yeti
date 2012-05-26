@@ -18,10 +18,12 @@
     <%= f.label :test %><br />
     <%= f.text_field :test %>
   </div>
+  
   <div class="field">
     <%= f.label :contact %><br />
-    <%= f.text_field :contact %>
+    <%= current_user.attributes["email"] %>
   </div>
+   
   <div class="field">
     <%= f.label :url %><br />
     <%= f.text_field :url %>

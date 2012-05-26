@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :contact %><br />
-    <%= f.text_field :contact %>
+    <%= current_user.attributes["email"] %>
   </div>
   <div class="actions">
     <%= f.submit %>
