@@ -40,6 +40,8 @@ Yeti::Application.routes.draw do
   match '/reports/:id/stop', :to => 'reports#stop'
 
   match '/reports/:id/restart', :to => 'reports#restart'
+  
+  match '/send_confirmation_email', :to => 'users#send_confirmation_email'
 
   #match 'users/:id' => 'users#show'
   

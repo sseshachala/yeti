@@ -79,6 +79,11 @@ end
     @user = User.find_object(params[:id])
   end
 
+  def send_confirmation_email
+   domain = request.host_with_port
+   UserMailer.confirmation_email(current_user,domain).deliver
+   redirect_to(show_path("dashboard", current_user.attributes["username"]),:notice => 'We have re-sent the confirmation email, Remember to check your inbox if you did not receive it')
+  end
 
 
   # POST /users

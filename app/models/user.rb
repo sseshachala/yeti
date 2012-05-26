@@ -140,6 +140,7 @@ def confirmation_code
   hash["confirmation_code"]
 end
 
+
 def confirmed_email?(current_code)
   hash = Couchdb.login(username = @@username,password =@@password) 
   auth_session =  hash["AuthSession"]
