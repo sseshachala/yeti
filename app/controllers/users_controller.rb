@@ -121,9 +121,12 @@ end
   # PUT /users/1.xml
   def update
     @user = User.find_object(params[:id])
+     user_hash = params[:user]
     respond_to do |format|
        #TODO avoid mass assignment 
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(params[:user],current_user)
+        domain = request.host_with_port
+        UserMailer.confirmation_email(@user,domain).deliver unless (user_hash["email"] == current_user.attributes["email"])
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
       else

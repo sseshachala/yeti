@@ -113,8 +113,10 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
 
  private
 
+
+
  def confirmed_email
-     redirect_to(show_path("dashboard",  current_user.attributes["username"]),:notice => 'You have not confirmed your email address.') unless current_user.attributes["confirmed_email"] 
+     redirect_to(show_path("dashboard",  current_user.attributes["username"]),:notice => ('You have not confirmed your email address.' + view_context.link_to('Re-Send Verification email','/send_confirmation_email') + " to " + current_user.attributes["email"]).html_safe) unless current_user.attributes["confirmed_email"] 
  end
 
  def authenticate

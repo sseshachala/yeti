@@ -161,9 +161,19 @@ def destroy
   Couchdb.delete_doc doc,auth_session
 end
 
-def update_attributes(user_hash)
+
+def update_attributes(user_hash,current_user)
  @attributes = user_hash
  if self.valid?
+     
+  if user_hash["email"] != current_user.attributes["email"] 
+     #if email address was changed 
+     email_confirmation = {:confirmed_email => false, :confirmation_code => UUIDTools::UUID.random_create.to_s } 
+     user_hash = user_hash.merge(email_confirmation)
+     @attributes = @attributes.merge(email_confirmation)
+     @email = user_hash["email"]
+  end
+
   hash = Couchdb.login(username = @@username,password =@@password) 
   auth_session =  hash["AuthSession"]
   Couchdb.change_password(user_hash["username"], user_hash["password"],auth_session)
