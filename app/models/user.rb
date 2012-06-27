@@ -8,14 +8,23 @@ include ActiveModel::Conversion
 email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 validates :username, :presence => true,
-                     :length => {:maximum => 50}
+                     :length => {:maximum => 50},
+                     :on => :create
 
 validates :email, :presence => true,
                   :format => {:with => email_regex}
+                  
 
 validates :password, :presence => true,
                   :confirmation => true,
-                  :length => {:within => 6..40}
+                  :length => {:within => 6..40},
+                  :on => :create
+
+validates :password, {:presence => true,
+                  :confirmation => true,
+                  :length => {:within => 6..40},
+                  :on => :update,
+                  :allow_blank => true}
 
 
 attr_accessor :attributes, :username, :email, :password, :password_confirmation
@@ -173,12 +182,16 @@ def update_attributes(user_hash,current_user)
      @attributes = @attributes.merge(email_confirmation)
      @email = user_hash["email"]
   end
+  
+  if (user_hash["password"] != "")
+     #password has changed (password is not blank)
+     hash = Couchdb.login(username = @@username,password =@@password) 
+     auth_session =  hash["AuthSession"]
+     Couchdb.change_password(user_hash["username"], user_hash["password"],auth_session)
+     user_hash.delete("password")
+     user_hash.delete("password_confirmation") 
+  end
 
-  hash = Couchdb.login(username = @@username,password =@@password) 
-  auth_session =  hash["AuthSession"]
-  Couchdb.change_password(user_hash["username"], user_hash["password"],auth_session)
-  user_hash.delete("password")
-  user_hash.delete("password_confirmation") 
   data = user_hash
   doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + user_hash["username"], :data =>  data}   
   Couchdb.update_doc doc,auth_session
