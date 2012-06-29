@@ -176,6 +176,12 @@ def destroy
 end
 
 
+def db_auth_session
+  #re-factor later
+   hash = Couchdb.login(username = @@username,password =@@password) 
+   auth_session =  hash["AuthSession"]
+end
+
 def update_attributes(user_hash,current_user)
  @attributes = user_hash
  if self.valid? :update_profile
@@ -189,7 +195,7 @@ def update_attributes(user_hash,current_user)
 
      data = user_hash
      doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + current_user.attributes["username"], :data =>  data}   
-     Couchdb.update_doc doc,auth_session
+     Couchdb.update_doc doc, db_auth_session
   end
   
   if (user_hash["password"] != "")
