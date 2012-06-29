@@ -194,6 +194,11 @@ def update_attributes(user_hash,current_user)
   
   if (user_hash["password"] != "")
      #password has changed (password is not blank)
+     if ( user_hash["password"] != user_hash["password_confirmation"])
+        #password confirmation doesn't match
+       errors[:password] << "doesn't match confirmation"
+       return false
+     end
      hash = Couchdb.login(username = @@username,password =@@password) 
      auth_session =  hash["AuthSession"]
      Couchdb.change_password(current_user.attributes["username"], user_hash["password"],auth_session)
