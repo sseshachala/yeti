@@ -9,7 +9,10 @@ email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 validates :username, :presence => true,
                      :length => {:maximum => 50},
-                     :on => :create
+                     :on => :registration
+                     
+
+                  
 
 validates :email, :presence => true,
                   :format => {:with => email_regex}
@@ -18,14 +21,14 @@ validates :email, :presence => true,
 validates :password, :presence => true,
                   :confirmation => true,
                   :length => {:within => 6..40},
-                  :on => :create
+                  :on => :registration
 
-validates :password, {:presence => true,
-                  :confirmation => true,
+validates :password, :confirmation => true,
                   :length => {:within => 6..40},
-                  :on => :update,
-                  :allow_blank => true}
+                  :allow_blank => true,
+                  :on => :update_profile
 
+ 
 
 attr_accessor :attributes, :username, :email, :password, :password_confirmation
 
@@ -82,8 +85,10 @@ end
     @attributes[key]
   end
 
+
+
 def save
-  if self.valid?
+  if self.valid? :registration
    hash = Couchdb.login(username = @@username,password =@@password) 
    auth_session =  hash["AuthSession"]
    user = { :username => @attributes["username"], :password => @attributes["password"], :roles => []}
@@ -173,7 +178,7 @@ end
 
 def update_attributes(user_hash,current_user)
  @attributes = user_hash
- if self.valid?
+ if self.valid? :update_profile
      
   if user_hash["email"] != current_user.attributes["email"] 
      #if email address was changed 
@@ -181,20 +186,21 @@ def update_attributes(user_hash,current_user)
      user_hash = user_hash.merge(email_confirmation)
      @attributes = @attributes.merge(email_confirmation)
      @email = user_hash["email"]
+
+     data = user_hash
+     doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + current_user.attributes["username"], :data =>  data}   
+     Couchdb.update_doc doc,auth_session
   end
   
   if (user_hash["password"] != "")
      #password has changed (password is not blank)
      hash = Couchdb.login(username = @@username,password =@@password) 
      auth_session =  hash["AuthSession"]
-     Couchdb.change_password(user_hash["username"], user_hash["password"],auth_session)
+     Couchdb.change_password(current_user.attributes["username"], user_hash["password"],auth_session)
      user_hash.delete("password")
      user_hash.delete("password_confirmation") 
   end
 
-  data = user_hash
-  doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + user_hash["username"], :data =>  data}   
-  Couchdb.update_doc doc,auth_session
   true
  else
   false
