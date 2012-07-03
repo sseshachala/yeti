@@ -1,5 +1,4 @@
 == Yeti
 
-Experimental multi-user website monitor powered by Ragios. In active development with Rails, CouchDB, and Ragios.
-
+Experimental website uptime/performance monitoring As a Service powered by Ragios. In active development with Rails, CouchDB, Ragios. Using Amazon Payments for metered billing.
 
