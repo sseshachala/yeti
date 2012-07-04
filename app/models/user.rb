@@ -43,20 +43,18 @@ attr_accessor :attributes, :username, :email, :password, :password_confirmation
   end
 
 
-def db_auth_session
+def self.auth_session
    hash = Couchdb.login(username = @@username,password =@@password) 
    auth_session =  hash["AuthSession"]
 end
 
 def self.authenticate(username, submitted_password)
    begin
-     hash = Couchdb.login(@@username,@@password) 
-     auth_session =  hash["AuthSession"]
 
      hash = Couchdb.login(username, submitted_password) 
      
      doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + username }
-     Couchdb.view doc,auth_session
+     Couchdb.view doc,User.auth_session
    rescue CouchdbException => e
       if e.to_s == "CouchDB: Error - unauthorized. Reason - Name or password is incorrect."
         return nil
@@ -92,11 +90,11 @@ end
 
 def create_user
   user = { :username => @attributes["username"], :password => @attributes["password"], :roles => []}
-   Couchdb.add_user(user,db_auth_session)
+   Couchdb.add_user(user,User.auth_session)
 
    data = {:username=> @attributes["username"],:email => @attributes["email"], :confirmed_email => false, :confirmation_code => UUIDTools::UUID.random_create.to_s }
    doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"], :data => data}   
-   Couchdb.update_doc doc,db_auth_session
+   Couchdb.update_doc doc,User.auth_session
 end
 
 def save
@@ -174,7 +172,7 @@ end
 
 def destroy
   doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"]}
-  Couchdb.delete_doc doc,db_auth_session
+  Couchdb.delete_doc doc,User.auth_session
 end
 
 
