@@ -17,6 +17,15 @@ describe User do
    hash["id"].should == 'org.couchdb.user:test_user'
   end
 
+  it "should authenticate user" do
+   hash = User.authenticate("test_user","trusted")
+   hash["_id"].should == 'org.couchdb.user:test_user'  
+
+   User.authenticate("test_user","wrong_password").should == nil
+   User.authenticate("wrong_user","wrong_password").should == nil
+     
+  end
+
   it "should delete a user" do
    @user = User.find_object("test_user")
    hash = @user.destroy
