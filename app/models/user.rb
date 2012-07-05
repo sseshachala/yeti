@@ -23,8 +23,7 @@ validates :password, :presence => true,
                   :length => {:within => 6..40},
                   :on => :registration
 
-validates :password, :confirmation => true,
-                  :length => {:within => 6..40},
+validates :password, :length => {:within => 6..40},
                   :allow_blank => true,
                   :on => :update_profile
 
@@ -190,26 +189,29 @@ def update_email(user_hash,current_user)
   end
 end
 
+def update_password(user_hash,current_user)
+  Couchdb.change_password(current_user.attributes["username"], user_hash["password"], User.auth_session)
+  user_hash.delete("password")
+  user_hash.delete("password_confirmation")   
+end
+
 def update_attributes(user_hash,current_user)
  @attributes = user_hash
+  
  if self.valid? :update_profile
-
   update_email(user_hash,current_user)
   
   if (user_hash["password"] != "")
+     
      #password has changed (password is not blank)
      if ( user_hash["password"] != user_hash["password_confirmation"])
-        #password confirmation doesn't match
+       #password confirmation doesn't match
        errors[:password] << "doesn't match confirmation"
        return false
      end
-     hash = Couchdb.login(username = @@username,password = @@password) 
-     auth_session =  hash["AuthSession"]
-     Couchdb.change_password(current_user.attributes["username"], user_hash["password"],auth_session)
-     user_hash.delete("password")
-     user_hash.delete("password_confirmation") 
+  
+     update_password(user_hash,current_user)
   end
-
   true
  else
   false
