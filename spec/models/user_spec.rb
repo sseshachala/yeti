@@ -51,7 +51,7 @@ describe User do
     hash["id"].should == 'org.couchdb.user:test_user'
 
 
-    #do if email was not changed
+    #if email has not changed
     current_user = User.find_object("test_user")
     user_hash = {"email"=>"new.email@yeti.com", "password"=>"", "password_confirmation"=>""}
     @user = current_user
@@ -60,7 +60,13 @@ describe User do
    end
 
   it "should update password" do
-
+    current_user = User.find_object("test_user")
+    user_hash = {"email"=>"new.email@yeti.com", "password"=>"abc123", "password_confirmation"=>"abc123"}
+    @user = current_user
+    hash = @user.update_password(user_hash,current_user)
+    hash.include?("ok").should == true
+    hash.include?("rev").should == true
+    hash["id"].should == 'org.couchdb.user:test_user'
   end
 
   it "should delete a user" do
