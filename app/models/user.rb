@@ -191,8 +191,6 @@ end
 
 def update_password(user_hash,current_user)
   Couchdb.change_password(current_user.attributes["username"], user_hash["password"], User.auth_session)
-  user_hash.delete("password")
-  user_hash.delete("password_confirmation")   
 end
 
 def update_attributes(user_hash,current_user)
