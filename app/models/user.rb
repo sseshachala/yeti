@@ -176,11 +176,8 @@ def destroy
 end
 
 
-def update_attributes(user_hash,current_user)
- @attributes = user_hash
- if self.valid? :update_profile
-     
-  if user_hash["email"] != current_user.attributes["email"] 
+def update_email(user_hash,current_user)
+   if user_hash["email"] != current_user.attributes["email"] 
      #if email address was changed 
      email_confirmation = {:confirmed_email => false, :confirmation_code => UUIDTools::UUID.random_create.to_s } 
      user_hash = user_hash.merge(email_confirmation)
@@ -189,8 +186,15 @@ def update_attributes(user_hash,current_user)
 
      data = user_hash
      doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + current_user.attributes["username"], :data =>  data}   
-     Couchdb.update_doc doc, db_auth_session
+     Couchdb.update_doc doc, User.auth_session
   end
+end
+
+def update_attributes(user_hash,current_user)
+ @attributes = user_hash
+ if self.valid? :update_profile
+
+  update_email(user_hash,current_user)
   
   if (user_hash["password"] != "")
      #password has changed (password is not blank)
@@ -199,7 +203,7 @@ def update_attributes(user_hash,current_user)
        errors[:password] << "doesn't match confirmation"
        return false
      end
-     hash = Couchdb.login(username = @@username,password =@@password) 
+     hash = Couchdb.login(username = @@username,password = @@password) 
      auth_session =  hash["AuthSession"]
      Couchdb.change_password(current_user.attributes["username"], user_hash["password"],auth_session)
      user_hash.delete("password")
