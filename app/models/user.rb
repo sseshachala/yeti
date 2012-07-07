@@ -16,7 +16,10 @@ validates :username, :presence => true,
 
 validates :email, :presence => true,
                   :format => {:with => email_regex},
-                  :on => :registration,
+                  :on => :registration
+
+validates :email, :presence => true,
+                  :format => {:with => email_regex},
                   :on => :update_profile
                   
 
@@ -148,25 +151,22 @@ def self.password_reset_code(email)
 end
 
 def confirmation_code
-  hash = Couchdb.login(username = @@username,password =@@password) 
-  auth_session =  hash["AuthSession"]
-
   doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @username }
-  hash = Couchdb.view doc,auth_session
+  hash = Couchdb.view doc,User.auth_session
   hash["confirmation_code"]
 end
 
 
 def confirmed_email?(current_code)
-  hash = Couchdb.login(username = @@username,password =@@password) 
-  auth_session =  hash["AuthSession"]
   doc = {:database => '_users', :doc_id => 'org.couchdb.user:' + @username }
-  hash = Couchdb.view doc,auth_session
+  hash = Couchdb.view doc,User.auth_session
   if current_code == hash["confirmation_code"]
       data = {:confirmation_code => nil,:confirmed_email => true}
       doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @username, :data => data}   
-      Couchdb.update_doc doc,auth_session
+      Couchdb.update_doc doc,User.auth_session
       true
+  else
+     false
   end
 end
 
@@ -191,7 +191,7 @@ def update_email(user_hash,current_user)
 end
 
 def update_password(user_hash,current_user)
-  Couchdb.change_password(current_user.attributes["username"], user_hash["password"], User.auth_session)
+  Couchdb.change_password(current_user.attributes["username"], user_hash["password"], User.auth_session)  
 end
 
 def reset_password(user_hash)
