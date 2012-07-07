@@ -112,9 +112,24 @@ describe User do
   end
 
    it "should check if password reset code is valid" do
-    #true.should == false
-    #restore password controller action call to update_attributes needs to be fixed 
+    @user = User.find_object("test_user")
+    password_reset_code = @user.attributes["password_reset_code"]
+    @user.is_valid_password_reset_code?(password_reset_code).should == true
+    @user.is_valid_password_reset_code?("bad-password-reset-code").should == false
    end
+
+  it "should reset password" do
+      @user = User.find_object("test_user")
+      @user.reset_password({"password"=>"newpassword", "password_confirmation"=>"newpassword"}).should == true
+       @user.reset_password({"password"=>"", "password_confirmation"=>""}).should == false
+  end
+
+  it "should confirm user's email" do
+    @user = User.find_object("test_user")
+    current_code = @user.confirmation_code
+    @user.confirmed_email?("wrong-confirmation-code").should == false
+    @user.confirmed_email?(current_code).should == true
+  end
 
   it "should delete a user" do
    @user = User.find_object("test_user")
