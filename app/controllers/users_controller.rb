@@ -41,7 +41,6 @@ end
  def restore_password
      @user = User.find_object(params[:id])
     respond_to do |format|
-       #TODO avoid mass assignment 
       if @user.reset_password(params[:user])
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
