@@ -15,7 +15,9 @@ validates :username, :presence => true,
                   
 
 validates :email, :presence => true,
-                  :format => {:with => email_regex}
+                  :format => {:with => email_regex},
+                  :on => :registration,
+                  :on => :update_profile
                   
 
 validates :password, :presence => true,
@@ -26,6 +28,10 @@ validates :password, :presence => true,
 validates :password, :length => {:within => 6..40},
                   :allow_blank => true,
                   :on => :update_profile
+
+validates :password, :length => {:within => 6..40},
+                  :presence => true,
+                  :on => :reset_password
 
  
 
@@ -186,6 +192,29 @@ end
 
 def update_password(user_hash,current_user)
   Couchdb.change_password(current_user.attributes["username"], user_hash["password"], User.auth_session)
+end
+
+def reset_password(user_hash)
+
+   if (user_hash["password"].length < 3) 
+     #do it the rails way later
+     errors[:password] << "Password is too short (minimum is 6 characters)"
+     return false
+  end
+
+   if (user_hash["password"].length > 48)
+     #do it the rails way later
+     errors[:password] << "Password is too long (maximum is 48 characters)"
+     return false
+  end
+
+   if ( user_hash["password"] != user_hash["password_confirmation"])
+       #password confirmation doesn't match
+       errors[:password] << "doesn't match confirmation"
+       return false
+   end
+  Couchdb.change_password(@username, user_hash["password"], User.auth_session)
+  true
 end
 
 def update_attributes(user_hash,current_user)
