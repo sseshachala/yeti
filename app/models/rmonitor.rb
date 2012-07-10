@@ -48,9 +48,8 @@ def update_attributes(params)
  end
 end
 
- def save(owner)
-   if self.valid?
-     data = [{:monitor => 'metered_url_monitor',
+def create_monitor(owner)
+   data = [{:monitor => 'metered_url_monitor',
               :tag => owner.username,
              :every => @attributes["every"], 
               :test => @attributes["test"], 
@@ -62,6 +61,11 @@ end
        str = Yajl::Encoder.encode(data)
      response = RestClient.post 'http://127.0.0.1:5041/monitors', str, {:content_type => :json, :accept => :json}
      return true unless response.code != 200 
+end
+
+ def save(owner)
+   if self.valid?
+     return create_monitor(owner)
    else
     false
    end
