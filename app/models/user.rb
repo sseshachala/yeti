@@ -250,17 +250,14 @@ end
  end
 
  def authorized_payment?(params)
-
-   hash = Couchdb.login(@@username,@@password) 
-   auth_session =  hash["AuthSession"]
-
+ #TODO: add tests for this via integration testing
  if((params[:status] == 'SC') || (params[:status] == 'SA') || (params[:status] == 'SB')) && (params[:callerReference] == @attributes["username"])
 
    data = { :token_id => params[:tokenID], 
               :payment_info_on_file => true }
 
    doc = { :database => '_users', :doc_id => 'org.couchdb.user:' + @attributes["username"], :data => data}   
-   Couchdb.update_doc doc,auth_session
+   Couchdb.update_doc doc,User.auth_session
    true
   else
    false
