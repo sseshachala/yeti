@@ -15,6 +15,38 @@ describe Rmonitor do
        @rmonitor.create_monitor(current_user).should == true
    end
 
+   it "should find monitor by owner" do 
+     attributes = Rmonitor.find_by_owner("monitor_test_user")     
+     hash =  attributes[0]
+     hash["monitor"].should == "metered_url_monitor"
+     hash["tag"].should == "monitor_test_user"
+     hash["url"].should == "http://sample-test.com"
+     hash["contact"].should == "test@yeti.com"
+   end
+
+   it "should find a monitor" do 
+      attributes = Rmonitor.find_by_owner("monitor_test_user")     
+     hash =  attributes[0]
+     id = hash["_id"]
+     @rmonitor = Rmonitor.find(id)
+     @rmonitor["_id"].should == id
+     @rmonitor["monitor"].should == "metered_url_monitor"
+     @rmonitor["tag"].should == "monitor_test_user"
+     @rmonitor["url"].should == "http://sample-test.com"
+     @rmonitor["contact"].should == "test@yeti.com"
+
+      @rmonitor = Rmonitor.find_object(id)
+      @rmonitor.contact.should == "test@yeti.com"
+      @rmonitor.test.should == "sample test"
+      @rmonitor.attributes["_id"].should == id
+       @rmonitor.attributes["tag"].should == "monitor_test_user"
+      
+   end
+
+   it "should update a monitor" do
+
+   end
+
    it "should delete a monitor" do
   
      attributes = Rmonitor.find_by_owner("monitor_test_user")     
