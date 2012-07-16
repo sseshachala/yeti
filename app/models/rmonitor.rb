@@ -37,15 +37,20 @@ attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
    @attributes[key]
  end
 
+
 def update_attributes(params)
  @attributes = params["rmonitor"]
  if self.valid?
-  str = Yajl::Encoder.encode(params["rmonitor"])
-  response = RestClient.put 'http://127.0.0.1:5041/monitors/' + params["id"],str, {:content_type => :json, :accept => :json}
-  return true unless response.code != 200 
+   return update_monitor(params)
  else
   false
  end
+end
+
+def update_monitor(params)
+ str = Yajl::Encoder.encode(params["rmonitor"])
+  response = RestClient.put 'http://127.0.0.1:5041/monitors/' + params["id"],str, {:content_type => :json, :accept => :json}
+  return true unless response.code != 200 
 end
 
 def create_monitor(owner)
