@@ -44,8 +44,49 @@ describe Rmonitor do
    end
 
    it "should update a monitor" do
+     
+     attributes = Rmonitor.find_by_owner("monitor_test_user")     
+     hash =  attributes[0]
+     id = hash["_id"]
+     
+     @rmonitor = Rmonitor.find_object(id)
+
+     params = {"utf8"=>"", "_method"=>"put", "authenticity_token"=>"something", "rmonitor"=>{"every"=>"3m", "test"=>"this is a really cool test", "url"=>"http://sample-test.com", "notify_interval"=>"8h"}, "commit"=>"Create Rmonitor", "action"=>"update", "controller"=>"rmonitors", "id"=>id}
+ 
+   @rmonitor.update_monitor(params).should == true
+
+   hash = Rmonitor.find(id)
+   hash["_id"].should == id
+   hash["test"].should == "this is a really cool test"
+   hash["every"].should == "3m"
+   hash["url"].should == "http://sample-test.com"
+   hash["notify_interval"].should == "8h"
 
    end
+
+  it "should find all monitors, pause and restart a monitor" do
+
+   attributes = Rmonitor.find_by_owner("monitor_test_user")     
+   hash =  attributes[0]
+   id = hash["_id"]
+     
+   @rmonitor = Rmonitor.find_object(id)
+   hash = @rmonitor.pause
+   hash.include?("ok").should == true
+   hash.include?("true").should == true
+  
+   hash = Rmonitor.find(id)
+   hash["state"].should == "stopped"
+
+   hash = @rmonitor.restart
+   hash.include?("ok").should == true
+   hash.include?("true").should == true
+
+  hash = Rmonitor.find(id)
+  hash["state"].should == "active"
+
+  end
+
 
    it "should delete a monitor" do
   
