@@ -1,0 +1,35 @@
+<h1>Listing invoices</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Url monitoring</th>
+    <th>Status</th>
+    <th>Date due</th>
+    <th>Billing period</th>
+    <th>Balance</th>
+    <th>Id</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @invoices.each do |invoice| %>
+  <tr>
+    <td><%= invoice.username %></td>
+    <td><%= invoice.url_monitoring %></td>
+    <td><%= invoice.status %></td>
+    <td><%= invoice.date_due %></td>
+    <td><%= invoice.billing_period %></td>
+    <td><%= invoice.balance %></td>
+    <td><%= invoice.id %></td>
+    <td><%= link_to 'Show', invoice %></td>
+    <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+    <td><%= link_to 'Destroy', invoice, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Invoice', new_invoice_path %>

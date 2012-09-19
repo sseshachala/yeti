@@ -1,6 +1,8 @@
 Yeti::Application.routes.draw do
 
   
+  resources :invoices
+
   resources :reports
 
   resources :rmonitors
@@ -8,6 +10,8 @@ Yeti::Application.routes.draw do
   resources :users
 
   resources :sessions , :only => [:new, :create, :destroy]
+
+  match '/billing_history/:id', :to => 'invoices#billing_history'
 
   match '/send_password_reset_code', :to => 'sessions#send_password_reset_code'
 
@@ -53,6 +57,8 @@ Yeti::Application.routes.draw do
   get "pages/login"
 
   get "pages/dashboard"
+
+  get "pages/aboutus"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

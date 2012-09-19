@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Username:</b>
+  <%= @invoice.username %>
+</p>
+
+<p>
+  <b>Url monitoring:</b>
+  <%= @invoice.url_monitoring %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @invoice.status %>
+</p>
+
+<p>
+  <b>Date due:</b>
+  <%= @invoice.date_due %>
+</p>
+
+<p>
+  <b>Billing period:</b>
+  <%= @invoice.billing_period %>
+</p>
+
+<p>
+  <b>Balance:</b>
+  <%= @invoice.balance %>
+</p>
+
+<p>
+  <b>Id:</b>
+  <%= @invoice.id %>
+</p>
+
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>
