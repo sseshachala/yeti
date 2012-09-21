@@ -32,6 +32,7 @@ before_filter :admin_user, :only => [:index,:destroy]
  end
 
  def verify_password_reset_code
+   session[:password_verifying_username] = params[:id]
    @user = User.find_object(params[:id]) 
    if !(@user.is_valid_password_reset_code?(params[:code]))
       redirect_to(signin_path, :notice => 'Something went wrong, cannot reset password.')
@@ -39,7 +40,10 @@ before_filter :admin_user, :only => [:index,:destroy]
 end
 
  def restore_password
-     @user = User.find_object(params[:id])
+     password_verifying_username = session[:password_verifying_username]
+     session[:password_verifying_username] = nil
+     puts "the id is " + password_verifying_username
+     @user = User.find_object(password_verifying_username)
     respond_to do |format|
       if @user.reset_password(params[:user])
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
