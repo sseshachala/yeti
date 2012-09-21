@@ -53,3 +53,4 @@
 <% else %>
 <%= link_to 'Create New Report', new_report_path %>
 <% end %>
+<%= link_to "Billing History", show_path("billing_history",  @current_user.attributes["username"]) %>

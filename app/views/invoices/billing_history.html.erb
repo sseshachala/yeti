@@ -1,0 +1,32 @@
+<h1>Billing History</h1>
+
+<%if @invoices == [] %>
+<div>
+<%= "No invoices found" %>
+</div>
+<% else %>
+
+<table>
+  <tr>
+    <th>Billing Period</th>
+    <th>Date Due</th>
+    <th>Checks Performed</th>
+    <th>Balance</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @invoices.each do |invoice| %>
+  <tr>
+    <td><%= invoice["billing_period"] %>
+    <td><%= invoice["date_due"] %></td>
+    <td><%= invoice["url_monitoring"] %></td>
+    <td><%= invoice["balance"] %></td>
+    <td><%= invoice["status"] %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+<br />
