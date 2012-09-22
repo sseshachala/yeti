@@ -213,10 +213,7 @@ def reset_password(user_hash)
        errors[:password] << "doesn't match confirmation"
        return false
    end
-
-  puts "The username is " + @username
   result = Couchdb.change_password(@username, user_hash["password"], User.auth_session)
-  puts result.inspect
   true
 end
 
