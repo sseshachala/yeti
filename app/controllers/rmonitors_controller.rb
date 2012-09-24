@@ -18,8 +18,14 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
 
   # GET /dashboard/:user
   def dashboard
+
    if (params[:id] == current_user.attributes["username"]) || current_user.admin?
+    begin 
      @rmonitors = Rmonitor.find_by_owner(params[:id])
+    rescue
+       #params[:id] will be nil for an admin user so simply redirect 
+       redirect_to(show_path("dashboard",  current_user.attributes["username"]))
+    end
    else
      redirect_to(show_path("dashboard",  current_user.attributes["username"]))
    end
