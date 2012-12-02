@@ -36,7 +36,7 @@ GEM
     gravatar_image_tag (0.1.0)
     i18n (0.5.0)
     json (1.6.3)
-    leanback (0.3.1)
+    leanback (0.3.2)
       rest-client
       yajl-ruby
     mail (2.2.19)
@@ -103,7 +103,7 @@ PLATFORMS
 
 DEPENDENCIES
   gravatar_image_tag (= 0.1.0)
-  leanback (= 0.3.1)
+  leanback (= 0.3.2)
   rails (= 3.0.9)
   rest-client
   rspec
