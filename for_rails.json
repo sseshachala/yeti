@@ -2,10 +2,7 @@
  "language" : "javascript",
  "views" :{
     "get_all" : {
-      "map" : "function(doc){
-         if(doc.username)
-           emit(null,{username : doc.username, email: doc.email});
-        }"
+      "map" : "function(doc){ if(doc.username) emit(null,{username : doc.username, email: doc.email}); }"
     }
    }    
 }
