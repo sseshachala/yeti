@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Simplpan - Admin Panel</title>
+	
+	<!-- Imports General CSS and jQuery CSS -->
+	<link href="css/screen.css" rel="stylesheet" media="screen" type="text/css" />
+	
+	<!-- CSS for Fluid and Fixed Widths - Double to prevent flickering on change -->
+	<link href="css/fixed.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="css/fixed.css" rel="stylesheet" media="screen" type="text/css" class="width" />
+	
+	<!-- IE Stylesheet ie7 - Added in 1.2 -->
+	<!--[if lt IE 8]> <html lang="en" class="ie7"> <![endif]-->
+	
+	<!-- IE Stylesheet ie8 - Added in 1.1 -->
+	<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+	
+	<!-- CSS for Theme Styles - Double to prevent flickering on change -->
+	<link href="css/theme/blue.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="css/theme/blue.css" rel="stylesheet" media="screen" type="text/css" class="theme" />
+	
+	<!-- IE Canvas Fix for Visualize Charts - Added in 1.1 -->
+	<!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+	
+	<!-- jQuery thats loaded before document ready to prevent flickering - Rest are found at the bottom -->
+	<script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/jquery.styleswitcher.js"></script>
+	<script type="text/javascript" src="js/jquery.visualize.js"></script>
+	
+</head>
+
+<body>
+
+<!-- Start: Page Wrap -->
+<div id="wrap" class="container_24">
+
+
+<!-- Grid Container: Start (centers) -->
+	<div class="login2">
+
+		<!-- 100% Box Grid Container: Start -->
+		<div class="grid_12">
+		
+			<!-- Box Header: Start -->
+			<div class="box_top">
+				
+				<h2 class="icon key">Login</h2>
+				
+				<!-- Tab Select: Start -->
+				<ul class="sorting">
+					<li><a href="#login" class="active">Login</a></li>
+					<li><a href="#signup">Signup</a></li>
+					<li><a href="#forgot">Forgot Password</a></li>
+				</ul>
+				<!-- Tab Select: End -->
+				
+			</div>
+			<!-- Box Header: End -->
+			
+			<!-- Box Content: Start -->
+			<div class="box_content padding">
+				
+				<!-- Tabs: Start -->
+				<div class="tabs">
+					
+					<!-- Login Tab: Start -->
+					<div id="login">
+						<p class="note small">Welcome to Simplpan, to login just click <b>login</b>.</p>
+						
+						<form action="dashboard.html" method="post">
+						
+							<div class="field noline nopadding">
+								<label class="left" for="username">Username</label>
+								<input type="text" class="validate tip-stay right" title="enter your username" id="username">
+							</div>
+							
+							<div class="field">
+								<label class="left" for="password">Password</label>
+								<input type="password" class="validate tip-stay right" title="enter your password" id="password">
+							</div>
+							
+							<div class="field noline nopadding">
+								<label class="nobold left nowidth"><input type="checkbox" /> Remember me</label>
+								
+								<div class="right">
+									<button type="submit">Login</button>
+								</div>
+							</div>
+						
+						</form>
+						
+					</div>
+					<!-- Login Tab: End -->
+					
+					<!-- Signup Tab: Start -->
+					<div id="signup">
+						<p class="note small">Fill out the form to signup for this awesome app!</p>
+						
+						<form action="dashboard.html" method="post">
+							
+							<div class="field noline nopadding">
+								<label class="left" for="username">Username</label>
+								<input type="text" class="validate tip-stay right" title="enter your prefered username" id="username">
+							</div>
+							
+							<div class="field noline nopadding">
+								<label class="left" for="password">E-Mail</label>
+								<input type="text" class="validate tip-stay right" title="enter your email" id="text">
+							</div>
+							
+							<div class="field noline nopadding">
+								<label class="left" for="password">Password</label>
+								<input type="text" class="validate tip-stay right" title="enter the password you want" id="text">
+							</div>
+							
+							<div class="field noline nopadding">
+								<label class="left" for="password">Repeat Password</label>
+								<input type="text" class="validate tip-stay right" title="write your password again" id="text">
+							</div>
+							
+							<div class="field">
+								<label class="nobold right nowidth"><input type="checkbox" /> I agree to the <a href="#tos" class="popup">terms and conditions</a></label>
+							</div>
+							
+							<div class="field noline right nopadding">
+								<button type="submit">Register</button>
+							</div>
+						
+						</form>
+							
+					</div>
+					<!-- Signup Tab: End -->
+					
+					<!-- Forgot Password Tab: Start -->
+					<div id="forgot">
+						<p class="note small">Enter your E-Mail and we'll send you your password!</p>
+						
+						<form action="dashboard.html" method="post">
+						
+							<div class="field">
+								<label class="left" for="password">E-Mail</label>
+								<input type="text" class="validate tip-stay right" title="enter your email" id="text">
+							</div>
+							
+							<div class="field noline right nopadding">
+								<button>Send new Password</button>
+							</div>
+						
+						</form>
+						
+					</div>
+					<!-- Forgot Password Tab: End -->
+					
+				</div>
+				<!-- Tabs: End -->
+		
+			</div>
+			<!-- Box Content: End -->
+			
+		</div>
+		<!-- 100% Box Grid Container: End -->
+
+
+		<!-- ToS Popup Content: Start -->
+		<div class="box_content padding hide" id="tos">
+			<h6>Terms and conditions</h6>
+		
+			<p>Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern [business name]'s relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website.</p>
+		
+			<p>The term '[business name]' or 'us' or 'we' refers to the owner of the website whose registered office is [address]. Our company registration number is [company registration number and place of registration]. The term 'you' refers to the user or viewer of our website.</p>
+		
+			<p>The use of this website is subject to the following terms of use:</p>
+		
+			<ul>
+		    	<li>The content of the pages of this website is for your general information and use only. It is subject to change without notice.</li>
+		    	<li>This website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].</li>
+		    	<li>Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.</li>
+		    	<li>Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.</li>
+		    	<li>This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.</li>
+		    	<li>All trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.</li>
+		    	<li>Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.</li>
+		    	<li>From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).</li>
+		    	<li>Your use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.</li>
+		    </ul>
+		
+		</div>
+		<!-- ToS Popup Content: End -->
+		
+	</div>
+	<!-- Grid Container: End (centers) -->
+
+
+</div>
+<!-- End: Page Wrap -->
+
+	<!-- jQuery libs - Rest are found in the head section (at top) -->
+	<script type="text/javascript" src="js/jquery.visualize-tooltip.js"></script>
+	<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery.poshytip.min.js"></script>
+	<script type="text/javascript" src="js/jquery.quicksand.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/jquery.facebox.js"></script>
+	<script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+	<script type="text/javascript" src="js/jquery.wysiwyg.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shCore.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushXml.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushJScript.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushCss.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushPhp.js"></script>
+	<script type="text/javascript" src="js/fileTree/jqueryFileTree.js"></script> <!-- Added in 1.2 -->
+	
+	<!-- jQuery Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Simplpan - Admin Panel</title>
+	
+	<!-- Imports General CSS and jQuery CSS -->
+	<link href="css/screen.css" rel="stylesheet" media="screen" type="text/css" />
+	
+	<!-- CSS for Fluid and Fixed Widths - Double to prevent flickering on change -->
+	<link href="css/fixed.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="css/fixed.css" rel="stylesheet" media="screen" type="text/css" class="width" />
+	
+	<!-- IE Stylesheet ie7 - Added in 1.2 -->
+	<!--[if lt IE 8]> <html lang="en" class="ie7"> <![endif]-->
+	
+	<!-- IE Stylesheet ie8 - Added in 1.1 -->
+	<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+	
+	<!-- CSS for Theme Styles - Double to prevent flickering on change -->
+	<link href="css/theme/blue.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="css/theme/blue.css" rel="stylesheet" media="screen" type="text/css" class="theme" />
+	
+	<!-- IE Canvas Fix for Visualize Charts - Added in 1.1 -->
+	<!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+	
+	<!-- jQuery thats loaded before document ready to prevent flickering - Rest are found at the bottom -->
+	<script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/jquery.styleswitcher.js"></script>
+	<script type="text/javascript" src="js/jquery.visualize.js"></script>
+	
+</head>
+
+<body>
+
+<!-- Start: Page Wrap -->
+<div id="wrap" class="container_24">
+	
+	
+	<!-- Header Grid Container: Start -->
+	<div class="grid_24">
+		
+		<!-- User Panel: Start -->
+		<div id="userpanel">
+			
+			<!-- User: Start -->
+			<ul id="user" class="dropdown">
+				<li class="topnav">
+					<!-- User Name -->
+					<a href="#" class="top icon user">Administrator</a>
+					
+					<!-- User Dropdown Content: Start -->
+					<ul class="subnav">  
+			            <li><a href="forms.html" class="icon settings">Settings</a></li>  
+			            <li><a href="#messages" class="icon chatbubbles popup">Messages</a></li> 
+			            <li><a href="login.html" class="icon lock">Log out</a></li>  
+			        </ul>  
+			        <!-- User Dropdown Content: End -->
+				</li>
+			</ul>
+			<!-- User: End -->
+			
+			<!-- Messages: Start -->
+			<ul class="messages">
+				<!-- Messages amount with Popup and Tip -->
+				<li><a href="#messages" class="newmsg tip popup" title="16 Messages"> <span>16</span></a></li>
+			</ul>
+			<!-- Messages: End -->
+			
+			<!-- Messages Popup Content: Start -->
+			<div class="box_content padding hide" id="messages">
+				<form>	
+				  
+					<!-- Message From User: Start -->
+					<h6>
+						<span class="icon user"></span> <a href="#">Jenny</a> <span class="nobold">says</span>
+						<small class="right grey nobold">2 hours ago</small> 
+					</h6>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna 
+						aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+					</p> 
+					<!-- Message From User: End -->
+					
+					<!-- Message From User: Start -->
+					<h6>
+						<span class="icon user"></span> <a href="#">Jenny</a> <span class="nobold">says</span>
+						<small class="right grey nobold">15 hours ago</small> 
+					</h6>
+					<p>
+						Sed do eiusmod tempor incididunt ut labore et dolore magna 
+						aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+					</p>
+					<!-- Message From User: End -->
+					
+					<!-- Quick Reply: Start -->
+					<div class="field">
+						<label>
+							<span class="icon chatbubbles"></span>
+							Quick Reply
+						</label>
+						<textarea cols="50" rows="7"></textarea>
+					</div>
+				  
+				  <button>Send</button>
+				  <button class="secondary" type="reset">Reset</button>
+				  <button disabled="">Disabled Button</button>
+				  <!-- Quick Reply: End -->
+				  
+			    </form>
+			</div>
+			<!-- Messages Popup Content: End -->
+			
+			<!-- Style (Themes) Switcher: Start -->
+			<ul id="style" class="dropdown right">
+				<li class="topnav">
+					<a href="#" class="top icon brush">Style</a>
+					
+					<!-- Style (Themes) Switcher Content: Start -->
+					<ul class="subnav">  
+			            <li><a href="#blue" class="icon circle">Blue</a></li>  
+			            <li><a href="#light" class="icon circle">Light</a></li>  <!-- Added in 1.2 -->
+			            <li><a href="#red" class="icon circle">Red</a></li> 
+			            <li><a href="#dark" class="icon circle">Dark</a></li> 
+			            <li><a href="#green" class="icon circle">Green</a></li> 
+			            <li><a href="#purple" class="icon circle">Purple</a></li> 
+			            <li><a href="#brown" class="icon circle">Brown</a></li> 
+			        </ul>  
+			        <!-- Style (Themes) Switcher Content: End -->
+				</li>
+			</ul>
+			<!-- Style Switcher: End -->
+			
+			<!-- Width Switcher: Start -->
+			<ul id="width" class="dropdown right">
+				<li class="topnav">
+					<a href="#" class="top icon coverflow">Width</a>
+					
+					<!-- Width Switcher Content: Start -->
+					<ul class="subnav">  
+			            <li><a href="#fluid" class="icon coverflow">Fluid</a></li>  
+			            <li><a href="#fixed" class="icon coverflow">Fixed</a></li> 
+			        </ul>  
+			        <!-- Width Switcher Content: End -->
+				</li>
+			</ul>
+			<!-- Width Switcher: End -->
+			
+		</div>
+		<!-- User Panel: End -->
+		
+		<!-- Header: Start -->
+		<div id="header">
+				
+			<!-- Logo: Start -->
+			<a href="dashboard.html" id="logo">Simplpan - Admin Panel</a>
+			<!-- Logo: End -->
+			
+			<!-- Navigation: Start -->
+			<ul id="navigation" class="dropdown">
+				<li><a class="dashboard" href="dashboard.html">Dashboard</a></li>
+				
+				<!-- Navigation Dropdown Menu Item: Start -->
+				<li class="topnav">
+					<a class="frames" href="#">Layout</a>
+					
+					<!-- Navigation Dropdown Menu Item Content: Start -->
+					<ul class="subnav">
+						<li><a href="typography.html" class="icon typography">Typography</a></li> 
+			            <li><a href="grid.html" class="icon blocks">Grid System</a></li>  
+			        </ul> 
+			        <!-- Navigation Dropdown Menu Item Content: End --> 
+				</li>
+				<!-- Navigation Dropdown Menu Item: End -->
+				
+				<!-- Navigation Dropdown Menu Item: Start -->
+				<li class="topnav">
+					<a class="pages active" href="#">Elements</a>
+					
+					<!-- Navigation Dropdown Menu Item Content: Start -->
+					<ul class="subnav">
+						<li><a href="code.html" class="icon laptop">Code View</a></li>  
+			            <li><a href="accordion.html" class="icon archive">Accordion</a></li>  
+			            <li><a href="tabs.html" class="icon pages">Tabs</a></li> 
+			            <li><a href="forms.html" class="icon edit">Forms</a></li>  
+			            <li><a href="charts.html" class="icon graph">Charts</a></li>  
+			            <li><a href="tables.html" class="icon list">Tables</a></li>  
+			            <li><a href="login.html" class="icon user">Login</a></li>  
+			            <li><a href="login2.html" class="icon lock">Login 2</a></li>  
+			            <li><a href="files.html" class="icon folders">Files</a></li>  
+			            <li><a href="profile.html" class="icon users">Profile</a></li>  
+			            <li><a href="vertical_menu.html" class="icon frames">Vertical Menu</a></li>  
+			            <li><a href="icons.html" class="icon view">Icons</a></li>  
+			            
+			            <!-- Sub Navigation: Start -->
+			            <li>
+			            	<a href="#" class="icon point_right">Sub Nav</a>
+							
+			            	<ul>
+								<li><a href="#" class="download list">Example</a></li>  
+								<li><a href="#" class="upload list">Example</a></li>  
+								<li><a href="#" class="search list">Example</a></li>  
+					        </ul>  
+			            	
+		            	</li> 
+		            	<!-- Sub Navigation: End -->
+			            
+			        </ul>  
+			        <!-- Navigation Dropdown Menu Item Content: End --> 
+			        
+				</li>
+				<!-- Navigation Dropdown Menu Item: End -->
+				
+				<!-- Navigation Menu Item: Start -->
+				<li><a class="pictures" href="gallery.html">Gallery</a></li>
+				<!-- Navigation Menu Item: End -->
+				
+			</ul>
+			<!-- Navigation: End -->
+			
+		</div>
+		<!-- Header: End -->
+		
+		<!-- Breadcrumb Bar: Start -->
+		<div id="breadcrumb">
+			
+			<!-- Breadcrumb: Start -->
+			<ul class="left">
+				<li class="icon dashboard"><a href="dashboard.html">Dashboard</a></li>
+				<li class="icon point_right"><a href="#">Elements</a></li>
+				<li class="icon point_right active"><a href="icons.html">Icons</a></li>
+			</ul>
+			<!-- Breadcrumb: End -->
+			
+			<!-- Breadcrumb Icon Links: Start -->
+			<ul class="right">
+				<li><a href="#" class="icon support tip" title="FAQ">FAQ</a></li>
+				<li><a href="#" class="icon home tip" title="Home">Home</a></li>
+			</ul>
+			<!-- Breadcrumb Icon Links: End -->
+			
+		</div>
+		<!-- Breadcrumb Bar: End -->
+		
+	</div>
+	<!-- Header Grid Container: End -->
+
+
+
+
+<!-- 100% Box Grid Container: Start -->
+<div class="grid_24">
+
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<h2 class="icon list">170+ Icons</h2>
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content padding">
+		
+		<!-- Icons: Start -->
+		<p class="note">
+			You can add these icons to all elements of the site where you see icons (such as the navigation, breadcrumb, box tops..) 
+			and they will automatically style themself for the element. 
+		</p>
+		
+		<p class="note"><b>Usage:</b> All you need to do is to add the class name which is found by hovering over
+			the icon you want.
+		</p>
+		
+		<!-- Code View: Start -->	
+		<pre name="code" class="xml">
+			<span class="icon {ICON_NAME_HERE}"></span>
+		</pre>
+		<!-- Code View: End -->
+		
+		<p>	
+			<span class="icon car tip" title="car"></span>
+			<span class="icon plane tip" title="plane"></span>
+			<span class="icon balloons tip" title="balloons"></span>
+			<span class="icon stop tip" title="stop"></span>
+			<span class="icon chair tip" title="chair"></span>
+			<span class="icon table tip" title="table"></span>
+			<span class="icon edit tip" title="edit"></span>
+			<span class="icon linux tip" title="linux"></span>
+			<span class="icon windows tip" title="windows"></span>
+			<span class="icon mac tip" title="mac"></span>
+			<span class="icon tag tip" title="tag"></span>
+			<span class="icon tags tip" title="tags"></span>
+			<span class="icon folders tip" title="folders"></span>
+			<span class="icon bullseye tip" title="bullseye"></span>
+			<span class="icon loading tip" title="loading"></span>
+			<span class="icon safari tip" title="safari"></span>
+			<span class="icon chrome tip" title="chrome"></span>
+			<span class="icon firefox tip" title="firefox"></span>
+			<span class="icon foot tip" title="foot"></span>
+			<span class="icon paperclip tip" title="paperclip"></span>
+			<span class="icon icecream tip" title="icecream"></span>
+			<span class="icon view tip" title="view"></span>
+			<span class="icon cloud_upload tip" title="cloud_upload"></span>
+			<span class="icon cloud_download tip" title="cloud_download"></span>
+			<span class="icon cloud tip" title="cloud"></span>
+			<span class="icon lightbolb tip" title="lightbolb"></span>
+			<span class="icon experiment tip" title="experiment"></span>
+			<span class="icon globe tip" title="globe"></span>
+			<span class="icon globe2 tip" title="globe2"></span>
+		</p>
+		<p>
+			<span class="icon bell tip" title="bell"></span>
+			<span class="icon warning2 tip" title="warning2"></span>
+			<span class="icon bandaid tip" title="bandaid"></span>
+			<span class="icon cabin tip" title="cabin"></span>
+			<span class="icon archive tip" title="archive"></span>
+			<span class="icon companys tip" title="companys"></span>
+			<span class="icon buildings tip" title="buildings"></span>
+			<span class="icon strategy tip" title="strategy"></span>
+			<span class="icon rss tip" title="rss"></span>
+			<span class="icon mail tip" title="mail"></span>
+			<span class="icon ambrella tip" title="ambrella"></span>
+			<span class="icon tree tip" title="tree"></span>
+			<span class="icon books tip" title="books"></span>
+			<span class="icon book tip" title="book"></span>
+			<span class="icon book2 tip" title="book2"></span>
+			<span class="icon links tip" title="links"></span>
+			<span class="icon links2 tip" title="links2"></span>
+			<span class="icon house2 tip" title="house2"></span>
+			<span class="icon flag tip" title="flag"></span>
+			<span class="icon upload tip" title="upload"></span>
+			<span class="icon download tip" title="download"></span>
+			<span class="icon pc_download tip" title="pc_download"></span>
+			<span class="icon presentation tip" title="presentation"></span>
+			<span class="icon trash tip" title="trash"></span>
+			<span class="icon search tip" title="search"></span>
+			<span class="icon calendar tip" title="calendar"></span>
+			<span class="icon date tip" title="date"></span>
+			<span class="icon socks tip" title="socks"></span>
+			<span class="icon pants tip" title="pants"></span>
+		</p>
+		<p>
+			<span class="icon shirt tip" title="shirt"></span>
+			<span class="icon dress tip" title="dress"></span>
+			<span class="icon suitcase tip" title="suitcase"></span>
+			<span class="icon dropbox tip" title="dropbox"></span>
+			<span class="icon like tip" title="like"></span>
+			<span class="icon facebook tip" title="facebook"></span>
+			<span class="icon skype tip" title="skype"></span>
+			<span class="icon vimeo tip" title="vimeo"></span>
+			<span class="icon youtube tip" title="youtube"></span>
+			<span class="icon stumbleupon tip" title="stumbleupon"></span>
+			<span class="icon dribbble tip" title="dribbble"></span>
+			<span class="icon plixie tip" title="plixie"></span>
+			<span class="icon tumbler tip" title="tumbler"></span>
+			<span class="icon twitter tip" title="twitter"></span>
+			<span class="icon delicious tip" title="delicious"></span>
+			<span class="icon cart tip" title="cart"></span>
+			<span class="icon pig tip" title="pig"></span>
+			<span class="icon money_tags tip" title="money_tags"></span>
+			<span class="icon paypal tip" title="paypal"></span>
+			<span class="icon paypal2 tip" title="paypal2"></span>
+			<span class="icon settings2 tip" title="settings2"></span>
+			<span class="icon sd tip" title="sd"></span>
+			<span class="icon hd tip" title="hd"></span>
+			<span class="icon headphones tip" title="headphones"></span>
+			<span class="icon microphone tip" title="microphone"></span>
+			<span class="icon movie tip" title="movie"></span>
+			<span class="icon sound tip" title="sound"></span>
+			<span class="icon blueray tip" title="blueray"></span>
+			<span class="icon dvd tip" title="dvd"></span>
+		</p>
+		<p>
+			<span class="icon ipad tip" title="ipad"></span>
+			<span class="icon camera tip" title="camera"></span>
+			<span class="icon laptop tip" title="laptop"></span>
+			<span class="icon tv tip" title="tv"></span>
+			<span class="icon printer tip" title="printer"></span>
+			<span class="icon drupal tip" title="drupal"></span>
+			<span class="icon joomla tip" title="joomla"></span>
+			<span class="icon ee tip" title="ee"></span>
+			<span class="icon wordpress tip" title="wordpress"></span>
+			<span class="icon mobile_phone tip" title="mobile_phone"></span>
+			<span class="icon android tip" title="android"></span>
+			<span class="icon blackberry tip" title="blackberry"></span>
+			<span class="icon iphone tip" title="iphone"></span>
+			<span class="icon wifi tip" title="wifi"></span>
+			<span class="icon bluetooth tip" title="bluetooth"></span>
+			<span class="icon box_incomming tip" title="box_incomming"></span>
+			<span class="icon box_outgoing tip" title="box_outgoing"></span>
+			<span class="icon box tip" title="box"></span>
+			<span class="icon electricity tip" title="electricity"></span>
+			<span class="icon power tip" title="power"></span>
+			<span class="icon battery tip" title="battery"></span>
+			<span class="icon eyedrop tip" title="eyedrop"></span>
+			<span class="icon cut tip" title="cut"></span>
+			<span class="icon location tip" title="location"></span>
+			<span class="icon location2 tip" title="location2"></span>
+			<span class="icon exels tip" title="exels"></span>
+			<span class="icon exel tip" title="exel"></span>
+			<span class="icon powerpoints tip" title="powerpoints"></span>
+			<span class="icon powerpoint tip" title="powerpoint"></span>
+		</p>
+		<p>
+			<span class="icon zips tip" title="zips"></span>
+			<span class="icon zip tip" title="zip"></span>
+			<span class="icon words tip" title="word"></span>
+			<span class="icon pdfs tip" title="pdfs"></span>
+			<span class="icon pdf tip" title="pdf"></span>
+			<span class="icon success tip" title="success"></span>
+			<span class="icon support tip" title="support"></span>
+			<span class="icon time tip" title="time"></span>
+			<span class="icon typography tip" title="typography"></span>
+			<span class="icon user tip" title="user"></span>
+			<span class="icon users tip" title="users"></span>
+			<span class="icon warning tip" title="warning"></span>
+			<span class="icon about tip" title="about"></span>
+			<span class="icon blocks tip" title="blocks"></span>
+			<span class="icon brush tip" title="brush"></span>
+			<span class="icon chatbubbles tip" title="chatbubbles"></span>
+			<span class="icon circle tip" title="circle"></span>
+			<span class="icon computer tip" title="computer"></span>
+			<span class="icon coverflow tip" title="coverflow"></span>
+			<span class="icon dashboard tip" title="dashboard"></span>
+			<span class="icon error tip" title="error"></span>
+			<span class="icon frames tip" title="frames"></span>
+			<span class="icon graph tip" title="graph"></span>
+			<span class="icon home tip" title="home"></span>
+			<span class="icon info tip" title="info"></span>
+			<span class="icon key tip" title="key"></span>
+			<span class="icon list tip" title="list"></span>
+			<span class="icon lock tip" title="lock"></span>
+			<span class="icon pages tip" title="pages"></span>
+		</p>
+		<p>
+			<span class="icon contact tip" title="contact"></span>
+			<span class="icon pictures tip" title="pictures"></span>
+			<span class="icon point_right tip" title="point_right"></span>
+			<span class="icon preview tip" title="preview"></span>
+			<span class="icon resize tip" title="resize"></span>
+			<span class="icon settings tip" title="settings"></span>
+		</p>
+		<!-- Icons: End -->
+
+	</div>
+	<!-- Box Content: End -->
+	
+</div>	
+<!-- 100% Box Grid Container: End -->
+
+
+
+
+<!-- Footer Grid: Start -->
+<div class="grid_24">
+
+	<!-- Footer: Start -->
+	<div id="footer">
+		
+		<p class="left">
+			Copyright &#169; 2011 <a href="#">Yourcompany</a>. 
+			Powered by <a href="http://themeforest.net/user/Kaasper/?ref=kaasper">Simplpan</a>.
+		</p>
+		
+		<!-- Footer Icon Navigation: Start -->
+		<ul class="right">
+			<li><a href="#" class="icon dashboard tip active" title="Dashboard">Dashboard</a></li>
+			<li><a href="#" class="icon pages tip" title="Pages">Pages</a></li>
+			<li><a href="#" class="icon users tip" title="Users">Users</a></li>
+			<li><a href="#" class="icon settings tip" title="Settings">Settings</a></li>
+			<li><a href="#" class="icon support tip" title="Support">Support</a></li>
+			<li><a href="#" class="icon home tip" title="Home">Home</a></li>
+		</ul>
+		<!--Footer Icon Navigation: End -->
+		
+	</div>
+	<!-- Footer: End -->
+	
+</div>
+<!-- Footer Grid: End -->
+
+</div>
+<!-- End: Page Wrap -->
+
+	<!-- jQuery libs - Rest are found in the head section (at top) -->
+	<script type="text/javascript" src="js/jquery.visualize-tooltip.js"></script>
+	<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery.poshytip.min.js"></script>
+	<script type="text/javascript" src="js/jquery.quicksand.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/jquery.facebox.js"></script>
+	<script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+	<script type="text/javascript" src="js/jquery.wysiwyg.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shCore.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushXml.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushJScript.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushCss.js"></script>
+	<script type="text/javascript" src="js/syntaxHighlighter/shBrushPhp.js"></script>
+	<script type="text/javascript" src="js/fileTree/jqueryFileTree.js"></script> <!-- Added in 1.2 -->
+	
+	<!-- jQuery Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
