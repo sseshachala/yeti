@@ -1,0 +1,76 @@
+	<!-- Header Grid Container: Start -->
+	<div class="grid_24">
+		
+		<!-- User Panel: Start -->
+		<div id="userpanel"> 
+			
+			<!-- User: Start -->
+			<ul id="user" class="dropdown right">
+				<li class="topnav">
+					<!-- User Name -->
+					<a href="#" class="top icon user"><%=@current_user.attributes["username"]%></a>
+					
+					<!-- User Dropdown Content: Start -->
+					<ul class="subnav">    
+                                    <li><%= link_to "Log out", signout_path, :method => :delete, :class => 'icon lock' %></li>
+			        </ul>  
+			        <!-- User Dropdown Content: End -->
+				</li>
+			</ul>
+			<!-- User: End -->
+			
+		</div>
+		<!-- User Panel: End -->
+		
+		<!-- Header: Start -->
+		<div id="header">
+				
+			<!-- Logo: Start -->
+			<a href="/" id="logo">South Munn - Dashboard</a>
+			<!-- Logo: End -->
+			
+			<!-- Navigation: Start -->
+			<ul id="navigation" class="dropdown">
+                                <li><%= link_to "Dashboard", show_path("dashboard",  @current_user.attributes["username"]), :class => 'dashboard active'  %></li>
+
+				<!-- Navigation Dropdown Menu Item: Start -->
+				<li class="topnav">
+					<a class="users" href="#">Profile</a>
+					
+					<!-- Navigation Dropdown Menu Item Content: Start -->
+					<ul class="subnav">
+                                                <li><%= link_to "Account info", show_path("users",  @current_user.attributes["username"]), :class => 'icon info'  %> </li>
+                                    <li><%= link_to "Billing History", show_path("billing_history",  @current_user.attributes["username"]), :class => 'icon calendar' %></li> 
+			        </ul> 
+			        <!-- Navigation Dropdown Menu Item Content: End --> 
+				</li>
+				<!-- Navigation Dropdown Menu Item: End -->
+				
+				
+			</ul>
+			<!-- Navigation: End -->
+			
+		</div>
+		<!-- Header: End -->
+		
+		<!-- Breadcrumb Bar: Start -->
+		<div id="breadcrumb">
+			
+			<!-- Breadcrumb: Start -->
+			<ul class="left">
+				<li class="icon dashboard"><a href="#">Dashboard</a></li>
+			</ul>
+			<!-- Breadcrumb: End -->
+			
+			<!-- Breadcrumb Icon Links: Start -->
+			<ul class="right">
+				<li><a href="#" class="icon support tip" title="FAQ">FAQ</a></li>
+				<li><a href="/" class="icon home tip" title="Home">Home</a></li>
+			</ul>
+			<!-- Breadcrumb Icon Links: End -->
+			
+		</div>
+		<!-- Breadcrumb Bar: End -->
+		
+	</div>
+	<!-- Header Grid Container: End -->
