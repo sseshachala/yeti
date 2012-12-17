@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+ 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Yeti</title>
-	
+	<%= csrf_meta_tag %>
 	<!-- Imports General CSS and jQuery CSS -->
 	<link href="/css/screen.css" rel="stylesheet" media="screen" type="text/css" />
 	
@@ -25,12 +24,16 @@
 	
 	<!-- IE Canvas Fix for Visualize Charts - Added in 1.1 -->
 	<!--[if IE]><script type="text/javascript" src="/js/excanvas.js"></script><![endif]-->
+
+          <%= javascript_include_tag :defaults %>
 	
 	<!-- jQuery thats loaded before document ready to prevent flickering - Rest are found at the bottom -->
 	<script type="text/javascript" src="/js/jquery-1.4.1.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="/js/jquery.styleswitcher.js"></script>
 	<script type="text/javascript" src="/js/jquery.visualize.js"></script>
+       
+         
 </head>
 <body>
 <!-- Start: Page Wrap -->
