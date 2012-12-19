@@ -18,7 +18,7 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
 
   # GET /dashboard/:user
   def dashboard
-
+    @rmonitor = Rmonitor.new #used for adding new monitors from same page
    if (params[:id] == current_user.attributes["username"]) || current_user.admin?
     begin 
      @rmonitors = Rmonitor.find_by_owner(params[:id])
@@ -35,7 +35,7 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
   # GET /rmonitors/1.xml
   def show
     @rmonitor = Rmonitor.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @rmonitor }
