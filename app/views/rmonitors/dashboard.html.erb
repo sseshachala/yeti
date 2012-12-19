@@ -1,11 +1,19 @@
 <!-- 100% Box Grid Container: Start -->
 <div class="grid_24">
 
+	<!-- Info Notice: Start -->
+<% if flash[:notice] %>
+	<div class="notice info">
+		<p><%= flash[:notice] %></p>
+	</div>
+ <% end %>
+	<!-- Info Notice: End -->
+
 	<!-- Box Header: Start -->
 	<div class="box_top">
 		
 		<a name="news"></a>
-		<h2 class="icon pages">Monitors<span class="tip" title="Tips can be added everywhere">232</span></h2>
+		<h2 class="icon pages">Monitors<span class="tip" title="Welcome to your dashboard"><%= @rmonitors.length %></span></h2>
 		
 		<!-- Tab Select: Start -->
 		<ul class="sorting">
@@ -51,7 +59,7 @@
 						<tr>
 							
 							<td class="align_left center"><%= rmonitor["every"] %></td>
-							<td class="align_left center">my blog url Test</td>
+							<td class="align_left center"><%= rmonitor["test"] %></td>
 							<td class="align_left center"><a href="<%= rmonitor["url"] %>"><%= rmonitor["url"] %></td>
 							<td class="align_left center"><%= rmonitor["status"] %></td>
                                                     <% if rmonitor["state"] == "stopped" %>
@@ -85,60 +93,7 @@
 			
 			<!-- News Sorting Table - Add News Tab: Start -->
 			<div id="addnews" class="padding">
-				
-				<p class="note">
-					<span class="icon info"></span> 
-					display rails flash messages here
-				</p>
-
-				<div class="field">
-					<label class="left">Every</label>
-					<input type="text" class="left validate">
-					<p class="error left small nomargin">
-						<span class="icon cross"></span> 
-						Let the users know what the problem is
-					</p>
-				</div>
-
-
-				
-				<div class="field">
-					<label class="left">Test description</label>
-					<input type="text" class="left validate">
-					<p class="error left small nomargin">
-						<span class="icon cross"></span> 
-						Let the users know what the problem is
-					</p>
-				</div>
-
-				<div class="field">
-					<label class="left">Contact</label>
-					<input type="text" value="nycnightlife2012@gmail.com" class="left validate" disabled>
-					
-				</div>
-				
-				<div class="field">
-					<label class="left">URL</label>
-					<input type="text" class="left validate tip-stay" title="Add a tip for focus!">
-					<p class="info left small nomargin">
-						<span class="icon info"></span> 
-						Or some information about what they should write
-					</p>
-				</div>
-
-				<div class="field">
-					<label class="left">Notify Interval</label>
-					<input type="text" class="left validate tip-stay" title="Add a tip for focus!">
-					<p class="info left small nomargin">
-						<span class="icon info"></span> 
-						Or some information about what they should write
-					</p>
-				</div>
-				
-			  <button>Add Monitor</button>
-			  <button class="secondary" type="reset">Reset</button>
-			  <!--<button disabled="">Disabled Button</button>-->
-				
+			<%= render 'form' %>	
 			</div>
 			<!-- News Sorting Table - Add News Tab: End -->
 		

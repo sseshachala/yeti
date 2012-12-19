@@ -1,38 +1,60 @@
-<%= form_for(@rmonitor) do |f| %>
-  <% if @rmonitor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rmonitor.errors.count, "error") %> prohibited this rmonitor from being saved:</h2>
 
-      <ul>
-      <% @rmonitor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :every %><br />
-    <%= f.text_field :every %>
-  </div>
-  <div class="field">
-    <%= f.label :test %><br />
-    <%= f.text_field :test %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :contact %><br />
-    <%= current_user.attributes["email"] %>
-  </div>
-   
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :notify_interval %><br />
-    <%= f.text_field :notify_interval %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+				<%= form_for(@rmonitor) do |f| %>
+                               <% if @rmonitor.errors.any? %>
+				<p id="error_explanation" class="note">
+					<span class="icon info"></span> 
+					<%= pluralize(@rmonitor.errors.count, "error") %> prohibited this rmonitor from being saved:<br/>
+                                       
+                             <% @rmonitor.errors.full_messages.each do |msg| %>
+                                 <span style="padding-left: 29px;"> <%= msg %><br/></span>
+                                      <% end %>
+                                       
+				</p>
+                                <% end %>
+				<div class="field">
+					<!--<label class="left">Every</label>
+					<input type="text" class="left validate">-->
+                                        <%= f.label :every ,:class => "left"%>
+                                         <%= f.text_field :every, :class => "left validate" %>
+					
+				</div>
+
+
+				
+				<div class="field">
+					<!--<label class="left">Test description</label>
+					<input type="text" class="left validate">-->
+                                            <%= f.label :test,:class => "left" %>
+                                            <%= f.text_field :test, :class => "left validate" %>
+					
+				</div>
+
+				<div class="field">
+					<label class="left">Contact</label>
+					<input type="text" value="<%= current_user.attributes["email"] %>" class="left validate" disabled>
+					
+				</div>
+				
+				<div class="field">
+					<!--<label class="left">URL</label>
+					<input type="text" class="left validate tip-stay" title="Add a tip for focus!">-->
+					<%= f.label :url,:class => "left"%>
+                                        <%= f.text_field :url, :class => "left validate" %>
+				</div>
+
+				<div class="field">
+					<!--<label class="left">Notify Interval</label>
+					<input type="text" class="left validate tip-stay" title="Add a tip for focus!">-->
+                                            <%= f.label :notify_interval ,:class => "left"%><br />
+                                            <%= f.text_field :notify_interval ,:class => "left validate tip-stay"%>
+					<!--<p class="info left small nomargin">
+						<span class="icon info"></span> 
+						Or some information about what they should write
+					</p>-->
+				</div>
+			  	
+			  <button><%= f.submit %></button>
+			  <button class="secondary" type="reset">Reset</button>
+			  <!--<button disabled="">Disabled Button</button>-->
+			<% end %>	
+
