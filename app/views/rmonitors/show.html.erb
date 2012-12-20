@@ -1,80 +1,129 @@
-<p id="notice"><%= notice %></p>
+<!-- 100% Box Grid Container: Start -->
+<div class="grid_24">
 
-<p>
+	<!-- Info Notice: Start -->
+<% if flash[:notice] %>
+	<div class="notice info">
+		<p><%= flash[:notice] %></p>
+	</div>
+ <% end %>
+	<!-- Info Notice: End -->
+
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<a name="news"></a>
+		<h2 class="icon pages">Monitors</h2>
+		
+		<!-- Tab Select: Start -->
+		<ul class="sorting">
+			<li><a href="#viewmonitor" class="active">View</a></li>
+			<li><a href="#editmonitor">Edit</a></li>
+		</ul>
+		<!-- Tab Select: End -->
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content padding">
+		
+		<!-- News Table Tabs: Start -->
+		<div class="tabs">
+		
+			<!-- News Sorting Table: Start -->
+			<div id="viewmonitor">
+				
+			<p id="notice"><%= notice %></p>
+
+                        <h1><%= @rmonitor_hash["test"] %></h1>
+
+<div>
   <b>This monitor tests:</b>
-  <%= @rmonitor["describe_test_result"] %>
-</p>
+  <%= @rmonitor_hash["describe_test_result"] %>
+</div>
 
-<p>
+<div>
   <b>Creation Date:</b>
-  <%= @rmonitor["creation_date"] %>
-</p>
+  <%= @rmonitor_hash["creation_date"] %>
+</div>
 
-<p>
+<div>
   <b>Runs Every:</b>
-  <%= @rmonitor["every"] %>
-</p>
+  <%= @rmonitor_hash["every"] %>
+</div>
 
-<p>
+<div>
   <b>Test:</b>
-  <%= @rmonitor["test"] %>
-</p>
+  <%= @rmonitor_hash["test"] %>
+</div>
 
-<p>
+<div>
   <b>Contact:</b>
-  <%= @rmonitor["contact"] %>
-</p>
+  <%= @rmonitor_hash["contact"] %>
+</div>
 
-<p>
+<div>
   <b>Url:</b>
-  <%= @rmonitor["url"] %>
-</p>
+  <%= @rmonitor_hash["url"] %>
+</div>
 
-<p>
+<div>
   <b>Notify interval:</b>
-  <%= @rmonitor["notify_interval"] %>
-</p>
+  <%= @rmonitor_hash["notify_interval"] %>
+</div>
 
-<p>
+<div>
   <b>State:</b>
-  <%= @rmonitor["State"] %>
-</p>
+  <%= @rmonitor_hash["State"] %>
+</div>
 
-<p>
+<div>
   <b>Last test result:</b>
-  <%= @rmonitor["last_test_result"] %>
-</p>
+  <%= @rmonitor_hash["last_test_result"] %>
+</div>
 
-<p>
+<div>
   <b>Status:</b>
-  <%= @rmonitor["status"] %>
-</p>
+  <%= @rmonitor_hash["status"] %>
+</div>
 
-<p>
+<div>
   <b>Number of tests Passed:</b>
-  <%= @rmonitor["num_tests_passed"] %>
-</p>
+  <%= @rmonitor_hash["num_tests_passed"] %>
+</div>
 
-<p>
+<div>
   <b>Number of tests Failed:</b>
-  <%= @rmonitor["num_tests_failed"] %>
-</p>
+  <%= @rmonitor_hash["num_tests_failed"] %>
+</div>
 
-<p>
+<div>
   <b>Time of last test:</b>
-  <%= @rmonitor["time_of_last_test"] %>
-</p
+  <%= @rmonitor_hash["time_of_last_test"] %>
+</div>
 
-<p>
+<div>
   <b>Total number of tests:</b>
-  <%= @rmonitor["total_num_tests"] %>
-</p>
+  <%= @rmonitor_hash["total_num_tests"] %>
+</div>
 
+	
+				
+			</div>
+			<!-- News Sorting Table: End -->
+			
+			<!-- News Sorting Table - Add News Tab: Start -->
+			<div id="editmonitor" class="padding">
+			<%= render 'update_form' %>	
+			</div>
+			<!-- News Sorting Table - Add News Tab: End -->
+		
+		</div>
+		<!-- News Table Tabs: End -->
 
-
-
-
-
-
-<%= link_to 'Edit', edit_path("rmonitors",  @rmonitor["_id"]) %> |
-<%= link_to 'Back', rmonitors_path %>
+	</div>
+	<!-- Box Content: End -->
+	
+</div>
+<!-- 100% Box Grid Container: End -->

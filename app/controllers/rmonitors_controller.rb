@@ -34,8 +34,8 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
   # GET /rmonitors/1
   # GET /rmonitors/1.xml
   def show
-    @rmonitor = Rmonitor.find(params[:id])
-    
+    @rmonitor_hash = Rmonitor.find(params[:id])
+    @rmonitor = Rmonitor.find_object(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @rmonitor }

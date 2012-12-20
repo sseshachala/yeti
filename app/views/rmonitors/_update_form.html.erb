@@ -1,36 +1,37 @@
 <%= form_for(@rmonitor, :url => {:action => "update"}, :html => {:method => :put}) do |f| %>
   <% if @rmonitor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rmonitor.errors.count, "error") %> prohibited this rmonitor from being saved:</h2>
+    <p id="error_explanation" class="note">
+     <span class="icon info"></span> 
+      <%= pluralize(@rmonitor.errors.count, "error") %> prohibited this rmonitor from being saved:<br/>
 
-      <ul>
+      
       <% @rmonitor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+       <span style="padding-left: 29px;"><%= msg %><br/></span>
       <% end %>
-      </ul>
-    </div>
+     
+    </p>
   <% end %>
   <div class="field">
-    <%= f.label :every %><br />
-    <%= f.text_field :every %>
+    <%= f.label :every,:class => "left" %>
+    <%= f.text_field :every, :class => "left validate" %>
   </div>
   <div class="field">
-    <%= f.label :test %><br />
-    <%= f.text_field :test %>
+    <%= f.label :test,:class => "left" %>
+    <%= f.text_field :test, :class => "left validate" %>
   </div>
   <div class="field">
-    <%= f.label :contact %><br />
-    <%= current_user.attributes["email"] %>
+    <label class="left">Contact</label>
+    <input type="text" value="<%= current_user.attributes["email"] %>" class="left validate" disabled>
   </div>
   <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
+    <%= f.label :url,:class => "left" %>
+    <%= f.text_field :url, :class => "left validate" %>
   </div>
   <div class="field">
-    <%= f.label :notify_interval %><br />
-    <%= f.text_field :notify_interval %>
+    <%= f.label :notify_interval,:class => "left" %>
+    <%= f.text_field :notify_interval, :class => "left validate"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <button><%= f.submit %></button>
   </div>
 <% end %>
