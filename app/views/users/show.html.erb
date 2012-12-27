@@ -1,20 +1,99 @@
-<h1>
-<%= gravatar_for @user %>
-</h1>
 
-<p id="notice"><%= notice %></p>
+<!-- 75% Box Grid Container: Start -->
+<div class="grid_8">
 
-<p>
-  <b>Username:</b>
-  <%= @user["username"] %>
-</p>
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<h2 class="icon user"><%= @user_hash["username"] %></h2>
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content padding">
+		
+		<center><%= gravatar_for @user_hash, :size => 150  %>
+             <button onclick='window.location="http://en.gravatar.com/emails/";'>Change Photo</button>
+      </center>
 
-<p>
-  <b>Email:</b>
-  <%= @user["email"] %>
-</p>
+	</div>
+	<!-- Box Content: End -->
+	
+</div>	
+<!-- 75% Box Grid Container: End -->
 
 
-<%= link_to 'Edit', edit_path("users",  @user["username"]) %> |
-<%= link_to 'Back', show_path("dashboard",  current_user.attributes["username"]) %>
+<!-- 100% Box Grid Container: Start -->
+<div class="grid_16">
+
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<a name="news"></a>
+		<h2 class="icon pages">Account Info</h2>
+		
+		<!-- Tab Select: Start -->
+		<ul class="sorting">
+			<li><a href="#listing" class="active">Show</a></li>
+			<li><a href="#addnews">Edit</a></li>
+		</ul>
+		<!-- Tab Select: End -->
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content">
+		
+		<!-- News Table Tabs: Start -->
+		<div class="tabs">
+		
+			<!-- profile content: Start -->
+			<div id="listing">
+				
+		<!-- Stats Table: Start -->
+		<table>
+			
+			<tr>
+				<td><span class=""></span> </td>
+				<td class="right_end green"></td>
+			</tr>
+			
+			<tr>
+				<td><span class="icon user"></span> Username</td>
+				<td class="right_end"><%= @user_hash["username"] %></td>
+			</tr>
+			
+			<tr>
+				<td><span class="icon mail"></span> Email</td>
+				<td class="right_end"><%= @user_hash["email"] %></td>
+			</tr>
+			<tr>
+				<td><span class="icon key"></span> Password</td>
+				<td class="right_end">##############</td>
+			</tr>
+			
+		</table>
+		<!-- Stats Table: End -->
+				
+			</div>
+			<!-- profile content: End -->
+			
+						<!-- News Sorting Table - Add News Tab: Start -->
+			<div id="addnews" class="padding">
+
+                       <%= render 'update_form' %>
+				
+			</div>
+			<!-- News Sorting Table - Add News Tab: End -->	
+		
+		</div>
+		<!-- News Table Tabs: End -->
+
+	</div>
+	<!-- Box Content: End -->
+	
+</div>
+<!-- 100% Box Grid Container: End -->
 

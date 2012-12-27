@@ -58,11 +58,11 @@ end
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-
+    @user_hash = User.find(params[:id])
+    @user = User.find_object(params[:id])
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      format.xml  { render :xml => @user_hash }
     end
   end
 
