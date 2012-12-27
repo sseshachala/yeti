@@ -1,32 +1,65 @@
-<h1>Billing History</h1>
+<!-- 100% Box Grid Container: Start -->
+<div class="grid_24">
 
-<%if @invoices == [] %>
-<div>
-<%= "No invoices found" %>
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<a name="news"></a>
+		<h2 class="icon pages">Billing History<span class="tip" title="View Billing History and Invoices"><%= @invoices.length %></span></h2>
+		
+		
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content">
+		
+		<!-- News Table Tabs: Start -->
+		<div class="tabs">
+		
+			<!-- News Sorting Table: Start -->
+			<div id="listing">
+				
+				<table class="sorting">
+					<thead>
+						<tr>
+							
+							<th class="align_left center">Billing Period</th>
+							<th class="align_left center">Date Due</th>
+							<th class="align_left center">Checks Performed</th>
+							<th class="align_left center">Balance</th>
+							<th class="align_left center">Status</th>
+                                                      
+							
+						</tr>
+					</thead>
+					<tbody>
+
+
+                                        <% @invoices.each do |invoice| %>						
+			                	<tr>
+							
+							<td class="align_left center"><%= invoice["billing_period"] %></td>
+							<td class="align_left center"><%= invoice["date_due"] %></td>
+							<td class="align_left center"><%= invoice["url_monitoring"] %></td>
+							<td class="align_left center"><%= invoice["balance"] %></td>
+							<td class="align_left center"><%= invoice["status"] %></td>
+                                                        
+						</tr>
+                                          <% end %>
+						
+				
+					</tbody>
+				</table> 
+				
+			</div>
+			<!-- News Sorting Table: End -->
+		</div>
+		<!-- News Table Tabs: End -->
+
+	</div>
+	<!-- Box Content: End -->
+	
 </div>
-<% else %>
-
-<table>
-  <tr>
-    <th>Billing Period</th>
-    <th>Date Due</th>
-    <th>Checks Performed</th>
-    <th>Balance</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @invoices.each do |invoice| %>
-  <tr>
-    <td><%= invoice["billing_period"] %>
-    <td><%= invoice["date_due"] %></td>
-    <td><%= invoice["url_monitoring"] %></td>
-    <td><%= invoice["balance"] %></td>
-    <td><%= invoice["status"] %></td>
-  </tr>
-<% end %>
-</table>
-<% end %>
-<br />
+<!-- 100% Box Grid Container: End -->
