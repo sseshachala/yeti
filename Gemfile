@@ -12,6 +12,7 @@ gem 'will_paginate', '3.0.pre2'
 gem "rest-client"
 gem "yajl-ruby"
 gem "uuidtools"
+gem 'jquery-rails', '~> 2.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
