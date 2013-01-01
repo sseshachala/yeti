@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   def home
+    if signed_in?
+     redirect_to(show_path("dashboard",  current_user.attributes["username"]))
+    end
   end
 
   def contact
@@ -9,6 +12,9 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+  end
+
+  def aboutus
   end
 
 end
