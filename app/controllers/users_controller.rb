@@ -3,6 +3,7 @@ before_filter :authenticate, :only => [:index,:show,:edit,:update,:confirm]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index,:destroy]
 
+
   # GET /users
   # GET /users.xml
   def index
@@ -32,6 +33,7 @@ before_filter :admin_user, :only => [:index,:destroy]
  end
 
  def verify_password_reset_code
+   @user_hash = User.find(params[:id])
    session[:password_verifying_username] = params[:id]
    @user = User.find_object(params[:id]) 
    if !(@user.is_valid_password_reset_code?(params[:code]))
@@ -40,9 +42,9 @@ before_filter :admin_user, :only => [:index,:destroy]
 end
 
  def restore_password
+     @user_hash = User.find(params[:id])
      password_verifying_username = session[:password_verifying_username]
      session[:password_verifying_username] = nil
-     puts "the id is " + password_verifying_username
      @user = User.find_object(password_verifying_username)
     respond_to do |format|
       if @user.reset_password(params[:user])
