@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    render :layout => nil
+    render :layout => "login"
   end
 
  def send_password_reset_code
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     
      flash.now[:errors] = "Invalid username/password combination."
      
-     render 'new',:layout => nil
+     render 'new',:layout => "login"
    else
      sign_in user
      #redirect_to show_path("users",  user["username"])#User.new(user)
