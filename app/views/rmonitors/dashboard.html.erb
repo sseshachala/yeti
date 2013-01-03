@@ -57,8 +57,7 @@
 <% @rmonitors.each do |rmonitor| %>
 						
 						<tr>
-							
-							<td class="align_left center"><%= rmonitor["every"] %></td>
+							<td class="align_left center"><%= every(rmonitor["every"]) %></td>
 							<td class="align_left center"><%= rmonitor["test"] %></td>
 							<td class="align_left center"><a href="<%= rmonitor["url"] %>"><%= rmonitor["url"] %></td>
 							<td class="align_left center"><%= rmonitor["status"] %></td>
