@@ -4,12 +4,13 @@ include ActiveModel::Validations
 include ActiveModel::Serialization
 extend ActiveModel::Naming 
 include ActiveModel::Conversion
+include RmonitorsHelper
 
 email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 url_regex = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
 
-validates :every, :presence => true
+validates :every, :presence => true, :numericality => {:only_integer => true}
 
 validates :test, :presence => true,
                  :length => {:within => 4..50}
@@ -20,9 +21,7 @@ validates :test, :presence => true,
 validates :url, :presence => true,
                 :format => {:with => url_regex}
 
-validates :notify_interval, :presence => true
-
-attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
+attr_accessor :attributes,:every, :test,:contact, :url #, :notify_interval
 
  def initialize(attributes = {})
     @attributes = attributes
@@ -30,7 +29,6 @@ attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
     @test = @attributes["test"]
     @contact = @attributes["contact"]
     @url = @attributes["url"]
-    @notify_interval = @attributes["notify_interval"]
   end
 
  def read_attribute_for_validation(key)
@@ -40,6 +38,7 @@ attr_accessor :attributes,:every, :test,:contact, :url, :notify_interval
 
 def update_attributes(params)
  @attributes = params["rmonitor"]
+  
  if self.valid?
    return update_monitor(params)
  else
@@ -48,19 +47,20 @@ def update_attributes(params)
 end
 
 def update_monitor(params)
- str = Yajl::Encoder.encode(params["rmonitor"])
+ str = Yajl::Encoder.encode(make_monitor(params))
   response = RestClient.put 'http://127.0.0.1:5041/monitors/' + params["id"],str, {:content_type => :json, :accept => :json}
   return true unless response.code != 200 
 end
 
-def create_monitor(owner)
+def create_monitor(owner, params)
+   
+   m = make_monitor(params)
    data = [{:monitor => 'metered_url_monitor',
               :tag => owner.username,
-             :every => @attributes["every"], 
+             :every => m["every"], 
               :test => @attributes["test"], 
                 :contact =>  owner.attributes["email"],
                    :url => @attributes["url"],
-                        :notify_interval => @attributes["notify_interval"],
                          :via => 'gmail'}]
   
        str = Yajl::Encoder.encode(data)
@@ -68,9 +68,9 @@ def create_monitor(owner)
      return true unless response.code != 200 
 end
 
- def save(owner)
+ def save(owner, params)
    if self.valid?
-     return create_monitor(owner)
+     return create_monitor(owner, params)
    else
     false
    end

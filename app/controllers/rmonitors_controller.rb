@@ -61,11 +61,11 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
   # POST /rmonitors
   # POST /rmonitors.xml
   def create
-
+    #@rmonitor = Rmonitor.new(make_monitor(params))
     @rmonitor = Rmonitor.new(params[:rmonitor])
 
     respond_to do |format|
-      if @rmonitor.save(current_user)
+      if @rmonitor.save(current_user, params)
         format.html { redirect_to(@rmonitor, :notice => 'Rmonitor was successfully created.') }
         format.xml  { render :xml => @rmonitor, :status => :created, :location => @rmonitor }
       else
@@ -73,6 +73,7 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
         format.xml  { render :xml => @rmonitor.errors, :status => :unprocessable_entity }
       end
     end
+    
   end
 
   # PUT /rmonitors/1
@@ -80,7 +81,7 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
   def update
     @rmonitor = Rmonitor.find_object(params[:id])
 
-    respond_to do |format|
+   respond_to do |format|
       if @rmonitor.update_attributes(params)
         format.html { redirect_to(@rmonitor, :notice => 'Rmonitor was successfully updated.') }
         format.xml  { head :ok }
@@ -88,7 +89,7 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
         format.html { render :action => "edit" }
         format.xml  { render :xml => @rmonitor.errors, :status => :unprocessable_entity }
       end
-    end
+    end 
   end
 
   # PUT /rmonitors/1/pause

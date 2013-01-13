@@ -15,7 +15,11 @@
 					<!--<label class="left">Every</label>
 					<input type="text" class="left validate">-->
                                         <%= f.label :every ,:class => "left"%>
-                                         <%= f.text_field :every, :class => "left validate" %>
+                                         <%= f.text_field :every, :class => "tiny left validate",:value => '5',:size =>'4',:maxlength => '4',:width => '100px' %><div style="padding-top: 5px;"></div>
+                                          <span>
+                                        <%= select("create","minutes",{"minutes" =>"m","hours"=>"h","days" => "d"}) %>
+		                         </span>
+                                         
 					
 				</div>
 
@@ -40,17 +44,6 @@
 					<input type="text" class="left validate tip-stay" title="Add a tip for focus!">-->
 					<%= f.label :url,:class => "left"%>
                                         <%= f.text_field :url, :class => "left validate" %>
-				</div>
-
-				<div class="field">
-					<!--<label class="left">Notify Interval</label>
-					<input type="text" class="left validate tip-stay" title="Add a tip for focus!">-->
-                                            <%= f.label :notify_interval ,:class => "left"%><br />
-                                            <%= f.text_field :notify_interval ,:class => "left validate tip-stay"%>
-					<!--<p class="info left small nomargin">
-						<span class="icon info"></span> 
-						Or some information about what they should write
-					</p>-->
 				</div>
 			  	
 			  <button><%= f.submit %></button>

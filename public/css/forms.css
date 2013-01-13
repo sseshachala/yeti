@@ -72,6 +72,9 @@ textarea:focus {
 		    border-radius: 5px;
 }
 
+.box_content input[type=text].tiny, 
+.box_content input[type=password].tiny { width: 30px; }
+
 .box_content input[type=text].small, 
 .box_content input[type=password].small { width: 100px; }
 
