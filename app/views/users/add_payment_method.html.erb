@@ -1,8 +1,23 @@
-<h1>Payment Method</h1>
+<!-- 100% Box Grid Container: Start -->
+<div class="grid_24 left">
 
-<div>
-Authorize payments with Amazon Flexible Payments system <%= link_to 'here', show_path("authorize_payments", "") %>
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<h2 class="time">Payment Method</h2>
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content padding">
+		
+	<p>
+		Authorize payments with Amazon Flexible Payments: <%= link_to 'Click here', show_path("authorize_payments", "") %>
+	</p>
+		
+	</div>
+	<!-- Box Content: End -->
+	
 </div>
-<div>
-<%= link_to 'Back', show_path("dashboard",  current_user.attributes["username"]) %>
-</div>
+<!-- 100% Box Grid Container: End -->
