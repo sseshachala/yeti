@@ -1,44 +1,91 @@
-<h1>Listing monitors</h1>
+<!-- 100% Box Grid Container: Start -->
+<div class="grid_24">
 
-<table>
-  <tr>
-    <th>Owner</th>
-    <th>Every</th>
-    <th>Test</th>
-    <th>Contact</th>
-    <th>Url</th>
-    <th>Status</th>
-    <th>State</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+	<!-- Info Notice: Start 
+<% if flash[:notice] %>
+	<div class="notice info">
+		<p><%= flash[:notice] %></p>
+	</div>
+ <% end %>
+	<!-- Info Notice: End -->
 
-<% @rmonitors.each do |rmonitor| %>
-  <tr>
-    <td><%= rmonitor["tag"] %>
-    <td><%= rmonitor["every"] %></td>
-    <td><%= rmonitor["test"] %></td>
-    <td><%= rmonitor["contact"] %></td>
-    <td><%= rmonitor["url"] %></td>
-    <td><%= rmonitor["status"] %></td>
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<a name="news"></a>
+		<h2 class="icon pages">Monitors<span class="tip" title="Welcome to your dashboard"><%= @rmonitors.length %></span></h2>
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content">
+		
+		<!-- News Table Tabs: Start -->
+		<div class="tabs">
+		
+			<!-- News Sorting Table: Start -->
+			<div id="listing">
+				
+				<table class="sorting">
+					<thead>
+						<tr>
+							<th class="align_left">Owner</th>
+							<th class="align_left">Every</th>
+							<th class="align_left center">Test</th>
+							<th class="align_left center">url</th>
+							<th class="align_left center">Status</th>
+							<th class="align_left center">State</th>
+                                                        <th class="align_left center"></th>
+							<th class="align_left center tools">Tools</th>
+						</tr>
+					</thead>
+					<tbody>
+<%if @rmonitors == [] %>
+ 
+<% else %>
+
+<% @rmonitors.each do |rmonitor| %>       
+						
+						<tr>
+                                                        <td class="align_left center"><%= rmonitor["tag"] %></td>
+							<td class="align_left center"><%= rmonitor["every"] %></td>
+							<td class="align_left center"><%= rmonitor["test"] %></td>
+							<td class="align_left center"><a href="<%= rmonitor["url"] %>"><%= rmonitor["url"] %></td>
+							<td class="align_left center"><%= rmonitor["status"] %></td>
+                                                    <% if rmonitor["state"] == "stopped" %>
+                                                        <td class="align_left center"><%= "Paused" %></td>
+                                                    <% else %>
+                                                        <td class="align_left center"><%= rmonitor["state"] %></td>
+                                                    <% end %>
+                                                      
     <% if rmonitor["state"] == "stopped" %>
-    <td><%= "Paused" %></td>
-    <% else %>
-    <td><%= rmonitor["state"] %></td>
-    <% end %>
-    <% if rmonitor["state"] == "stopped" %>
-    <td><%= link_to 'Restart', path_for("rmonitors",  rmonitor["_id"], "restart"), :confirm => 'Are you sure?', :method => :put %></td>
+    <td><%= link_to 'Restart', path_for("rmonitors",  rmonitor["_id"], "restart"), :confirm => 'Are you sure?', :method => :put, :class => "align_left center"%></td>
     <% elsif rmonitor["state"] == "active" %>
-    <td><%= link_to 'Pause', path_for("rmonitors",  rmonitor["_id"], "pause"), :confirm => 'Are you sure?', :method => :put %></td>
+    <td><%= link_to 'Pause', path_for("rmonitors",  rmonitor["_id"], "pause"), :confirm => 'Are you sure?', :method => :put, :class => "align_left center" %></td>
     <% end %>
-    <td><%= link_to 'Show', show_path("rmonitors",  rmonitor["_id"]) %></td>
-    <td><%= link_to 'Edit', edit_path("rmonitors",  rmonitor["_id"]) %></td>
-    <td><%= link_to 'Destroy', show_path("rmonitors",  rmonitor["_id"]), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+ 
+							
+                                                        
+							<td class="align_left tools center">
+                 <%= link_to 'Edit', edit_path("rmonitors",  rmonitor["_id"]), :title => "edit",:class =>"edit tip"  %>
+                 <%= link_to 'Show', show_path("rmonitors",  rmonitor["_id"]),:title => "view",:class=> "view tip" %>
+                 <%= link_to 'Destroy', show_path("rmonitors",  rmonitor["_id"]), :confirm => 'Are you sure?', :method => :delete,:title => "delete", :class => "delete tip" %>
+								
+							</td>
+						</tr>
 <% end %>
-</table>
+<% end %>			
+					</tbody>
+				</table> 
+				
+			</div>
+			<!-- News Sorting Table: End -->
+		</div>
+		<!-- News Table Tabs: End -->
 
-<br />
-
-<%= link_to 'New Monitor', new_rmonitor_path %>
+	</div>
+	<!-- Box Content: End -->
+	
+</div>
+<!-- 100% Box Grid Container: End -->

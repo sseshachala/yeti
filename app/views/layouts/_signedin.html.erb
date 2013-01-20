@@ -64,6 +64,10 @@
 			
 			<!-- Breadcrumb Icon Links: Start -->
 			<ul class="right">
+                             <%if current_user.admin? %>
+                                <li><%= link_to "Manage Users", users_path, :class => "icon users tip", :title => "Manage Users" %></li>
+				<li><%= link_to "Manage Monitors", rmonitors_path, :class => "icon strategy tip", :title => "Manage Monitors" %></li>
+                             <% end %>
 				<li><a href="#" class="icon support tip" title="FAQ">FAQ</a></li>
 				<li><a href="/" class="icon home tip" title="Home">Home</a></li>
 			</ul>

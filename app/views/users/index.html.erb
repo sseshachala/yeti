@@ -1,26 +1,61 @@
-<h1>Listing users</h1>
+<!-- 100% Box Grid Container: Start -->
+<div class="grid_24">
 
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+	<!-- Box Header: Start -->
+	<div class="box_top">
+		
+		<a name="news"></a>
+		<h2 class="icon pages">Listing Users<span class="tip" title="Tips can be added everywhere"><%=@users.length %></span></h2>
+		
+		
+		
+	</div>
+	<!-- Box Header: End -->
+	
+	<!-- Box Content: Start -->
+	<div class="box_content">
+		
+		<!-- News Table Tabs: Start -->
+		<div class="tabs">
+		
+			<!-- News Sorting Table: Start -->
+			<div id="listing">
+				
+				<table class="sorting">
+					<thead>
+						<tr>
+							
+							<th class="align_left center">Photo</th>
+							<th class="align_left center">Username</th>
+							<th class="align_left center">Email</th>
+							<th class="align_left center">Show</th>
+							<th class="align_left center">Edit</th>
+							<th class="align_left center">Destroy</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+				<% @users.each do |user| %>		
+						<tr>
+							
+							<td class="align_left center"><%= gravatar_for user, :size => 30 %></td>
+							<td class="align_left center"><%= user["username"] %></td>
+							<td class="align_left center"><%= user["email"] %></td>
+                                                         <td class="align_left center"><%= link_to 'Show', show_path("users",  user["username"]) %></td>
+                                                         <td class="align_left center"><%= link_to 'Edit', edit_path("users",  user["username"]) %></td>
+                                                         <td class="align_left center"><%= link_to 'Destroy', show_path("users",  user["username"]), :confirm => 'Are you sure?', :method => :delete %></td>
+						</tr>	
+                                 <% end %>			
+					</tbody>
+				</table> 
+				
+			</div>
+			<!-- News Sorting Table: End -->
+		</div>
+		<!-- News Table Tabs: End -->
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= gravatar_for user, :size => 30 %></td>
-    <td><%= user["username"] %></td>
-    <td><%= user["email"] %></td>
-    <td><%= link_to 'Show', show_path("users",  user["username"]) %></td>
-    <td><%= link_to 'Edit', edit_path("users",  user["username"]) %></td>
-    <td><%= link_to 'Destroy', show_path("users",  user["username"]), :confirm => 'Are you sure?', :method => :delete %></td>    
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>
+	</div>
+	<!-- Box Content: End -->
+	
+</div>
+<!-- 100% Box Grid Container: End -->
