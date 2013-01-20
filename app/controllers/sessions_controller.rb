@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @user = User.new
     render :layout => "login"
   end
 
@@ -14,6 +15,7 @@ class SessionsController < ApplicationController
  end
  
   def create
+   @user = User.new
    user = User.authenticate(params[:session][:username],
                                 params[:session][:password])
 

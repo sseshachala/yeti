@@ -65,40 +65,11 @@
 					<!-- Login Tab: End -->
 					
 					<!-- Signup Tab: Start -->
+
+                                          
 					<div id="signup">
-						<p class="note small">Fill out the form to signup for this awesome app!</p>
-						
-						<form action="dashboard.html" method="post">
-							
-							<div class="field noline nopadding">
-								<label class="left" for="username">Username</label>
-								<input type="text" class="validate tip-stay right" title="enter your prefered username" id="username">
-							</div>
-							
-							<div class="field noline nopadding">
-								<label class="left" for="password">E-Mail</label>
-								<input type="text" class="validate tip-stay right" title="enter your email" id="text">
-							</div>
-							
-							<div class="field noline nopadding">
-								<label class="left" for="password">Password</label>
-								<input type="text" class="validate tip-stay right" title="enter the password you want" id="text">
-							</div>
-							
-							<div class="field noline nopadding">
-								<label class="left" for="password">Repeat Password</label>
-								<input type="text" class="validate tip-stay right" title="write your password again" id="text">
-							</div>
-							
-							<div class="field">
-								<!--<label class="nobold right nowidth"><input type="checkbox" /> I agree to the <a href="#tos" class="popup">terms and conditions</a></label>-->
-							</div>
-							
-							<div class="field noline right nopadding">
-								<button type="submit">Register</button>
-							</div>
-						
-						</form>
+				         
+                                          <%= render :partial => 'users/form' %>
 							
 					</div>
 					<!-- Signup Tab: End -->

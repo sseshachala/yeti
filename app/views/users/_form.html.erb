@@ -1,32 +1,32 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
+  <% if @user.errors.any? %>
+    <p id="error_explanation" class="note">
+    <span class="icon info"></span> 
+     <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:<br/>
       <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+         <span style="padding-left: 29px;"> <%= msg %><br/></span>
       <% end %>
-      </ul>
-    </div>
+    </p>
   <% end %>
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+
+  <div class="field noline nopadding">
+    <%= f.label :username,:class => "left" %><br />
+    <%= f.text_field :username, :class => "validate tip-stay", :title => "enter your prefered username" %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+  <div class="field noline nopadding">
+    <%= f.label :email,:class => "left" %><br />
+    <%= f.text_field :email, :class => "validate tip-stay", :title => "enter your email" %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+  <div class="field  noline nopadding">
+    <%= f.label :password,:class => "left" %><br />
+    <%= f.password_field :password, :class => "validate tip-stay", :title => "enter the password you want" %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation,"Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
+  <div class="field  noline nopadding">
+    <%= f.label :password_confirmation,"Confirmation",:class => "left" %><br />
+    <%= f.password_field :password_confirmation, :class => "validate tip-stay", :title => "write your password again" %>
   </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions field noline nopadding">
+    <button><%= f.submit "Sign up" %></button>
   </div>
 <% end %>
