@@ -7,8 +7,10 @@ Requirements:
 Ubuntu 12.10 server
 Install Ruby 1.9.3 
 Install Git
-Install ubuntu build essential package - sudo apt-get install build-essential
-Install sqlite3 sudo apt-get install sqlite3 libsqlite3-dev
+Install ubuntu build essential package - 
+ sudo apt-get install build-essential
+Install sqlite3 
+ sudo apt-get install sqlite3 libsqlite3-dev
 
 
 
@@ -18,8 +20,9 @@ Install sqlite3 sudo apt-get install sqlite3 libsqlite3-dev
    gem chronic
    gem sqlite3
  
-  Run bundle install
+Run 
+ bundle install
 
- if you get the “Could not find *gem* in any of the sources” error,
-  Run bundle update
-  and follow the steps  
+If you get the “Could not find *gem* in any of the sources” error,Run 
+ bundle update
+and follow the steps  
