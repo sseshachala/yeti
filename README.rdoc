@@ -4,12 +4,12 @@ Experimental website uptime/performance monitoring As a Service powered by Ragio
 
 
 ===Requirements:
-Ubuntu 12.10 server
-Install Ruby 1.9.3 
-Install Git
-Install ubuntu build essential package - 
+*Ubuntu 12.10 server
+*Install Ruby 1.9.3 
+*Install Git
+*Install ubuntu build essential package - 
  sudo apt-get install build-essential
-Install sqlite3 
+*Install sqlite3 
  sudo apt-get install sqlite3 libsqlite3-dev
 
 
