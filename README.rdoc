@@ -14,8 +14,8 @@ Install sqlite3
 
 
 
-1. Install Ragios http://www.whisperservers.com/ragios/ragios-saint-ruby/installation/
-2. Setup Ragios Server http://www.whisperservers.com/ragios/server-setup/
+1. Install Ragios: http://www.whisperservers.com/ragios/ragios-saint-ruby/installation
+2. Setup Ragios Server: http://www.whisperservers.com/ragios/server-setup/
 3. Inside Gemfile uncomment the following under metered_url_plugin
    gem chronic
    gem sqlite3
