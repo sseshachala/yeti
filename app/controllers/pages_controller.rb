@@ -8,10 +8,10 @@ class PagesController < ApplicationController
   def contact
   end
 
-  def login
+  def support
   end
 
-  def dashboard
+  def tos
   end
 
   def aboutus

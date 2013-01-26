@@ -48,6 +48,16 @@ Yeti::Application.routes.draw do
   match '/send_confirmation_email', :to => 'users#send_confirmation_email'
 
   match '/' => 'pages#home'
+
+  match '/aboutus' => 'pages#aboutus'
+
+  match '/contact' => 'pages#contact'
+  
+  match '/support' => 'pages#support'
+
+  match '/tos' => 'pages#tos'
+
+
   
 
   get "pages/home"
