@@ -2,3 +2,24 @@
 
 Experimental website uptime/performance monitoring As a Service powered by Ragios. In active development with Rails, CouchDB, Ragios. Using Amazon Payments for metered billing.
 
+Setup
+Requirements:
+Ubuntu 12.10 server
+Install Ruby 1.9.3 
+Install Git
+Install ubuntu build essential package - sudo apt-get install build-essential
+Install sqlite3 sudo apt-get install sqlite3 libsqlite3-dev
+
+
+
+1. Install Ragios http://www.whisperservers.com/ragios/ragios-saint-ruby/installation/
+2. Setup Ragios Server http://www.whisperservers.com/ragios/server-setup/
+3. Inside Gemfile uncomment the following under metered_url_plugin
+   gem chronic
+   gem sqlite3
+ 
+  Run bundle install
+
+ if you get the “Could not find *gem* in any of the sources” error,
+  Run bundle update
+  and follow the steps  
