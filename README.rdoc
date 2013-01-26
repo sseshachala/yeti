@@ -25,4 +25,4 @@ Run
 
 If you get the “Could not find */gem*/ in any of the sources” error,Run 
  bundle update
-and follow the steps  
+and follow the provided steps.  
