@@ -28,3 +28,10 @@ Run
 If you get the “Could not find */gem*/ in any of the sources” error, Run 
  bundle update
 and follow the provided steps.  
+
+4. Download yeti
+   git clone git://github.com/obi-a/yeti.git
+
+   cd yeti
+   
+   bundle install
