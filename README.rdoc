@@ -72,6 +72,24 @@ Generate secret token for the Yeti rails app, type:
  rake secret
 copy the generated token to yeti/config/initializers/secret_token.rb to replace the commented token
      
-* Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html    
+* Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html   
+  gem install passenger
+
+* Configure Action Mailer under #Action Mailer settings in yeti/config/environments
+* Configure Amazon payments for the billing system, open yeti/config/boot.rb and add amazon creditionals 
+(this should probably be in application.rb, but fix later)
+ @@service_end_point = "https://authorize.payments-sandbox.amazon.com/cobranded-ui/actions/start"
+ @@access_key = "add access key here"
+ @@secret_key = "add secret key here"
+
+* We are now set to start running Yeti, simply start Passenger Standlone, from yeti's root directory
+ passenger start
+Or
+ sudo passenger start -p 80
+For more options
+ passenger --help
+
+  
+ 
     
 
