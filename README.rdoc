@@ -2,6 +2,7 @@
 
 Experimental website uptime/performance monitoring As a Service powered by Ragios. In active development with Rails, CouchDB, Ragios. Using Amazon Payments for metered billing.
 
+==Installation
 
 ===Requirements:
 * Ubuntu 12.10 server
@@ -15,7 +16,7 @@ Experimental website uptime/performance monitoring As a Service powered by Ragio
  sudo apt-get install libxslt-dev libxml2-dev
 
 
-===Setup
+=== Setup
 1. Install Ragios: http://www.whisperservers.com/ragios/ragios-saint-ruby/installation
 2. Setup Ragios Server: http://www.whisperservers.com/ragios/server-setup
 3. Inside Ragios/Gemfile uncomment the following gems under #metered_url_plugin
@@ -35,3 +36,5 @@ Change to yeti's root directory
  cd yeti
 Run
  bundle install
+
+
