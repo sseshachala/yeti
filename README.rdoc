@@ -75,6 +75,6 @@ copy the generated token to yeti/config/initializers/secret_token.rb to replace 
 6. Start Yeti
   rails -s
      
-     
+ 7. Optional: Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html    
     
 
