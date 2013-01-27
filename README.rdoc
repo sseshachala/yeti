@@ -32,6 +32,7 @@ If you get the “Could not find */gem*/ in any of the sources” error, Run
  bundle update
 and follow the provided steps.  
 
+
 4. Download yeti
  git clone git://github.com/obi-a/yeti.git
 Change to yeti's root directory
@@ -73,8 +74,6 @@ copy the generated token to yeti/config/initializers/secret_token.rb to replace 
 
 6. Start Yeti
   rails -s
-
-7.
      
      
     
