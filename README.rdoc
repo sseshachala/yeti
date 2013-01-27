@@ -31,7 +31,7 @@ and follow the provided steps.
 
 4. Download yeti
  git clone git://github.com/obi-a/yeti.git
-Change yeti's root directory
+Change to yeti's root directory
  cd yeti
-Run1
+Run
  bundle install
