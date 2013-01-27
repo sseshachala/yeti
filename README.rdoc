@@ -19,7 +19,7 @@ Experimental website uptime/performance monitoring As a Service powered by Ragio
 
 
 === Setup
-** Install Ragios: http://www.whisperservers.com/ragios/ragios-saint-ruby/installation
+* Install Ragios: http://www.whisperservers.com/ragios/ragios-saint-ruby/installation
 * Setup Ragios Server: http://www.whisperservers.com/ragios/server-setup
 * Inside Ragios/Gemfile uncomment the following gems under #metered_url_plugin
  gem chronic
@@ -33,14 +33,14 @@ If you get the “Could not find */gem*/ in any of the sources” error, Run
 and follow the provided steps.  
 
 
-4. Download yeti
+* Download yeti
  git clone git://github.com/obi-a/yeti.git
 Change to yeti's root directory
  cd yeti
 Run
  bundle install
 
-5.Setup Yeti Rails App
+* Setup Yeti Rails App
 
 Create a CouchDB admin user for Yeti rails app. You can do this from Ruby's irb using the leanback gem. Open irb and paste:
  require 'leanback' 
@@ -72,9 +72,9 @@ Generate secret token for the Yeti rails app, type:
  rake secret
 copy the generated token to yeti/config/initializers/secret_token.rb to replace the commented token
 
-6. Start Yeti
+* Start Yeti
   rails -s
      
-7. Optional: Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html    
+* Optional: Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html    
     
 
