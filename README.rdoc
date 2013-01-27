@@ -37,4 +37,42 @@ Change to yeti's root directory
 Run
  bundle install
 
+5.Setup Yeti Rails App
+
+Create a CouchDB admin user for Yeti rails app. You can do this from Ruby's irb using the leanback gem. Open irb and paste:
+ require 'leanback' 
+ admin = "obi" #replace with couchdb admin username you want to use
+ password = "trusted" #replace with couchdb password you want to use
+ hash = Couchdb.login(username = 'ragios_server',password ='ragios') 
+ auth_session =  hash["AuthSession"]
+ data = {:section => "admins",
+              :key => "obi",
+                :value => "trusted"}
+ Couchdb.set_config data,auth_session
+
+Note: this assumes you already had a couchDB admin with username 'ragios_server' and password 'server'. Created in step 2. 
+
+You can also do this from Futon, CouchDB's web based admin panel. 
+
+Open yeti/config/boot.rb and enter the CouchDB admin user you just created to under #setup couchDB configurations Example:
+ @@username = "obi"
+ @@password = "trusted"
+(This should probably be in application.rb but will be fix later.)
+
+Setup the users database
+ bundle exec rake setdb
+
+Setup database to store information for the billing system
+ bundle exec rake setbill
+
+Generate secret token for the Yeti rails app, type:
+ rake secret
+copy the generated token to yeti/config/initializers/secret_token.rb to replace the commented token
+
+6. Start Yeti
+  rails -s
+
+     
+     
+    
 
