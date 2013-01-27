@@ -19,9 +19,9 @@ Experimental website uptime/performance monitoring As a Service powered by Ragio
 
 
 === Setup
-1. Install Ragios: http://www.whisperservers.com/ragios/ragios-saint-ruby/installation
-2. Setup Ragios Server: http://www.whisperservers.com/ragios/server-setup
-3. Inside Ragios/Gemfile uncomment the following gems under #metered_url_plugin
+** Install Ragios: http://www.whisperservers.com/ragios/ragios-saint-ruby/installation
+* Setup Ragios Server: http://www.whisperservers.com/ragios/server-setup
+* Inside Ragios/Gemfile uncomment the following gems under #metered_url_plugin
  gem chronic
  gem sqlite3
  
