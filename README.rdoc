@@ -74,6 +74,7 @@ copy the generated token to yeti/config/initializers/secret_token.rb to replace 
 6. Start Yeti
   rails -s
 
+7.
      
      
     
