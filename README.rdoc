@@ -42,7 +42,7 @@ Run
 
 * Setup Yeti Rails App
 
-Create a CouchDB admin user for Yeti rails app. You can do this from Ruby's irb using the leanback gem. Open irb and paste:
+Create a CouchDB admin user for Yeti rails app. You can do this from Ruby's irb using the leanback gem (already installed by bundler). Open irb and paste:
  require 'leanback' 
  admin = "obi" #replace with couchdb admin username you want to use
  password = "trusted" #replace with couchdb password you want to use
