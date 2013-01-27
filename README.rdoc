@@ -73,7 +73,7 @@ Generate secret token for the Yeti rails app, type:
 copy the generated token to yeti/config/initializers/secret_token.rb to replace the commented out token
      
 * Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html   
-  gem install passenger
+ gem install passenger
 
 * Configure Action Mailer under #Action Mailer settings in yeti/config/environments
 * Configure Amazon payments for the billing system, open yeti/config/boot.rb and add amazon creditionals 
