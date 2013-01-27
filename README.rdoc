@@ -14,6 +14,8 @@ Experimental website uptime/performance monitoring As a Service powered by Ragio
  sudo apt-get install sqlite3 libsqlite3-dev
 * Install nokogiri requirements
  sudo apt-get install libxslt-dev libxml2-dev
+* some requirements for passenger
+ sudo apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev 
 
 
 === Setup
