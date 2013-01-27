@@ -71,10 +71,7 @@ Setup database to store information for the billing system
 Generate secret token for the Yeti rails app, type:
  rake secret
 copy the generated token to yeti/config/initializers/secret_token.rb to replace the commented token
-
-* Start Yeti
-  rails -s
      
-* Optional: Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html    
+* Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html    
     
 
