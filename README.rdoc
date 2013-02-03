@@ -51,8 +51,8 @@ Create a CouchDB admin user for Yeti rails app. You can do this from Ruby's irb 
  hash = Couchdb.login(username = 'ragios_server',password ='ragios') 
  auth_session =  hash["AuthSession"]
  data = {:section => "admins",
-              :key => "obi",
-                :value => "trusted"}
+              :key => admin,
+                :value => password}
  Couchdb.set_config data,auth_session
 
 Note: this assumes you already had a couchDB admin with username 'ragios_server' and password 'server'. Created when you setup Ragios Server. Any CouchDB account already setup will also work. 
