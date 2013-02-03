@@ -7,6 +7,7 @@ Experimental website uptime and performance monitoring SAAS. Using Amazon Paymen
 ===Requirements:
 * Ubuntu 12.10 server
 * Install Ruby 1.9.3 
+ sudo apt-get install ruby1.9.3
 * Install Git
 * Install ubuntu build essential package - 
  sudo apt-get install build-essential
