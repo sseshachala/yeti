@@ -64,7 +64,7 @@ Open yeti/config/boot.rb and enter the CouchDB admin user you just created to un
  @@password = "trusted"
 (This should probably be in application.rb but will be fix later.)
 
-Setup the users database
+Setup the users database (if you are using a different CouchDB admin user for the rails app, enter it in the rake file before running rake setdb)
  bundle exec rake setdb
 
 Setup database to store information for the billing system
