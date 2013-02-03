@@ -9,6 +9,7 @@ Experimental website uptime and performance monitoring SAAS. Using Amazon Paymen
 * Install Ruby 1.9.3 
  sudo apt-get install ruby1.9.3
 * Install Git
+ sudo apt-get install git
 * Install ubuntu build essential package - 
  sudo apt-get install build-essential
 * Install sqlite3 
