@@ -85,6 +85,8 @@ copy the generated token to yeti/config/initializers/secret_token.rb to replace 
  @@secret_key = "add secret key here"
 (this should probably be in application.rb, but fix later)
 
+* Start ragios server: http://www.whisperservers.com/ragios/usage/
+
 * We are now set to start running Yeti, simply start Passenger Standlone, from yeti's root directory
  passenger start
 Or
