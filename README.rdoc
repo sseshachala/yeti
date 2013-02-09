@@ -7,7 +7,9 @@ Experimental website uptime and performance monitoring SAAS. Using Amazon Paymen
 ===Requirements:
 * Ubuntu 12.10 server
 * Install Ruby 1.9.3 
+ sudo apt-get install ruby1.9.3
 * Install Git
+ sudo apt-get install git
 * Install ubuntu build essential package - 
  sudo apt-get install build-essential
 * Install sqlite3 
@@ -49,8 +51,8 @@ Create a CouchDB admin user for Yeti rails app. You can do this from Ruby's irb 
  hash = Couchdb.login(username = 'ragios_server',password ='ragios') 
  auth_session =  hash["AuthSession"]
  data = {:section => "admins",
-              :key => "obi",
-                :value => "trusted"}
+              :key => admin,
+                :value => password}
  Couchdb.set_config data,auth_session
 
 Note: this assumes you already had a couchDB admin with username 'ragios_server' and password 'server'. Created when you setup Ragios Server. Any CouchDB account already setup will also work. 
@@ -62,8 +64,9 @@ Open yeti/config/boot.rb and enter the CouchDB admin user you just created to un
  @@password = "trusted"
 (This should probably be in application.rb but will be fix later.)
 
-Setup the users database
+Setup the users database 
  bundle exec rake setdb
+(if you are using a different CouchDB admin user for the rails app, enter it in the rake file before running rake setdb)
 
 Setup database to store information for the billing system
  bundle exec rake setbill
@@ -81,6 +84,8 @@ copy the generated token to yeti/config/initializers/secret_token.rb to replace 
  @@access_key = "add access key here"
  @@secret_key = "add secret key here"
 (this should probably be in application.rb, but fix later)
+
+* Start ragios server: http://www.whisperservers.com/ragios/usage/
 
 * We are now set to start running Yeti, simply start Passenger Standlone, from yeti's root directory
  passenger start
