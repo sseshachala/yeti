@@ -11,6 +11,10 @@ Yeti::Application.routes.draw do
 
   resources :sessions , :only => [:new, :create, :destroy]
 
+  match '/update_email/:id', :to => 'users#update_email'
+
+  match '/update_password/:id', :to => 'users#update_password'
+
   match '/billing_history/:id', :to => 'invoices#billing_history'
 
   match '/send_password_reset_code', :to => 'sessions#send_password_reset_code'

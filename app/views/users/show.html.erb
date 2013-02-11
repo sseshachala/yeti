@@ -36,7 +36,8 @@
 		<!-- Tab Select: Start -->
 		<ul class="sorting">
 			<li><a href="#listing" class="active">Show</a></li>
-			<li><a href="#addnews">Edit</a></li>
+			<li><a href="#editemail">Change Email</a></li>
+                        <li><a href="#changepassword">Change Password</a></li>
 		</ul>
 		<!-- Tab Select: End -->
 		
@@ -81,12 +82,21 @@
 			<!-- profile content: End -->
 			
 						<!-- News Sorting Table - Add News Tab: Start -->
-			<div id="addnews" class="padding">
+			<div id="editemail" class="padding">
 
-                       <%= render 'update_form' %>
+                       <%= render 'email_update_form' %>
 				
 			</div>
 			<!-- News Sorting Table - Add News Tab: End -->	
+
+						<!-- News Sorting Table - Add News Tab: Start -->
+			<div id="changepassword" class="padding">
+
+                       <%= render 'password_update_form' %>
+				
+			</div>
+			<!-- News Sorting Table - Add News Tab: End -->	
+
 		
 		</div>
 		<!-- News Table Tabs: End -->

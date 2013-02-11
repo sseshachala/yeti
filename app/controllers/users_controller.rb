@@ -84,10 +84,18 @@ end
     @user = User.find_object(params[:id])
   end
 
+  def edit_email
+    @user = User.find_object(params[:id])
+  end
+
+  def edit_password
+    @user = User.find_object(params[:id])
+  end
+
   def send_confirmation_email
    domain = request.host_with_port
    UserMailer.confirmation_email(current_user,domain).deliver
-   redirect_to(show_path("dashboard", current_user.attributes["username"]),:notice => 'We have re-sent the confirmation email, Remember to check your inbox if you did not receive it')
+   redirect_to(show_path("dashboard", current_user.attributes["username"]),:notice => 'We have re-sent the confirmation email, Remember to check your spam if you did not receive it')
   end
 
 
@@ -132,10 +140,45 @@ end
       if @user.update_attributes(params[:user],current_user)
         domain = request.host_with_port
         UserMailer.confirmation_email(@user,domain).deliver unless (user_hash["email"] == current_user.attributes["email"])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(@user, :notice => 'We have sent you a confirmation') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+
+ 
+
+  def update_email
+    @user = User.find_object(params[:id])
+     user_hash = params[:user]
+    respond_to do |format|
+       #TODO avoid mass assignment 
+      if @user.update_email_attributes(params[:user],current_user)
+        domain = request.host_with_port
+        UserMailer.confirmation_email(@user,domain).deliver unless (user_hash["email"] == current_user.attributes["email"])
+        format.html { redirect_to(show_path("users",  current_user.attributes["username"]), :notice => 'Your account has been updated. We have sent you a confirmation to confirm the new email address. Please check your inbox.')  }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit_email" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+ def update_password
+    @user = User.find_object(params[:id])
+     user_hash = params[:user]
+    respond_to do |format|
+       #TODO avoid mass assignment 
+      if @user.update_password_attributes(params[:user],current_user)
+        format.html { redirect_to(@user, :notice => 'User Password was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit_password" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end

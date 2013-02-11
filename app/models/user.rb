@@ -29,8 +29,8 @@ validates :password, :presence => true,
                   :on => :registration
 
 validates :password, :length => {:within => 6..40},
-                  :allow_blank => true,
-                  :on => :update_profile
+                  :allow_blank => false,
+                  :on => :update_password
 
 validates :password, :length => {:within => 6..40},
                   :presence => true,
@@ -234,6 +234,33 @@ def update_attributes(user_hash,current_user)
   
      update_password(user_hash,current_user)
   end
+  true
+ else
+  false
+ end
+end
+
+def update_email_attributes(user_hash,current_user)
+ @attributes = user_hash
+ if self.valid? :update_profile
+  update_email(user_hash,current_user)
+  true
+ else
+  false
+ end
+end
+
+def update_password_attributes(user_hash,current_user)
+ @attributes = user_hash
+  
+ if self.valid? :update_password
+     if ( user_hash["password"] != user_hash["password_confirmation"])
+       #password confirmation doesn't match
+       errors[:password] << "doesn't match confirmation"
+       return false
+     end
+
+     update_password(user_hash,current_user)
   true
  else
   false
