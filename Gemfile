@@ -13,6 +13,8 @@ gem "rest-client"
 gem "yajl-ruby"
 gem "uuidtools"
 gem 'jquery-rails', '~> 2.1'
+gem 'json','1.7.7'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
