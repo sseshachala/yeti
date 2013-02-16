@@ -38,8 +38,8 @@
 					<thead>
 						<tr>
 							
-							<th class="align_left">Every</th>
-							<th class="align_left center">Test</th>
+							<!--<th class="align_left">Every</th>-->
+							<th>Test</th>
 							<th class="align_left center">url</th>
 							<th class="align_left center">Status</th>
 							<th class="align_left center">State</th>
@@ -55,9 +55,9 @@
 <% @rmonitors.each do |rmonitor| %>
 						
 						<tr>
-							<td class="align_left center"><%= every(rmonitor["every"]) %></td>
-							<td class="align_left center"><%= rmonitor["test"] %></td>
-							<td class="align_left center"><a href="<%= rmonitor["url"] %>"><%= rmonitor["url"] %></td>
+							<!--<td class="align_left center"><%= every(rmonitor["every"]) %></td>-->
+							<td><%= rmonitor["test"] %></td>
+							<td class="align_left center"><a href="<%= rmonitor["url"] %>"><%= truncate(rmonitor["url"], :length => 33) %></td>
 							<td class="align_left center"><%= rmonitor["status"] %></td>
                                                     <% if rmonitor["state"] == "stopped" %>
                                                         <td class="align_left center"><%= "Paused" %></td>
