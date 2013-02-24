@@ -26,6 +26,8 @@ end
 
 
  def add_payment_method
+    payment_method_url = "/payment_method/"
+    @breadcrumb = @breadcrumb.merge("Payment Method" => payment_method_url)
  end
 
  def authorized   
