@@ -1,5 +1,13 @@
 class InvoicesController < ApplicationController
  before_filter :authenticate
+ before_filter :start_breadcrumb
+
+def start_breadcrumb
+    invoice_url = "/billing_history/"+ current_user.attributes["username"]
+    @breadcrumb = {"billing history" => invoice_url}
+
+end
+
 
   def billing_history
    if (params[:id] == current_user.attributes["username"]) || current_user.admin?

@@ -2,7 +2,16 @@ class UsersController < ApplicationController
 before_filter :authenticate, :only => [:index,:show,:edit,:update,:confirm]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index,:destroy]
+before_filter :start_breadcrumb 
 
+
+
+
+def start_breadcrumb
+    profile_url = "/users/"+ current_user.attributes["username"]
+    @breadcrumb = {"profile" => profile_url}
+
+end
 
   # GET /users
   # GET /users.xml
@@ -153,6 +162,9 @@ end
  
 
   def update_email
+    update_email_url = "/update_email/"+ current_user.attributes["username"]
+    @breadcrumb = @breadcrumb.merge("change email" => update_email_url)
+
     @user = User.find_object(params[:id])
      user_hash = params[:user]
     respond_to do |format|
@@ -170,6 +182,9 @@ end
   end
 
  def update_password
+
+     update_email_url = "/update_password/"+ current_user.attributes["username"]
+    @breadcrumb = @breadcrumb.merge("change password" => update_email_url)
     @user = User.find_object(params[:id])
      user_hash = params[:user]
     respond_to do |format|

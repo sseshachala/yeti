@@ -4,7 +4,14 @@ before_filter :must_have_payment_method, :only => [:new,:show,:create,:edit,:upd
 before_filter :correct_user, :only => [:show,:edit,:update, :destroy, :restart, :pause]
 before_filter :admin_user, :only => [:index]
 before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
+before_filter :start_breadcrumb 
 
+
+
+
+def start_breadcrumb
+    @breadcrumb = {}
+end
   # GET /rmonitors
   # GET /rmonitors.xml
   def index
@@ -19,6 +26,7 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
   # GET /dashboard/:user
   def dashboard
     @rmonitor = Rmonitor.new #used for adding new monitors from same page
+    
    if (params[:id] == current_user.attributes["username"]) || current_user.admin?
     begin 
      @rmonitors = Rmonitor.find_by_owner(params[:id])
@@ -34,8 +42,13 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
   # GET /rmonitors/1
   # GET /rmonitors/1.xml
   def show
+
+    show_url = "/rmonitors/" + params[:id]
+    @breadcrumb = @breadcrumb.merge("Monitor" => show_url)
+
     @rmonitor_hash = Rmonitor.find(params[:id])
     @rmonitor = Rmonitor.find_object(params[:id])
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @rmonitor }
@@ -45,8 +58,11 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
   # GET /rmonitors/new
   # GET /rmonitors/new.xml
   def new
-    @rmonitor = Rmonitor.new
 
+    new_url = "/rmonitors/new"
+    @breadcrumb = @breadcrumb.merge("Add Monitor" => new_url)
+
+    @rmonitor = Rmonitor.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @rmonitor }
@@ -55,6 +71,9 @@ before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
 
   # GET /rmonitors/1/edit
   def edit
+    edit_url = "/rmonitors/"+ current_user.attributes["username"] +"/edit"
+    @breadcrumb = @breadcrumb.merge("Edit Monitor" => edit_url)
+
     @rmonitor = Rmonitor.find_object(params[:id])
   end
 

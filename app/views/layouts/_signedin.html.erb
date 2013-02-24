@@ -58,7 +58,10 @@
 			
 			<!-- Breadcrumb: Start -->
 			<ul class="left">
-				<li  class="icon dashboard"><a id="breadcrumb-link" href="#">Dashboard</a></li>
+                            <li  class="icon dashboard"><a id="breadcrumb-link" href="/dashboard/<%= current_user.attributes["username"] %>">Dashboard</a></li>
+                            <% @breadcrumb.each do |key, value| %>
+				<li class="icon point_right"><a href="<%=value %>"><%=key %></a></li>
+                           <%  end %>    
 			</ul>
 			<!-- Breadcrumb: End -->
 			
