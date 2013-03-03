@@ -13,7 +13,7 @@
 	<div class="box_top">
 		
 		<a name="news"></a>
-		<h2 class="icon pages">Monitors<span class="tip" title="Welcome to your dashboard"><%= @rmonitors.length %></span></h2>
+		<h2 class="icon time">Monitors<span class="tip" title="Welcome to your dashboard"><%= @rmonitors.length %></span></h2>
 		
 		<!-- Tab Select: Start -->
 		<ul class="sorting">
@@ -57,7 +57,7 @@
 						<tr>
 							<!--<td class="align_left center"><%= every(rmonitor["every"]) %></td>-->
 							<td><%= rmonitor["test"] %></td>
-							<td class="align_left"><a href="<%= rmonitor["url"] %>"><%= truncate(rmonitor["url"], :length => 33) %></td>
+							<td class="align_left"><%= link_to truncate(rmonitor["url"], :length => 33), show_path("rmonitors",  rmonitor["_id"]),:title => truncate(rmonitor["url"], :length => 33) %></td>
 							<td class="align_left center"><%= rmonitor["status"] %></td>
                                                     <% if rmonitor["state"] == "stopped" %>
                                                         <td class="align_left center"><%= "Paused" %></td>

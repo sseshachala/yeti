@@ -13,7 +13,7 @@
 	<div class="box_top">
 		
 		<a name="news"></a>
-		<h2 class="icon pages">Monitor</h2>
+		<h2 class="icon time">Monitor</h2>
 		
 		<!-- Tab Select: Start -->
 		<ul class="sorting">
@@ -29,7 +29,7 @@
 	<div class="box_content padding">
 		
 		<!-- News Table Tabs: Start -->
-		<div class="tabs">
+		<div class="tabs" style="font-size: 19px;">
 		
 			<!-- News Sorting Table: Start -->
 			<div id="viewmonitor">
@@ -39,7 +39,7 @@
                         <h1><%= @rmonitor_hash["test"] %></h1>
 
 <div>
-  <b>This monitor tests:</b>
+  <b>Monitor - Description:</b>
   <%= @rmonitor_hash["describe_test_result"] %>
 </div>
 
@@ -54,28 +54,18 @@
 </div>
 
 <div>
-  <b>Test:</b>
-  <%= @rmonitor_hash["test"] %>
-</div>
-
-<div>
   <b>Contact:</b>
   <%= @rmonitor_hash["contact"] %>
 </div>
 
 <div>
   <b>Url:</b>
-  <%= @rmonitor_hash["url"] %>
-</div>
-
-<div>
-  <b>Notify interval:</b>
-  <%= @rmonitor_hash["notify_interval"] %>
+  <a href="<%= @rmonitor_hash['url'] %>"><%= @rmonitor_hash["url"] %></a>
 </div>
 
 <div>
   <b>State:</b>
-  <%= @rmonitor_hash["State"] %>
+  <%= @rmonitor_hash["state"] %>
 </div>
 
 <div>
