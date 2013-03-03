@@ -11,6 +11,7 @@ before_filter :start_breadcrumb
 
 def start_breadcrumb
     @breadcrumb = {}
+    @navigation = "dashboard"
 end
   # GET /rmonitors
   # GET /rmonitors.xml

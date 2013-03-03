@@ -5,7 +5,7 @@ class InvoicesController < ApplicationController
 def start_breadcrumb
     invoice_url = "/billing_history/"+ current_user.attributes["username"]
     @breadcrumb = {"billing history" => invoice_url}
-
+    @navigation = "profile"
 end
 
 

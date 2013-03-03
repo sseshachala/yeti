@@ -31,12 +31,20 @@
 			
 			<!-- Navigation: Start -->
 			<ul id="navigation" class="dropdown">
+                        <% if @navigation == "dashboard" %>
                                 <li><%= link_to "Dashboard", show_path("dashboard",  @current_user.attributes["username"]), :class => 'dashboard active'  %></li>
+                       <% else %>
+
+                           <li><%= link_to "Dashboard", show_path("dashboard",  @current_user.attributes["username"]), :class => 'dashboard'  %></li>
+                        <% end %>
 
 				<!-- Navigation Dropdown Menu Item: Start -->
 				<li class="topnav">
-					<a class="users" href="#">Profile</a>
-					
+                                   <% if @navigation == "profile" %>
+					<a class="users active" href="#">Profile</a>
+			           <% else %>
+                                        <a class="users" href="#">Profile</a>
+                                    <% end %>
 					<!-- Navigation Dropdown Menu Item Content: Start -->
 					<ul class="subnav">
                                                 <li><%= link_to "Account info", show_path("users",  @current_user.attributes["username"]), :class => 'icon info'  %> </li>

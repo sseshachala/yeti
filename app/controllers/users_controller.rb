@@ -10,7 +10,7 @@ before_filter :start_breadcrumb
 def start_breadcrumb
     profile_url = "/users/"+ current_user.attributes["username"]
     @breadcrumb = {"profile" => profile_url}
-
+    @navigation = "profile"
 end
 
   # GET /users
