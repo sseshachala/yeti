@@ -1,4 +1,5 @@
 =TODO
 
-*write invoice status as not_paid instead of not_due so that lycan will process it
-*take care of halted services create a process for users to restore their service after being closed for none payment
+* write invoice status as not_paid instead of not_due so that lycan will process it
+
+* take care of halted services create a process for users to restore their service after being closed for none payment
