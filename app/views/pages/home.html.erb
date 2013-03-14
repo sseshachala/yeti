@@ -35,11 +35,46 @@
 <h1>Pricing</h1>
 <span style="font-size: 17px;">
 <div>We use a pay as you go model, each time we check your website for problems we charge $0.001. The service is FREE if your monthly bill is $0.30 or less. </div> 
-<div>
-[add a Javascript price calculator]
+<div style="padding-top:10px;">
+Get an estimate of what your monthly bill is going to be:
+<script type="text/javascript">
+function showMonitors(newValue)
+{
+	document.getElementById("monitors_value").innerHTML=newValue;
+}
+
+function showChecks(newValue)
+{
+	document.getElementById("checks_value").innerHTML=newValue;
+}
+</script>
+
+  <div>
+   <strong>Number of Monitors:</strong><span id="monitors_value">&nbsp; 5</span><br/>
+   <input id="monitors" type="range" min="1" max="150" value="5" onchange="showMonitors(this.value)">
+   <br/>
+  </div>
+
+ <div>
+   <strong>Time interval of checks:</strong>&nbsp;every <span id="checks_value">5</span>
+   <select id="interval_unit" name="create[hours]"><option value="m">minutes</option>
+     <option value="h">hours</option>
+     <option value="d">days</option>
+   </select>
+   <br/>
+   <input id="checks" type="range" min="1" max="150" value="5" onchange="showChecks(this.value)">
+   <br/>
+  </div>
+
+  <div>
+     <strong>Monthly Bill:</strong><span id="monthly_rate">&nbsp; $0</span><br/>
+     <br/>
+ </div>
+
+
 </div>
 
-<div> We use Amazon payments, billed at the 1st of every month. </div>
+<div> We use Amazon payments, we bill on the 1st of each month. </div>
 </span>
 
 <!--Let Saint Ruby Monitor Your Website-->
