@@ -29,15 +29,16 @@
 
 <li>During the check, if our software detects a problem with your website, it sends you an instant email alert. </li>
 
-<li>You can add as many websites as you need to monitor, We use amazon payments, we charge $0.001 each time our software checks your website. The service is FREE if your monthly bill is $0.30 or less. </li>
+<li>You can add as many websites as you need to monitor, We use amazon payments, we charge $0.0001 each time our software checks your website. The service is FREE if your monthly bill is $0.30 or less. </li>
           </ul>
 
 <h1>Pricing</h1>
 <span style="font-size: 17px;">
-<div>We use a pay as you go model, each time we check your website for problems we charge $0.001. The service is FREE if your monthly bill is $0.30 or less. </div> 
+<div>We use a pay as you go model, each time we check your website for problems we charge $0.0001. The service is FREE if your monthly usage is $0.30 or less. </div> 
 <div style="padding-top:10px;">
 Get an estimate of what your monthly bill is going to be:
 <script type="text/javascript">
+
 function showMonitors(newValue)
 {
 	document.getElementById("monitors_value").innerHTML=newValue;
@@ -47,27 +48,51 @@ function showChecks(newValue)
 {
 	document.getElementById("checks_value").innerHTML=newValue;
 }
+
+function showMonthlyBill()
+{
+	time_interval = document.getElementById("checks_value").innerHTML;
+        num_of_monitors = document.getElementById("monitors_value").innerHTML;
+        charge_per_check = 0.0001;
+        total_min_per_month = 43829;
+        monthly_bill = num_of_monitors * (total_min_per_month/time_interval) * charge_per_check; 
+        decimal_places = 2;
+        monthly_bill = roundNumber(monthly_bill,decimal_places);
+        if(monthly_bill <= 0.30)
+         {
+            document.getElementById("monthly_bill").innerHTML="0.00 (FREE service when usage is $0.30 or less)"
+          }
+        else
+         {
+          document.getElementById("monthly_bill").innerHTML=monthly_bill;
+         }
+}
+
+function roundNumber(rnum, rlength) { // Arguments: number to round, number of decimal places
+  var newnumber = Math.round(rnum*Math.pow(10,rlength))/Math.pow(10,rlength);
+  return newnumber
+}
 </script>
 
   <div>
-   <strong>Number of Monitors:</strong><span id="monitors_value">&nbsp; 5</span><br/>
-   <input id="monitors" type="range" min="1" max="150" value="5" onchange="showMonitors(this.value)">
+   <strong>Number of Monitors:</strong>&nbsp; <span id="monitors_value">5</span><br/>
+   <input id="monitors" type="range" min="1" max="150" value="5" onchange="showMonitors(this.value);showMonthlyBill();">
    <br/>
   </div>
 
  <div>
-   <strong>Time interval of checks:</strong>&nbsp;every <span id="checks_value">5</span>
-   <select id="interval_unit" name="create[hours]"><option value="m">minutes</option>
+   <strong>Time interval of checks:</strong>&nbsp;every <span id="checks_value">5</span> minutes
+   <!--<select id="interval_unit" name="create[hours]"><option value="m">minutes</option>
      <option value="h">hours</option>
      <option value="d">days</option>
-   </select>
+   </select>-->
    <br/>
-   <input id="checks" type="range" min="1" max="150" value="5" onchange="showChecks(this.value)">
+   <input id="checks" type="range" min="1" max="150" value="5" onchange="showChecks(this.value);showMonthlyBill();">
    <br/>
   </div>
 
   <div>
-     <strong>Monthly Bill:</strong><span id="monthly_rate">&nbsp; $0</span><br/>
+     <strong>Monthly Bill:</strong>&nbsp; $<span id="monthly_bill">4.38</span><br/>
      <br/>
  </div>
 
