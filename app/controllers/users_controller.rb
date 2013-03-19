@@ -2,10 +2,7 @@ class UsersController < ApplicationController
 before_filter :authenticate, :only => [:index,:show,:edit,:update,:confirm]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index,:destroy]
-before_filter :start_breadcrumb 
-
-
-
+before_filter :start_breadcrumb, :except => [:create] 
 
 def start_breadcrumb
     profile_url = "/users/"+ current_user.attributes["username"]
