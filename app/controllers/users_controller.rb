@@ -111,13 +111,14 @@ end
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
     respond_to do |format|
       if @user.save
         #domain = request.host
         domain = request.host_with_port
         UserMailer.confirmation_email(@user,domain).deliver
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+         flash[:success] = "Congratulations. You have successfully created your account. Please login with your username & password" 
+        
+        format.html { redirect_to("/signin",:notice => 'Congratulations. You have successfully created your account. Please login with your username & password' ) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
