@@ -1,3 +1,12 @@
+class DuplicateEmailValidator < ActiveModel::EachValidator
+  def validate_each(record,attribute,value)
+    hash = Couchdb.find_by({:database => '_users', :email => value} , User.auth_session) 
+    unless hash == []
+     record.errors.add attribute, " is already in use"
+    end
+  end
+end
+
 class User 
 
 include ActiveModel::Validations
@@ -14,11 +23,11 @@ validates :username, :presence => true,
 
                   
 
-validates :email, :presence => true,
+validates :email, :presence => true,:duplicate_email => true,
                   :format => {:with => email_regex},
                   :on => :registration
 
-validates :email, :presence => true,
+validates :email, :presence => true,:duplicate_email => true,
                   :format => {:with => email_regex},
                   :on => :update_profile
                   
@@ -323,6 +332,5 @@ end
   @users = Couchdb.find(view,User.auth_session)
   
  end
-
 
 end
