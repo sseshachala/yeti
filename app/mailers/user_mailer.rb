@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
- 
-  default :from => "whisper.monitor@gmail.com"
+
+  default :from => "South Munn <southmunn@southmunn.com>"
 
  def confirmation_email(user,domain)
     @domain = domain

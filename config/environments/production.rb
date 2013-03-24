@@ -50,13 +50,12 @@ Yeti::Application.configure do
   # Action Mailer settings
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
+  :address              => "email-smtp.us-east-1.amazonaws.com",
   :port                 => 587,
-  :domain               => 'sl.myslhome.tv',
-  :user_name            => 'gmail_username',
-  :password             => 'gmail_password',
+  :domain               => 'southmunn.com',
+  :user_name            => '<username>',
+  :password             => '<password>',
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
-
 
 end
