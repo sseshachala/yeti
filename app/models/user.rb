@@ -59,6 +59,14 @@ attr_accessor :attributes, :username, :email, :password, :password_confirmation
     @password_confirmation = @attributes["password_confirmation"]
   end
 
+def self.email_not_found(email)
+ hash = Couchdb.find_by({:database => '_users', :email => email} , User.auth_session) 
+ if hash == []
+   true
+ else
+   false
+  end
+end
 
 def self.auth_session
    hash = Couchdb.login(username = @@username,password =@@password) 

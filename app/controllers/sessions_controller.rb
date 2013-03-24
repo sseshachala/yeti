@@ -6,9 +6,14 @@ class SessionsController < ApplicationController
   end
 
  def send_password_reset_code
+  if User.email_not_found(params[:session][:email])
+    flash[:notice]  =  'Email address not found'
+   else
     domain = request.host_with_port
     UserMailer.password_reset_email(params[:session][:email],domain).deliver
-    redirect_to signin_path, :notice => 'We have sent you an email to reset your password.'
+    flash[:success] = 'We have sent you an email to reset your password.'
+   end
+    redirect_to signin_path 
  end
 
  def forgot_password

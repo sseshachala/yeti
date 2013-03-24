@@ -39,13 +39,20 @@
 <!-- Start: Page Wrap -->
 <div id="wrap" class="container_24">
 
-      <% if flash[:errors] %>
-	<!-- Error Notice: Start -->
-	<div class="notice error">
+<div class="grid_24">
+<% flash.each do |key, value| %>
+  <div class="notice warning flash <%= key %>"><p><%= value %></p></div>
+<% end  %>
+</div>
+   
+      <!-- old error notice
+        <% if flash[:errors] %>
+	<!--<div class="notice error">
 		<p><b>Error Message:</b> Invald Username or Password</p>
 	</div>
-	<!-- Error Notice: End -->
-    <% end %>
+       <% end %> old error notice end-->
+
+
    
     <%= yield %>
 
