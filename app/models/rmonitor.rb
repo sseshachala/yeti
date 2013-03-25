@@ -61,7 +61,7 @@ def create_monitor(owner, params)
               :test => @attributes["test"], 
                 :contact =>  owner.attributes["email"],
                    :url => @attributes["url"],
-                         :via => 'gmail'}]
+                         :via => 'ses'}]
   
        str = Yajl::Encoder.encode(data)
      response = RestClient.post 'http://127.0.0.1:5041/monitors', str, {:content_type => :json, :accept => :json}
