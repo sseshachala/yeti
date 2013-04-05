@@ -10,11 +10,7 @@ require 'cgi'
 require 'openssl'
 
 
-#setup couchDB configurations
-@@username = "obi"
-@@password = "trusted"
 
-@@service_end_point = "https://authorize.payments-sandbox.amazon.com/cobranded-ui/actions/start"
-@@access_key = "add access key here"
-@@secret_key = "add secret key here"
+
+                   
 
