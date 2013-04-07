@@ -14,6 +14,7 @@ gem "uuidtools"
 gem 'jquery-rails', '~> 2.1'
 gem 'json','1.7.7'
 gem "aws-ses", :require => 'aws/ses'
+gem "passenger"
 
 gem 'sqlite3'
 # Use unicorn as the web server
