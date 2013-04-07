@@ -6,3 +6,58 @@
 @@access_key = "add access key here"
 @@secret_key = "add secret key here"
 
+
+begin
+ hash = Couchdb.login(@@username,@@password) 
+ auth_session =  hash["AuthSession"]
+
+ doc = { :database => '_users', 
+           :design_doc => 'for_rails', 
+            :json_doc => 'for_rails.json' }
+ 
+ Couchdb.create_design doc,auth_session
+rescue CouchdbException => e
+  if e.error != "conflict"
+    raise e
+  end
+ end 
+
+begin
+ hash = Couchdb.login(@@username,@@password)
+ auth_session =  hash["AuthSession"]
+
+  data = { :admins => {"names" => [@@username], "roles" => ["admin"]},
+                   :readers => {"names" => [@@username],"roles"  => ["admin"]}
+                  }
+ Couchdb.create 'usage_meter',auth_session
+ Couchdb.set_security('usage_meter',data,auth_session)
+
+#now using sqlite
+# Couchdb.create 'invoice',auth_session
+# Couchdb.set_security('invoice',data,auth_session)
+
+#db = SQLite3::Database.new( 'invoice.db' )
+
+ #rows = db.execute( "CREATE TABLE invoice (
+ #  id text UNIQUE,
+ #  balance real,
+ #  billing_period text,
+ #  date_due text,
+ #  status text,
+ #  url_monitoring INTEGER,
+ #  username text
+ # );" )
+
+ Couchdb.create 'payment_history',auth_session
+ Couchdb.set_security('payment_history',data,auth_session)
+
+ Couchdb.create 'payment_errors',auth_session
+ Couchdb.set_security('payment_errors',data,auth_session)
+
+ Couchdb.create 'lycan_diary',auth_session
+ Couchdb.set_security('lycan_diary',data,auth_session)
+rescue CouchdbException => e
+  if e.error != "file_exists"
+    raise e
+  end
+ end 
