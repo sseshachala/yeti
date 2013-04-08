@@ -1,6 +1,6 @@
 == Yeti
 
-Experimental website uptime and performance monitoring SAAS. Using Amazon Payments for metered billing, pay only for what you use.
+Experimental website uptime and performance monitoring SAAS. Using Amazon Payments for metered billing.
 
 ==Installation
 Yeti can be installed with the chef cookbook here: https://github.com/obi-a/cook
