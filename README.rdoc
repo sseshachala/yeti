@@ -3,98 +3,15 @@
 Experimental website uptime and performance monitoring SAAS. Using Amazon Payments for metered billing, pay only for what you use.
 
 ==Installation
+Yeti can be installed with the chef cookbook here: https://github.com/obi-a/cook
 
-===Requirements:
-* Ubuntu 12.10 server
-* Install Ruby 1.9.3 
- sudo apt-get install ruby1.9.3
-* Install Git
- sudo apt-get install git
-* Install ubuntu build essential package - 
- sudo apt-get install build-essential
-* Install sqlite3 
- sudo apt-get install sqlite3 libsqlite3-dev
-* Install nokogiri requirements
- sudo apt-get install libxslt-dev libxml2-dev
-* some requirements for passenger
- sudo apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev 
+==Technology Stack
+Ruby on Rails
+CouchDB 
+Ragios Server
+Amazon Simple Mail Service
+Amazon Payments
+Ubuntu 
 
-
-=== Setup
-* Install Ragios: http://www.whisperservers.com/ragios/ragios-saint-ruby/installation
-* Setup Ragios Server: http://www.whisperservers.com/ragios/server-setup
-* Inside Ragios/Gemfile uncomment the following gems under #metered_url_plugin
- gem chronic
- gem sqlite3
- 
-Run 
- bundle install
-
-If you get the “Could not find */gem*/ in any of the sources” error, Run 
- bundle update
-and follow the provided steps.  
-
-
-* Download yeti
- git clone git://github.com/obi-a/yeti.git
-Change to yeti's root directory
- cd yeti
-Run
- bundle install
-
-* Setup Yeti Rails App
-
-Create a CouchDB admin user for Yeti rails app. You can do this from Ruby's irb using the leanback gem (already installed by bundler). Open irb and paste:
- require 'leanback' 
- admin = "obi" #replace with couchdb admin username you want to use
- password = "trusted" #replace with couchdb password you want to use
- hash = Couchdb.login(username = 'ragios_server',password ='ragios') 
- auth_session =  hash["AuthSession"]
- data = {:section => "admins",
-              :key => admin,
-                :value => password}
- Couchdb.set_config data,auth_session
-
-Note: this assumes you already had a couchDB admin with username 'ragios_server' and password 'server'. Created when you setup Ragios Server. Any CouchDB account already setup will also work. 
-
-You can also do this from Futon, CouchDB's web based admin panel. 
-
-Open yeti/config/boot.rb and enter the CouchDB admin user you just created to under #setup couchDB configurations Example:
- @@username = "obi"
- @@password = "trusted"
-(This should probably be in application.rb but will be fix later.)
-
-Setup the users database 
- bundle exec rake setdb
-(if you are using a different CouchDB admin user for the rails app, enter it in the rake file before running rake setdb)
-
-Setup database to store information for the billing system
- bundle exec rake setbill
-
-Generate secret token for the Yeti rails app, type:
- rake secret
-copy the generated token to yeti/config/initializers/secret_token.rb to replace the commented out token
-     
-* Install Phusion Passenger standalone: http://www.modrails.com/documentation/Users%20guide%20Standalone.html   
- gem install passenger
-
-* Configure Action Mailer under #Action Mailer settings in yeti/config/environments
-* Configure Amazon payments for the billing system, open yeti/config/boot.rb and add amazon creditionals 
- @@service_end_point = "https://authorize.payments-sandbox.amazon.com/cobranded-ui/actions/start"
- @@access_key = "add access key here"
- @@secret_key = "add secret key here"
-(this should probably be in application.rb, but fix later)
-
-* Start ragios server: http://www.whisperservers.com/ragios/usage/
-
-* We are now set to start running Yeti, simply start Passenger Standlone, from yeti's root directory
- passenger start
-Or
- sudo passenger start -p 80
-For more options
- passenger --help
-
-  
- 
-    
-
+==Built and Tested
+Ubuntu 12.10
