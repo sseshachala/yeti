@@ -6,12 +6,12 @@ Experimental website uptime and performance monitoring SAAS. Using Amazon Paymen
 Yeti can be installed with the chef cookbook here: https://github.com/obi-a/cook
 
 ==Technology Stack
-Ruby on Rails
-CouchDB 
-Ragios Server
-Amazon Simple Mail Service
-Amazon Payments
-Ubuntu 
+- Ruby on Rails
+- CouchDB 
+- Ragios Server
+- Amazon Simple Mail Service
+- Amazon Payments
+- Ubuntu 
 
 ==Built and Tested
 Ubuntu 12.10
