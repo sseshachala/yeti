@@ -86,8 +86,8 @@ end
 
     respond_to do |format|
       if @rmonitor.save(current_user, params)
-         flash[:success] = "Website was successfully added."
-        format.html { redirect_to(@rmonitor, :notice => 'Rmonitor was successfully created.') }
+        flash[:success] = "The Website Monitor was successfully Created."
+        format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
         format.xml  { render :xml => @rmonitor, :status => :created, :location => @rmonitor }
       else
         format.html { render :action => "new" }
@@ -104,7 +104,7 @@ end
 
    respond_to do |format|
       if @rmonitor.update_attributes(params)
-         flash[:notice] = "Website Monitor edited successfully."
+         flash[:notice] = "The Website Monitor was successfully Updated."
         format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
         format.xml  { head :ok }
       else
@@ -119,9 +119,9 @@ end
   def pause
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.pause
-    flash[:success] = "Monitor paused."
+    flash[:notice] = "The Website Monitor is Paused."
     respond_to do |format|
-      format.html { redirect_to(rmonitors_url) }
+      format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
     end
   end
@@ -132,9 +132,9 @@ end
   def restart
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.restart
-    flash[:notice] = "Web site Monitor restarted successfully."
+    flash[:notice] = "The Website Monitor was successfully Restarted."
     respond_to do |format|
-      format.html { redirect_to(rmonitors_url) }
+      format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
     end
   end
@@ -145,9 +145,9 @@ end
   def destroy
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.destroy
-    flash[:success] = "Website was removed successfully"
+    flash[:success] = "The Website Monitor was successfully Deleted"
     respond_to do |format|
-      format.html { redirect_to(rmonitors_url) }
+      format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
     end
   end
