@@ -13,7 +13,7 @@
 	<div class="box_top">
 		
 		<a name="news"></a>
-		<h2 class="icon time">Monitor</h2>
+		<h2 class="icon time">Website Monitor</h2>
 		
 		<!-- Tab Select: Start -->
 		<ul class="sorting">
@@ -29,74 +29,74 @@
 	<div class="box_content padding">
 		
 		<!-- News Table Tabs: Start -->
-		<div class="tabs" style="font-size: 19px;">
+		<div class="tabs">
 		
 			<!-- News Sorting Table: Start -->
 			<div id="viewmonitor">
 				
 			<p id="notice"><%= notice %></p>
 
-                        <h1><%= @rmonitor_hash["test"] %></h1>
+                        <h2><%= @rmonitor_hash["test"] %></h2>
 
-<div>
+<p>
   <b>Monitor - Description:</b>
   <%= @rmonitor_hash["describe_test_result"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Creation Date:</b>
   <%= @rmonitor_hash["creation_date"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Runs Every:</b>
   <%= every(@rmonitor_hash["every"]) %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Contact:</b>
   <%= @rmonitor_hash["contact"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Url:</b>
   <a href="<%= @rmonitor_hash['url'] %>"><%= @rmonitor_hash["url"] %></a>
-</div>
+</p>
 
-<div>
+<p>
   <b>State:</b>
   <%= @rmonitor_hash["state"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Last test result:</b>
   <%= @rmonitor_hash["last_test_result"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Status:</b>
   <%= @rmonitor_hash["status"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Number of tests Passed:</b>
   <%= @rmonitor_hash["num_tests_passed"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Number of tests Failed:</b>
   <%= @rmonitor_hash["num_tests_failed"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Time of last test:</b>
   <%= @rmonitor_hash["time_of_last_test"] %>
-</div>
+</p>
 
-<div>
+<p>
   <b>Total number of tests:</b>
   <%= @rmonitor_hash["total_num_tests"] %>
-</div>
+</p>
 
 	
 				

@@ -12,38 +12,45 @@
 	<!-- Box Content: Start -->
 	<div class="box_content padding">
 
-         <p style="font-size: 17px;">	
-          Our software will monitor your website, when your website goes down we send you an instant email alert.
-        </p>
-
-      <p style="font-size: 17px;">	
+       <p>	
           Be the first to know when your website is down, fix it before anyone else finds out.
         </p>
 
-        <h1>How it works</h1>
-        <ul style="font-size: 17px;">
+         <p>	
+          Our software will monitor your website and send you an instant email alert if your website is <strong>DOWN</strong>.
+        </p>
+
+      
+
+        <h2>How it works</h2>
+        <ul>
          <li>You add a website or url </li>
          <li>You set a time interval</li>
 
-<li>Our software checks your website repeatly at the time interval you set (example every 5minutes)</li>
+<li>Our software checks your website continuously at the time interval you set (example every 5minutes)</li>
 
 <li>During the check, if our software detects a problem with your website, it sends you an instant email alert. </li>
 
-<li>You can add as many websites as you need to monitor, We use amazon payments, we charge $0.0001 each time our software checks your website. The service is FREE if your monthly bill is $0.30 or less. </li>
+<li>You can add as many websites as you need to monitor, We charge <strong>$0.0001</strong> each time our software checks your website. The service is <strong>FREE (no charge)</strong> if your monthly bill is <strong>$0.30 or less</strong>. We use Amazon payments and bill at first day of each month. </li>
           </ul>
 
-<h1>Pricing</h1>
-<span style="font-size: 17px;">
-<div>We use a pay as you go model, each time we check your website for problems we charge $0.0001. The service is FREE if your monthly usage is $0.30 or less. </div> 
-<div style="padding-top:10px;">
+<h2>Alpha period</h2>
+<p>
+Our service is still in Alpha stage and for now the service will be <strong>100% FREE</strong>.
+</p>
+
+<h2>Pricing</h2>
+<span>
+<p>We use a pay as you go model, each time we check your website for problems we charge $0.0001. The service is FREE if your monthly usage is $0.30 or less. </p> 
+<p style="padding-top:10px;">
 Get an estimate of what your monthly bill is going to be:
-  <div>
+  <p>
    <strong>Number of websites to monitor:</strong>&nbsp; <span id="monitors_value">1</span><br/>
    <input id="monitors" type="range" min="1" max="150" value="1" onchange="showMonitors(this.value);showMonthlyBill();">
    <br/>
-  </div>
+  </p>
 
- <div>
+ <p>
    <strong>Time interval of checks:</strong>&nbsp;every <span id="checks_value">5</span> minutes
    <!--<select id="interval_unit" name="create[hours]"><option value="m">minutes</option>
      <option value="h">hours</option>
@@ -52,17 +59,15 @@ Get an estimate of what your monthly bill is going to be:
    <br/>
    <input id="checks" type="range" min="1" max="150" value="5" onchange="showChecks(this.value);showMonthlyBill();">
    <br/>
-  </div>
+  </p>
 
-  <div>
+  <p>
      <strong>Monthly Bill:</strong>&nbsp; $<span id="monthly_bill">0.88</span><br/>
      <br/>
- </div>
+ </p>
 
 
-</div>
-
-<div> We use Amazon payments, we bill on the 1st of each month. </div>
+<p> We use Amazon payments, we bill on the 1st of each month. </p>
 </span>
 
 <!--Let Saint Ruby Monitor Your Website-->
