@@ -11,33 +11,18 @@
                                        
 				</p>
                                 <% end %>
-				<div class="field">
-					<!--<label class="left">Every</label>
-					<input type="text" class="left validate">-->
-                                        <%= f.label :every ,:class => "left"%>
-                                         <%= f.text_field :every, :class => "tiny left validate",:value => '5',:size =>'4',:maxlength => '4',:width => '100px' %><div style="padding-top: 5px;"></div>
-                                          <span>
-                                        <%= select("create","minutes",{"minutes" =>"m","hours"=>"h","days" => "d"}) %>
-		                         </span>
-                                         
-					
-				</div>
+
 
 
 				
 				<div class="field">
 					<!--<label class="left">Test description</label>
 					<input type="text" class="left validate">-->
-                                            <%= f.label :test,:class => "left" %>
-                                            <%= f.text_field :test, :class => "left validate" %>
+                                            <%= f.label :description,"Website Description",:class => "left" %>
+                                            <%= f.text_field :description, :class => "left validate" %>
 					
 				</div>
 
-				<div class="field">
-					<label class="left">Contact</label>
-					<input type="text" value="<%= current_user.attributes["email"] %>" class="left validate" disabled>
-					
-				</div>
 				
 				<div class="field">
 					<!--<label class="left">URL</label>
@@ -45,6 +30,24 @@
 					<%= f.label :url,:class => "left"%>
                                         <%= f.text_field :url, :class => "left validate" %>
 				</div>
+
+				<div class="field">
+					<!--<label class="left">Every</label>
+					<input type="text" class="left validate">-->
+                                        <%= f.label :every ,"Time Interval",:class => "left"%>
+                                         <%= f.text_field :every, :class => "tiny left validate",:value => '5',:size =>'4',:maxlength => '4',:width => '100px' %><div style="padding-top: 5px;"></div>
+                                          <span>
+                                        <%= select("create","minutes",{"minutes" =>"m","hours"=>"h","days" => "d"}) %>
+		                         </span>	
+				</div>
+
+
+				<div class="field">
+					<label class="left">Contact</label>
+					<input type="text" value="<%= current_user.attributes["email"] %>" class="left validate" disabled>
+					
+				</div>
+
 			  	
 			  <button><%= f.submit %></button>
 			  <button class="secondary" type="reset">Reset</button>

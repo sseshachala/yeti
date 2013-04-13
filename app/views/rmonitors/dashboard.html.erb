@@ -13,12 +13,12 @@
 	<div class="box_top">
 		
 		<a name="news"></a>
-		<h2 class="icon time">Monitors<span class="tip" title="Welcome to your dashboard"><%= @rmonitors.length %></span></h2>
+		<h2 class="icon time">Websites<span class="tip" title="Welcome to your dashboard"><%= @rmonitors.length %></span></h2>
 		
 		<!-- Tab Select: Start -->
 		<ul class="sorting">
 			<li><a href="#listing" class="active">Listing</a></li>
-			<li><a href="#addnews">Add Monitors</a></li>
+			<li><a href="#addnews">Add Websites</a></li>
 		</ul>
 		<!-- Tab Select: End -->
 		
@@ -39,7 +39,7 @@
 						<tr>
 							
 							<!--<th class="align_left">Every</th>-->
-							<th>Test</th>
+							<th>Description</th>
 							<th class="align_left">URL</th>
 							<th class="align_left center">Status</th>
 							<th class="align_left center">State</th>
@@ -49,7 +49,14 @@
 					</thead>
 					<tbody>
 <%if @rmonitors == [] %>
- 
+  <tr>
+     <td>No website to monitor. To start monitoring a website <%= link_to 'Click here', show_path("rmonitors", "new") %></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+  </tr>
 <% else %>
 
 <% @rmonitors.each do |rmonitor| %>
