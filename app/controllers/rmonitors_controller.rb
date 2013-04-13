@@ -61,7 +61,7 @@ end
   def new
 
     new_url = "/rmonitors/new"
-    @breadcrumb = @breadcrumb.merge("Add Monitor" => new_url)
+    @breadcrumb = @breadcrumb.merge("Add Website" => new_url)
 
     @rmonitor = Rmonitor.new
     respond_to do |format|
@@ -86,6 +86,7 @@ end
 
     respond_to do |format|
       if @rmonitor.save(current_user, params)
+         flash[:success] = "Website was successfully added."
         format.html { redirect_to(@rmonitor, :notice => 'Rmonitor was successfully created.') }
         format.xml  { render :xml => @rmonitor, :status => :created, :location => @rmonitor }
       else
@@ -103,7 +104,8 @@ end
 
    respond_to do |format|
       if @rmonitor.update_attributes(params)
-        format.html { redirect_to(@rmonitor, :notice => 'Rmonitor was successfully updated.') }
+         flash[:notice] = "Website Monitor edited successfully."
+        format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -130,7 +132,7 @@ end
   def restart
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.restart
-    flash[:success] = "Monitor restarted."
+    flash[:notice] = "Web site Monitor restarted successfully."
     respond_to do |format|
       format.html { redirect_to(rmonitors_url) }
       format.xml  { head :ok }
@@ -143,7 +145,7 @@ end
   def destroy
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.destroy
-    flash[:success] = "Monitor destroyed."
+    flash[:success] = "Website was removed successfully"
     respond_to do |format|
       format.html { redirect_to(rmonitors_url) }
       format.xml  { head :ok }
