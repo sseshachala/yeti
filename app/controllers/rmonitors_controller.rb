@@ -5,9 +5,11 @@ before_filter :correct_user, :only => [:show,:edit,:update, :destroy, :restart, 
 before_filter :admin_user, :only => [:index]
 before_filter :confirmed_email, :only => [:new,:create, :edit, :update]
 before_filter :start_breadcrumb 
+before_filter :start_page_title
 
-
-
+def start_page_title
+ @page_title = "Website Uptime Monitoring | SouthMunn.com"
+end
 
 def start_breadcrumb
     @breadcrumb = {}
@@ -17,7 +19,7 @@ end
   # GET /rmonitors.xml
   def index
     @rmonitors = Rmonitor.all
-
+    @page_title = "All Monitors - " + @page_title
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @rmonitors }
@@ -26,6 +28,7 @@ end
 
   # GET /dashboard/:user
   def dashboard
+    @page_title = "Dashboard - " + @page_title
     @rmonitor = Rmonitor.new #used for adding new monitors from same page
     
    if (params[:id] == current_user.attributes["username"]) || current_user.admin?
@@ -49,7 +52,7 @@ end
 
     @rmonitor_hash = Rmonitor.find(params[:id])
     @rmonitor = Rmonitor.find_object(params[:id])
-
+    @page_title = @rmonitor_hash["test"] + " - " + @page_title
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @rmonitor }
@@ -59,7 +62,6 @@ end
   # GET /rmonitors/new
   # GET /rmonitors/new.xml
   def new
-
     new_url = "/rmonitors/new"
     @breadcrumb = @breadcrumb.merge("Add Website" => new_url)
 
@@ -74,13 +76,14 @@ end
   def edit
     edit_url = "/rmonitors/"+ current_user.attributes["username"] +"/edit"
     @breadcrumb = @breadcrumb.merge("Edit Monitor" => edit_url)
-
+    @page_title = "Edit Website Monitor - " + @page_title
     @rmonitor = Rmonitor.find_object(params[:id])
   end
 
   # POST /rmonitors
   # POST /rmonitors.xml
   def create
+    @page_title = "Add a website - " + @page_title
     #@rmonitor = Rmonitor.new(make_monitor(params))
     @rmonitor = Rmonitor.new(params[:rmonitor])
 
@@ -101,7 +104,7 @@ end
   # PUT /rmonitors/1.xml
   def update
     @rmonitor = Rmonitor.find_object(params[:id])
-
+    @page_title = "Edit Website Monitor - " + @page_title
    respond_to do |format|
       if @rmonitor.update_attributes(params)
          flash[:notice] = "The Website Monitor was successfully Updated."

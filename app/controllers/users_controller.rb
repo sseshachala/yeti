@@ -3,6 +3,11 @@ before_filter :authenticate, :only => [:index,:show,:edit,:update,:confirm]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index,:destroy]
 before_filter :start_breadcrumb, :except => [:create] 
+before_filter :start_page_title
+
+def start_page_title
+ @page_title = "Website Uptime Monitoring | SouthMunn.com"
+end
 
 def start_breadcrumb
     profile_url = "/users/"+ current_user.attributes["username"]
@@ -23,6 +28,7 @@ end
 
 
  def add_payment_method
+    @page_title = "Add Payment Method - " + @page_title
     payment_method_url = "/payment_method/"
     @breadcrumb = @breadcrumb.merge("Payment Method" => payment_method_url)
  end
@@ -68,8 +74,10 @@ end
   # GET /users/1
   # GET /users/1.xml
   def show
+     @page_title = "All Users - " + @page_title
     @user_hash = User.find(params[:id])
     @user = User.find_object(params[:id])
+    @page_title = "Profile - " + @page_title
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user_hash }
@@ -111,6 +119,7 @@ end
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    @page_title = "Sign Up - " + @page_title
     respond_to do |format|
       if @user.save
         #domain = request.host
@@ -164,7 +173,7 @@ end
   def update_email
     update_email_url = "/update_email/"+ current_user.attributes["username"]
     @breadcrumb = @breadcrumb.merge("change email" => update_email_url)
-
+    @page_title = "Change Email - " + @page_title
     @user = User.find_object(params[:id])
      user_hash = params[:user]
     respond_to do |format|
@@ -185,6 +194,8 @@ end
 
      update_email_url = "/update_password/"+ current_user.attributes["username"]
     @breadcrumb = @breadcrumb.merge("change password" => update_email_url)
+    @page_title = "Change Password - " + @page_title
+
     @user = User.find_object(params[:id])
      user_hash = params[:user]
     respond_to do |format|

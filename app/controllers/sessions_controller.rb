@@ -1,4 +1,10 @@
 class SessionsController < ApplicationController
+before_filter :start_page_title
+
+ def start_page_title
+  @page_title = "Website Uptime Monitoring | SouthMunn.com"
+  @page_title = "Sign in - " + @page_title
+ end
 
   def new
     @user = User.new
