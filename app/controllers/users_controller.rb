@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 before_filter :authenticate, :only => [:index,:show,:edit,:update,:confirm]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index,:destroy]
-before_filter :start_breadcrumb, :except => [:create] 
+before_filter :start_breadcrumb, :except => [:new,:create] 
 before_filter :start_page_title
 
 def start_page_title
@@ -88,7 +88,7 @@ end
   # GET /users/new.xml
   def new
     @user = User.new
-
+    @page_title = "Sign Up - " + @page_title
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
