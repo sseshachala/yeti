@@ -30,14 +30,14 @@
 				<table class="sorting">
 					<thead>
 						<tr>
-							<th class="align_left">Owner</th>
-							<th class="align_left">Every</th>
+							<th>Owner</th>
+							<th class="align_left center">Every</th>
 							<th class="align_left center">Test</th>
 							<th class="align_left center">url</th>
 							<th class="align_left center">Status</th>
 							<th class="align_left center">State</th>
                                                         <th class="align_left center"></th>
-							<th class="align_left center tools">Tools</th>
+							<!--<th class="align_left center tools">Tools</th>-->
 						</tr>
 					</thead>
 					<tbody>
@@ -51,7 +51,7 @@
                                                         <td class="align_left center"><%= rmonitor["tag"] %></td>
 							<td class="align_left center"><%= rmonitor["every"] %></td>
 							<td class="align_left center"><%= rmonitor["test"] %></td>
-							<td class="align_left center"><a href="<%= rmonitor["url"] %>"><%= rmonitor["url"] %></td>
+			<td class="align_left center"><%= link_to truncate(rmonitor["url"], :length => 33), show_path("rmonitors",  rmonitor["_id"]),:title => truncate(rmonitor["url"], :length => 33) %></td>
 							<td class="align_left center"><%= rmonitor["status"] %></td>
                                                     <% if rmonitor["state"] == "stopped" %>
                                                         <td class="align_left center"><%= "Paused" %></td>
