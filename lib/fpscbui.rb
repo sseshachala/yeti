@@ -62,9 +62,10 @@ class Fpscbui
   end
 
   def self.url(caller_reference)
+    fps_return_url = "http://" + @@fps_return_domain + "/authorized"
     uri = URI.parse(@@service_end_point)
     params = get_cbui_params("100", "MultiUse", caller_reference,  
-                    "http://localhost:3000/authorized", "2", Amazon::FPS::SignatureUtils::HMAC_SHA256_ALGORITHM);
+                    fps_return_url, "2", Amazon::FPS::SignatureUtils::HMAC_SHA256_ALGORITHM);
 
     signature = Amazon::FPS::SignatureUtils.sign_parameters({:parameters => params, 
                                             :aws_secret_key => @@secret_key,
