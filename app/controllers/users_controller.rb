@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 before_filter :authenticate, :only => [:index,:show,:edit,:update,:confirm]
 before_filter :correct_user, :only => [:show,:edit,:update]
 before_filter :admin_user, :only => [:index,:destroy]
-before_filter :start_breadcrumb, :except => [:new,:create] 
+before_filter :start_breadcrumb, :except => [:new,:create,:verify_password_reset_code,:restore_password] 
 before_filter :start_page_title
 
 def start_page_title
