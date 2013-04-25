@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class PageMailer < ActionMailer::Base
 
  def contact_us_email(params)
     @params = params
