@@ -18,6 +18,21 @@ class PagesController < ApplicationController
       @breadcrumb = {"Contact" => contact_url}
   end
 
+  def send_contact_message
+       @page_title = "Contact Us - " + @page_title
+      contact_url = "/contact"
+      @breadcrumb = {"Contact" => contact_url}
+      puts "email: " + params[:email]
+      puts "name: " + params[:name]
+      puts "message: " + params[:message]
+
+      PageMailer.contact_us_email(params).deliver
+      respond_to do |format|
+       flash[:notice] = "The message has been sent we will get back to you 4 - 6 hours."
+       format.html { render :action => "contact" }
+      end
+  end
+
   def support
        @page_title = "Support - " + @page_title
       support_url = "/support"

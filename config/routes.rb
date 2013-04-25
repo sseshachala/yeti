@@ -32,6 +32,8 @@ Yeti::Application.routes.draw do
   match '/authorize_payments', :to => 'users#authorize_payments'
 
   match '/authorized', :to => 'users#authorized'
+  
+  match '/send_contact_message', :to => 'pages#send_contact_message'
 
   match '/signup', :to => 'users#new'
 

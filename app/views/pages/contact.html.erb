@@ -13,13 +13,32 @@
 	<div class="box_content padding">
 		
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-		incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-		exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-		irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-		deserunt mollit anim id est laborum.
+		If any questions please contact us by filling out the form below. Or send an email to support@southmunn.com
 	</p>
+             <form method="post" action="/send_contact_message" >
+		<!-- Text Input: Start -->	
+		<div class="field">
+			<label>Your Name</label>
+			<input type="text" id="name" name="name" class="big validate" required>
+		</div>
+                <div class="field">
+			<label>Your Email</label>
+			<input type="text" id="email" name="email" placeholder="me@example.com" class="big validate"  title="Please enter a valid email address" required>
+                        
+		</div>
+		<!-- Text Input: End -->
+
+	         <!-- WYSIWYG: Start -->	
+		<div class="field">
+                         <label>Your Message</label>
+			 <textarea class="wysiwyg" id="message" name="message" placeholder="enter the message here..."></textarea>
+		</div>
+		<!-- WYSIWYG: End -->
+
+		
+			<button>Submit</button>
+			<button class="secondary" type="reset">Reset</button>
+		</form>
 		
 	</div>
 	<!-- Box Content: End -->
