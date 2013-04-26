@@ -59,9 +59,11 @@ Yeti::Application.routes.draw do
 
   match '/contact' => 'pages#contact'
   
-  match '/support' => 'pages#support'
+  match '/faq' => 'pages#faq'
 
   match '/tos' => 'pages#tos'
+
+  match '/privacy' => 'pages#privacy'
 
 
   

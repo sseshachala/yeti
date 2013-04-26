@@ -29,16 +29,22 @@ class PagesController < ApplicationController
       end
   end
 
-  def support
-       @page_title = "Support - " + @page_title
-      support_url = "/support"
-      @breadcrumb = {"Support" => support_url}
+  def faq
+       @page_title = "FAQ - " + @page_title
+      support_url = "/faq"
+      @breadcrumb = {"FAQ" => faq_url}
   end
 
   def tos
       @page_title = "Terms Of Service - " + @page_title
       tos_url = "/tos"
       @breadcrumb = {"Terms of Service" => tos_url}
+  end
+
+  def privacy
+      @page_title = "Privacy - " + @page_title
+      tos_url = "/privacy"
+      @breadcrumb = {"privacy" => privacy_url}
   end
 
   def aboutus
