@@ -89,7 +89,7 @@ end
 
     respond_to do |format|
       if @rmonitor.save(current_user, params)
-        flash[:success] = "The Website Monitor was successfully Created."
+        flash[:success] = @rmonitor.description + " monitor - was successfully created."
         format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
         format.xml  { render :xml => @rmonitor, :status => :created, :location => @rmonitor }
       else
@@ -107,7 +107,8 @@ end
     @page_title = "Edit Website Monitor - " + @page_title
    respond_to do |format|
       if @rmonitor.update_attributes(params)
-         flash[:notice] = "The Website Monitor was successfully Updated."
+          
+         flash[:notice] = @rmonitor.description + " monitor - was successfully updated."
         format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
         format.xml  { head :ok }
       else
@@ -122,7 +123,7 @@ end
   def pause
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.pause
-    flash[:notice] = "The Website Monitor was Paused successfully."
+    flash[:notice] = @rmonitor.description + " monitor - was paused"
     respond_to do |format|
       format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
@@ -135,7 +136,7 @@ end
   def restart
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.restart
-    flash[:notice] = "The Website Monitor was Restarted successfully."
+    flash[:notice] = @rmonitor.description + " monitor - was restarted"
     respond_to do |format|
       format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
@@ -148,7 +149,7 @@ end
   def destroy
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.destroy
-    flash[:success] = "The Website Monitor was successfully Deleted"
+    flash[:success] = @rmonitor.description + " monitor - was successfully deleted"
     respond_to do |format|
       format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
