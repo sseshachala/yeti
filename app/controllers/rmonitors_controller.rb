@@ -122,7 +122,7 @@ end
   def pause
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.pause
-    flash[:notice] = "The Website Monitor is Paused."
+    flash[:notice] = "The Website Monitor was Paused successfully."
     respond_to do |format|
       format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
@@ -135,7 +135,7 @@ end
   def restart
     @rmonitor = Rmonitor.find_object(params[:id])
     @rmonitor.restart
-    flash[:notice] = "The Website Monitor was successfully Restarted."
+    flash[:notice] = "The Website Monitor was Restarted successfully."
     respond_to do |format|
       format.html { redirect_to(show_path("dashboard",  current_user.attributes["username"])) }
       format.xml  { head :ok }
