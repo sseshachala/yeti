@@ -27,8 +27,8 @@
 				<div class="field">
 					<!--<label class="left">URL</label>
 					<input type="text" class="left validate tip-stay" title="Add a tip for focus!">-->
-					<%= f.label :url,:class => "left"%>
-                                        <%= f.text_field :url, :class => "left validate" %>
+					<%= f.label :url,"URL",:class => "left"%>
+                                        <%= f.text_field :url, :class => "left validate tip-stay" ,:placeholder=>"http://example.com",:title => "Enter http or https URL" %>
 				</div>
 
 				<div class="field">

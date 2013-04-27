@@ -20,7 +20,8 @@ validates :description, :presence => true,
 #                    :format => {:with => email_regex}
 
 validates :url, :presence => true,
-                :format => {:with => url_regex}
+                :format => {:with => url_regex,:message => "is invalid. Must include http:// or https:// prefix"}
+                
 
 attr_accessor :attributes,:every, :description,:contact, :url #, :notify_interval
 
