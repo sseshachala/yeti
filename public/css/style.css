@@ -1720,3 +1720,10 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 /* html5 slider ends */
+
+
+#alogo{
+  font-family: 'Doppio One', sans-serif;
+  color:#EBECED;
+  font-size:20px;
+}
