@@ -38,10 +38,13 @@
 
                         <h2><%= @rmonitor_hash["test"] %></h2>
 
+<% if @rmonitor_hash["describe_test_result"] != nil %>
 <p>
   <b>Monitor - Description:</b>
   <%= @rmonitor_hash["describe_test_result"] %>
 </p>
+
+<% end %>
 
 <p>
   <b>Creation Date:</b>
@@ -65,26 +68,48 @@
 
 <p>
   <b>State:</b>
+<% if @rmonitor_hash["state"] == "stopped" %>
+   <span class="paused-status">Paused</span>
+<% elsif @rmonitor_hash["state"] == "active" %>
+   <span class="active-status">Active</span>
+<% else %>
   <%= @rmonitor_hash["state"] %>
+<% end %>
 </p>
 
+<% if @rmonitor_hash["last_test_result"] == nil %>
+
 <p>
-  <b>Last test result:</b>
+  <b>Status:</b>
+  <span class="pending-status">Pending...</span><p>No checks yet.</p>
+</p>
+
+
+<% else %>
+
+<p>
+  <b>Result of last check:</b>
   <%= @rmonitor_hash["last_test_result"] %>
 </p>
 
 <p>
-  <b>Status:</b>
+  <b>Website Status:</b>
+<% if @rmonitor_hash["status"] == "UP" %>
+  <span class="online-status">Online</span>
+<% elsif @rmonitor_hash["status"] == "DOWN" %>
+  <span class="failed-status">Offline</span>
+<% else %>
   <%= @rmonitor_hash["status"] %>
+<% end %>
 </p>
 
 <p>
-  <b>Number of tests Passed:</b>
+  <b>Number of Checks Passed:</b>
   <%= @rmonitor_hash["num_tests_passed"] %>
 </p>
 
 <p>
-  <b>Number of tests Failed:</b>
+  <b>Number of Checks Failed:</b>
   <%= @rmonitor_hash["num_tests_failed"] %>
 </p>
 
@@ -98,7 +123,7 @@
   <%= @rmonitor_hash["total_num_tests"] %>
 </p>
 
-	
+<% end %>	
 				
 			</div>
 			<!-- News Sorting Table: End -->

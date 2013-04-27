@@ -65,9 +65,19 @@
 							<!--<td class="align_left center"><%= every(rmonitor["every"]) %></td>-->
 							<td><%= rmonitor["test"] %></td>
 							<td class="align_left"><%= link_to truncate(rmonitor["url"], :length => 33), show_path("rmonitors",  rmonitor["_id"]),:title => truncate(rmonitor["url"], :length => 33) %></td>
+                                                    <% if rmonitor["status"] == nil %>
+                                                        <td class="align_left center"><span class="pending-status">Pending...</span></td>
+                                                    <% elsif rmonitor["status"] == "UP" %>
+                                                        <td class="align_left center"><span class="online-status">Online</span></td>
+                                                    <% elsif rmonitor["status"] == "DOWN" %>
+                                                         <td class="align_left center"><span class="failed-status">Offline</span></td>
+                                                    <% else %>
 							<td class="align_left center"><%= rmonitor["status"] %></td>
+                                                    <% end %>
                                                     <% if rmonitor["state"] == "stopped" %>
-                                                        <td class="align_left center"><%= "Paused" %></td>
+                                                        <td class="align_left center"><span class="paused-status">Paused</span></td>
+                                                    <% elsif rmonitor["state"] == "active" %>
+                                                        <td class="align_left center"><span class="active-status">Active</span></td>
                                                     <% else %>
                                                         <td class="align_left center"><%= rmonitor["state"] %></td>
                                                     <% end %>
