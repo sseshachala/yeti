@@ -1729,35 +1729,40 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .active-status{
- background-color: #57B5E3;
+ /*background-color: #57B5E3;*/
+ background-color: blue; 
  background-image: none !important;
  text-shadow: none !important;
  color: #ffffff;
 }
 
 .online-status{
- background-color: #3CC051;
+ /* background-color: #3CC051; */
+ background-color: green; 
  background-image: none !important;
  text-shadow: none !important;
  color: #ffffff;
 }
 
 .pending-status{
- background-color: #FCB322;
+ /*background-color: #FCB322; */
+ background-color: orange; 
  background-image: none !important;
  text-shadow: none !important;
  color: #ffffff;
 }
 
 .failed-status{
- background-color: #ED4E2A;
+ /*background-color: #ED4E2A; */
+ background-color: red; 
  background-image: none !important;
  text-shadow: none !important;
  color: #ffffff;
 }
 
 .paused-status{
- background-color: #999999;
+ /*background-color: #999999;*/
+ background-color: gray; 
  background-image: none !important;
  text-shadow: none !important;
  color: #ffffff;
