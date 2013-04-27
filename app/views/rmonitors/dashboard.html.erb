@@ -43,7 +43,7 @@
 							<th class="align_left">URL</th>
 							<th class="align_left center">Website Status</th>
 							<th class="align_left center">Monitor</th>
-                                                        <th class="align_left center"></th>
+                                                        <th class="align_left center">Pause/Restart</th>
 							<th class="align_left center tools">Tools</th>
 						</tr>
 					</thead>
@@ -83,9 +83,9 @@
                                                     <% end %>
                                                       
     <% if rmonitor["state"] == "stopped" %>
-    <td><%= link_to 'Restart', path_for("rmonitors",  rmonitor["_id"], "restart"), :confirm => 'Are you sure?', :method => :put, :class => "align_left center"%></td>
+    <td><%= link_to 'Restart', path_for("rmonitors",  rmonitor["_id"], "restart"), :confirm => 'Are you sure?', :method => :put, :class => "align_left center restart-monitor tip" , :title => "Restart"%></td>
     <% elsif rmonitor["state"] == "active" %>
-    <td><%= link_to 'Pause', path_for("rmonitors",  rmonitor["_id"], "pause"), :confirm => 'Are you sure?', :method => :put, :class => "align_left center" %></td>
+    <td><%= link_to 'Pause', path_for("rmonitors",  rmonitor["_id"], "pause"), :confirm => 'Are you sure?', :method => :put, :class => "align_left center pause-monitor tip", :title => "Pause" %></td>
     <% end %>
  
 							

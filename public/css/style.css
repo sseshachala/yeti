@@ -1762,3 +1762,23 @@ input[type='range']::-webkit-slider-thumb {
  text-shadow: none !important;
  color: #ffffff;
 }
+
+.pause-monitor,
+.restart-monitor{
+ 
+ 	background-repeat:no-repeat;
+	background-position:0px 0px;
+	width:42px;
+	height:42px;
+	display:block;
+	position:relative;
+	text-indent:-9999px;
+	z-index:1;              
+}
+
+.restart-monitor{
+     background-image: url("../img/restart.png");
+}
+.pause-monitor{
+    background-image: url("../img/pause.png");
+}
