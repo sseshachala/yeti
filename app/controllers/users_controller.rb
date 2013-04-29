@@ -125,7 +125,6 @@ end
         #domain = request.host
         domain = request.host_with_port
         UserMailer.confirmation_email(@user,domain).deliver
-         flash[:success] = "Congratulations. You have successfully created your account. Please login with your username & password" 
         
         format.html { redirect_to("/signin",:notice => 'Congratulations. You have successfully created your account. Please login with your username & password' ) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
