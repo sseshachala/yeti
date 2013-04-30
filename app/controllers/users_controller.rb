@@ -200,6 +200,7 @@ end
     respond_to do |format|
        #TODO avoid mass assignment 
       if @user.update_password_attributes(params[:user],current_user)
+        flash[:success] = "Your password was successfully updated."
         format.html { redirect_to(@user, :notice => 'User Password was successfully updated.') }
         format.xml  { head :ok }
       else
