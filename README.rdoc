@@ -2,6 +2,9 @@
 
 Experimental website uptime and performance monitoring SAAS. Using Amazon Payments for metered billing, pay only for what you use.
 
+==Try Yeti
+This is still experimental software but I already use it to monitor website for my clients. It works as designed. You try it at http://southmunn.com
+
 ==Installation
 Yeti can be installed with the chef cookbook here: https://github.com/obi-a/cook
 
