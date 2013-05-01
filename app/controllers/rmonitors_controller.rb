@@ -53,6 +53,8 @@ end
     @rmonitor_hash = Rmonitor.find(params[:id])
     @rmonitor = Rmonitor.find_object(params[:id])
     @page_title = @rmonitor_hash["test"] + " - " + @page_title
+    @uptime_percentage = uptime_percentage(@rmonitor_hash)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @rmonitor }
@@ -157,6 +159,10 @@ end
   end
 
  private
+
+ def uptime_percentage(hash)
+   ((hash["num_tests_passed"].to_f / hash["total_num_tests"].to_f) * 100).round(2)
+ end
 
  def confirmed_email
      redirect_to(show_path("dashboard",  current_user.attributes["username"]),:notice => ('You have not confirmed your email address.' + view_context.link_to('Re-Send Verification email','/send_confirmation_email') + " to " + current_user.attributes["email"]).html_safe) unless current_user.attributes["confirmed_email"] 

@@ -104,6 +104,22 @@
 </p>
 
 <p>
+  <b>Uptime:</b>
+<% if @uptime_percentage > 79 %>
+  <span style="color: #4A69EA;"><%= @uptime_percentage %>%</span>
+<% else %>
+ <span style="color: #ED4E2A;"> <%= @uptime_percentage %>%</span>
+<% end %>
+</p>
+
+
+<p>
+  <b>Time of last test:</b>
+  <%= @rmonitor_hash["time_of_last_test"] %> EST
+</p>
+
+
+<p>
   <b>Number of Checks Passed:</b>
   <%= @rmonitor_hash["num_tests_passed"] %>
 </p>
@@ -111,11 +127,6 @@
 <p>
   <b>Number of Checks Failed:</b>
   <%= @rmonitor_hash["num_tests_failed"] %>
-</p>
-
-<p>
-  <b>Time of last test:</b>
-  <%= @rmonitor_hash["time_of_last_test"] %> EST
 </p>
 
 <p>
