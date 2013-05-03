@@ -1,0 +1,36 @@
+=Install & configure nginx-passenger
+Add it as a chef recipe later
+source: http://rubysource.com/deploying-rails-with-phusion-passenger-and-nginx-in-5-minutes/
+
+ cd /tmp
+ wget http://nginx.org/download/nginx-1.0.15.tar.gz
+ tar -xvzf nginx-1.0.15.tar.gz
+
+ sudo gem install passenger
+ sudo passenger-install-nginx-module
+
+
+ #inside: /opt/nginx/conf/nginx.conf
+ #as root:
+
+   server {
+      listen 80;
+      server_name www.southmunn.com;
+      root /home/ubuntu/yeti/public;   # <--- be sure to point to 'public'! 
+      passenger_enabled on;
+   }
+
+ #on ec2 /home/ubuntu/yeti/public;
+ #on vm  /home/obi/yeti/public;
+
+ # run as root
+ wget -O init-deb.sh http://library.linode.com/assets/1139-init-deb.sh
+ mv init-deb.sh /etc/init.d/nginx
+ chmod +x /etc/init.d/nginx
+ /usr/sbin/update-rc.d -f nginx defaults
+
+
+ sudo /etc/init.d/nginx start
+
+ #confirm passenger is running
+ sudo passenger-memory-stats
