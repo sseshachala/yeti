@@ -34,3 +34,16 @@ source: http://rubysource.com/deploying-rails-with-phusion-passenger-and-nginx-i
 
  #confirm passenger is running
  sudo passenger-memory-stats
+
+==SSL
+Configure ssl. Source:http://rtmatheson.com/2011/07/setting-up-nginx-to-work-with-rails-capistrano-and-ssl/
+
+server {
+        listen 443;
+        server_name domain.com;
+        root /home/ubuntu/yeti/public;
+        passenger_enabled on;
+        ssl on;
+        ssl_certificate /path/to/server.crt;
+        ssl_certificate_key /path/to/server.key;
+}
