@@ -161,7 +161,11 @@ end
  private
 
  def uptime_percentage(hash)
-   ((hash["num_tests_passed"].to_f / hash["total_num_tests"].to_f) * 100).round(2)
+   if(hash["total_num_tests"].to_f == 0) 
+     0
+   else
+    ((hash["num_tests_passed"].to_f / hash["total_num_tests"].to_f) * 100).round(2)
+   end
  end
 
  def confirmed_email
