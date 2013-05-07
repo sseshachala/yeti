@@ -16,6 +16,10 @@ gem 'json','1.7.7'
 gem "aws-ses", :require => 'aws/ses'
 gem "passenger"
 
+group :production do  
+  gem 'rack-google-analytics', :require => 'rack/google-analytics'  
+end  
+
 gem 'sqlite3'
 # Use unicorn as the web server
 # gem 'unicorn'
