@@ -63,6 +63,7 @@ GEM
       rake (>= 0.8.1)
     polyglot (0.3.3)
     rack (1.2.7)
+    rack-google-analytics (0.11.0)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -126,6 +127,7 @@ DEPENDENCIES
   json (= 1.7.7)
   leanback (= 0.3.2)
   passenger
+  rack-google-analytics
   rails (= 3.0.20)
   rest-client
   rspec
