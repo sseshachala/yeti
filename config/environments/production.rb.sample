@@ -58,4 +58,8 @@ Yeti::Application.configure do
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
 
+ config.gem 'rack-google-analytics', :lib => 'rack/google-analytics'
+ config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-XXXXXXXX-Y'
+
+
 end
