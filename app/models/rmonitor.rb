@@ -112,11 +112,11 @@ def self.find_by_owner(id)
 end
 
 def pause
-  response = RestClient.put 'http://127.0.0.1:5041/monitors/' + @attributes["_id"] + '/state/stopped',{:content_type => :json}
+  response = RestClient.put 'http://127.0.0.1:5041/monitors/' + @attributes["_id"] + '/stop',{:content_type => :json}
 end
 
 def restart
- response = RestClient.put 'http://127.0.0.1:5041/monitors/' + @attributes["_id"] + '/state/active',{:content_type => :json}
+ response = RestClient.put 'http://127.0.0.1:5041/monitors/' + @attributes["_id"] + '/start',{:content_type => :json}
 end
 
 def destroy
